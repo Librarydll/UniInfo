@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uniinfo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/slideshow.css" rel="stylesheet" />
+</head>
+<body>
+    <header id="site-header">
+        <div id="header_area" class="bg-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-header">
+                    <a class="navbar-brand logo" id="site-icon-id" asp-action="Index" asp-controller="Home">UniInfo</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor02">
+                        <ul class="navbar-nav mr-auto" id="navUl">
+                            <li class="nav-item nav-line">
+                                <a class="nav-link" asp-action="Index" asp-controller="Home">Главная</a>
+                            </li>
+                            <li class="nav-item nav-line">
+                                <a class="nav-link" asp-action="Index" asp-controller="Technology">Выбор ВУЗА</a>
+                            </li>
+                            <li class="nav-item nav-line">
+                                <a class="nav-link" asp-action="Index" asp-controller="Equipment">Список Вузов</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer class="footer">
+    <div class="container">
+        <div class="d-flex justify-content-center" id="footer-element-container">
+            <a href="https://t.me/KomilKhamidov"><i class="fa fa-telegram icon"></i></a>
+            <a><i class="fa fa-envelope-square icon"></i> library.dll@mail.ru</a>
+        </div>
+    </div>
+</footer>
+
+     
+    <script src="~/js/slideshow.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

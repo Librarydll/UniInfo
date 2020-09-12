@@ -1,0 +1,10 @@
+import { NgModule } from "@angular/core";
+import { SubjectListComponent } from './subjectList.component';
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+  declarations: [SubjectListComponent],
+  imports: [BrowserModule],
+  exports:[SubjectListComponent]
+})
+export class StructureModule {}

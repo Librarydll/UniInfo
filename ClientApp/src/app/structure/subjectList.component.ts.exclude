@@ -1,0 +1,20 @@
+import { Component } from '@angular/core';
+import { Repository } from '../models/repository';
+import { Subject } from '../models/subject.model';
+
+
+@Component({
+  selector: "subject-list",
+  templateUrl: "subjectList.component.html"
+})
+export class SubjectListComponent{
+  constructor(private repo: Repository) {
+
+  }
+
+  get initialSubjects(): Subject[] {
+
+    return this.repo.subjects;
+
+  }
+}

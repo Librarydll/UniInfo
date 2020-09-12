@@ -1,0 +1,7 @@
+
+
+<div *ngFor="let subject of initialSubjects">
+
+  <p>{{subject?.firstSubjectRu}}</p>
+
+</div>

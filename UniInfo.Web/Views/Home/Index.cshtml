@@ -1,0 +1,39 @@
+﻿@*@section scripts {
+        <script src="runtime.js"></script>
+        <script src="polyfills.js"></script>
+        <script src="styles.js"></script>
+        <script src="vendor.js"></script>
+        <script src="main.js"></script> }
+    <app-root></app-root>*@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="body-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 fade-animation">
+                <div class="card-bg d-flex flex-column">
+                    <img src="~/images/futuristicsearch.jpg" class="img-fluid">
+                    <div class="text">Поиск вуза по критериям</div>
+                    <p class="img-dif fade-animation">Найдите для себя вуз по предметам,языку и по форме обучения</p>
+                    <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="Equipment">
+                        Подробнее
+                    </a>
+                </div>            
+            </div>
+
+            <div class="col-md-6 fade-animation">
+                <div class="card-bg d-flex flex-column">
+                    <img src="~/images/futuristiclist.jpg" class="img-fluid">
+                    <div class="text">Список Вузов</div>
+                    <p class="img-dif fade-animation">Список всех университетов и их факультетов </p>
+                    <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="Technology">
+                        Подробнее
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
