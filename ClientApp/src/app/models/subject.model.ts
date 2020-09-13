@@ -1,30 +1,44 @@
+import { ModelDictionary } from './modelDictionary.model';
 
+export interface ISubject<T> {
+  firstSubject: T;
+  secondSubject: T;
+  thirdSubject: T;
+}
 
-export class Subject {
-  public id: number;
-  public firstSubject: string;
-  public secondSubject: string;
-  public thirdSubject: string;
-  public firstSubjectRu: string;
-  public secondSubjectRu: string;
-  public thirdSubjectRu: string;
+export class Subject implements ISubject<ModelDictionary>{
 
-  constructor(f: string = "", s: string = "", t: string = "", fRu: string = "", sRu: string = "", tRu: string = "") {
-    this.firstSubject = f;
-    this.secondSubject = s;
-    this.thirdSubject = t;
-    this.firstSubjectRu = fRu;
-    this.secondSubjectRu = sRu;
-    this.thirdSubjectRu = tRu;
-  }
+    firstSubject: ModelDictionary;
+    secondSubject: ModelDictionary;
+    thirdSubject: ModelDictionary;
+
+  constructor() { }
 
   public clear() {
-    this.firstSubject = "";
-    this.secondSubject = "";
-    this.thirdSubject = "";
-    this.firstSubjectRu = "";
-    this.secondSubjectRu = "";
-    this.thirdSubjectRu = "";
+    this.firstSubject = new ModelDictionary();
+    this.secondSubject = new ModelDictionary();
+    this.thirdSubject = new ModelDictionary();
   }
 
 }
+
+//export class Subject {
+
+//  //constructor(firstSubject?: string, secondSubject: string = "", t: string = "", fRu: string = "", sRu: string = "", tRu: string = "") {
+//  //  this.secondSubject = s;
+//  //  this.thirdSubject = t;
+//  //  this.firstSubjectRu = fRu;
+//  //  this.secondSubjectRu = sRu;
+//  //  this.thirdSubjectRu = tRu;
+//  //}
+
+//  //public clear() {
+//  //  this.firstSubject = "";
+//  //  this.secondSubject = "";
+//  //  this.thirdSubject = "";
+//  //  this.firstSubjectRu = "";
+//  //  this.secondSubjectRu = "";
+//  //  this.thirdSubjectRu = "";
+//  //}
+
+//}

@@ -109,7 +109,7 @@ namespace UniInfo.CollectionData.Parser
 						u.Faculties.Add(new Faculty
 						{
 
-						})
+						});
 						//Console.WriteLine($"{code} {uzg} {rug} {uzk} {ruk}");
 						//Console.WriteLine(uzg);
 					}

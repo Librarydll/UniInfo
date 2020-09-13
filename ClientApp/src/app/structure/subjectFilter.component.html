@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="inner-container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="btn btn-primary">First</div>
+      </div>
+      <div class="col-md-2">
+        <div class="btn btn-primary">First</div>
+      </div>
+      <div class="col-md-2">
+        <div class="btn btn-primary">First</div>
+
+      </div>
+      <div class="col-md-3">
+        <div class="btn btn-primary">First</div>
+      </div>
+      <div class="col-md-3">
+        <div class="btn btn-primary">First</div>
+      </div>
+    </div>
+  </div>
+  <button id="resetBtn" class="btn btn-dark d-block" style="margin:0 auto">Сбросить</button>
+
+
+  <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap" >
+
+    <div class="btn btn-info m-1"  *ngFor="let subject of initialSubjects">
+      {{subject?.firstSubject.ruVersion || 'Loading'}}   
+    </div>
+  </div>
+
+</div>
+

@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
-import { SubjectListComponent } from './subjectList.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { SubjectFilterComponent } from './subjectFilter.component';
 
 @NgModule({
-  declarations: [SubjectListComponent],
+  declarations: [SubjectFilterComponent],
   imports: [BrowserModule],
-  exports:[SubjectListComponent]
+  exports: [SubjectFilterComponent]
 })
 export class StructureModule {}

@@ -25,7 +25,7 @@ namespace UniInfo.Web.Controllers.Api
 		{
 			var data = await _subjectDataService.GetDistinctedSubjectsAsync();
 			var d = data.GetModelSubjectNames();
-			return Ok(data);
+			return Ok(d);   
 		}
 
 	}
