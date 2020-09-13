@@ -1,22 +1,31 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UniInfo.Dapper.Context;
 using UniInfo.Domain.Models;
+using UniInfo.Domain.Models.Common;
 using UniInfo.Domain.Services;
 
 namespace UniInfo.Dapper.Services
 {
 	public class SubjectDataService : GenericDataService<Subject>, ISubjectDataService
 	{
+		readonly string distincScript =
+		$"SELECT DISTINCT s.FirstSubject,s.SecondSubject,s.ThirdSubject From Subjects as s";
 		public SubjectDataService(ApplicationDbConnectionFactory factory) : base(factory)
 		{
 		}
 
-		public Task<IEnumerable<Subject>> GetDistinctedSubjectsAsync()
+	
+		public async Task<IEnumerable<ISubject<int>>> GetDistinctedSubjectsAsync()
 		{
-			throw new NotImplementedException();
+			using (var connection = _factory.CreateConnection())
+			{
+				IEnumerable<ISubject<int>> subjects = await connection.QueryAsync<Subject>(distincScript);
+				return subjects;
+			}
 		}
 	}
 }

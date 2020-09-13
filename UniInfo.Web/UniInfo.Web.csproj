@@ -13,6 +13,11 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UniInfo.Dapper\UniInfo.Dapper.csproj" />
+    <ProjectReference Include="..\UniInfo.Domain\UniInfo.Domain.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

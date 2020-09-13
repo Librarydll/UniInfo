@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using UniInfo.Dapper.Context;
+using UniInfo.Dapper.Services;
+using UniInfo.Domain.Services;
 
 namespace UniInfo.Web
 {
@@ -22,6 +25,17 @@ namespace UniInfo.Web
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
+
+
+			services.AddTransient<IUniversityDataService, UniversityDataService>();
+			services.AddTransient<IFacultyDataService, FacultyDataService>();
+			services.AddTransient<ISubjectDataService, SubjectDataService>();
+			services.AddSingleton(service =>
+			{
+				var str = Configuration.GetConnectionString("LocalDb");
+				return new ApplicationDbConnectionFactory(str);
+			});
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ namespace UniInfo.Domain.Models
 {
     //[Table("Subject")]
 
-    public class Subject: BaseEntity
+    public class Subject: BaseEntity, ISubject<int>
     {
         public int FirstSubject { get; set; }
         public int SecondSubject { get; set; }
