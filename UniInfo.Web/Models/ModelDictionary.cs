@@ -5,9 +5,14 @@ using System.Threading.Tasks;
 
 namespace UniInfo.Web.Models
 {
-	public class ModelDictionary
+	public interface ICode
+	{
+		public int Code { get; set; }
+	}
+	public class ModelDictionary:ICode
 	{
 		public string RuVersion { get; set; }
 		public string UzVersion { get; set; }
+		public int Code { get; set; }
 	}
 }

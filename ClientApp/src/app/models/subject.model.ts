@@ -15,10 +15,22 @@ export class Subject implements ISubject<ModelDictionary>{
   constructor() { }
 
   public clear() {
-    this.firstSubject = new ModelDictionary();
-    this.secondSubject = new ModelDictionary();
-    this.thirdSubject = new ModelDictionary();
+    this.firstSubject = null;
+    this.secondSubject = null;
+    this.thirdSubject = null;
   }
+
+  public isFilled(): boolean {
+
+    if ((this.firstSubject === null || this.firstSubject === undefined) ||
+      (this.secondSubject === null || this.secondSubject === undefined) ||
+      (this.thirdSubject === null || this.thirdSubject === undefined ))
+    {
+      return false
+    };
+    return true;
+  }
+ 
 
 }
 

@@ -5,7 +5,6 @@ using UniInfo.Domain.Models.Common;
 
 namespace UniInfo.Domain.Models
 {
-    //[Table("Subject")]
 
     public class Subject: BaseEntity, ISubject<int>
     {

@@ -1,17 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using UniInfo.Domain.Models.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace UniInfo.Domain.Models
+namespace UniInfo.Domain.Models.DTO
 {
-    [Table("Faculties")]
-    public class Faculty: BaseEntity
-    {
+	public class FacultyDto
+	{
         public string Code { get; set; }
         public string FacultyName { get; set; }
-        public string Direction { get; set; }
         public int Grant { get; set; }
         public int Contract { get; set; }
-       
         public double GrantPass { get; set; }
         public double ContractPass { get; set; }
         public int EducationType { get; set; }
@@ -20,9 +18,7 @@ namespace UniInfo.Domain.Models
         public int AsFirst { get; set; }
         public int AsSecond { get; set; }
         public int AsThird { get; set; }
-        public int UniversityId { get; set; }
-
-        public University University { get; set; }
-        public Subject Subject { get; set; }
+        public string UniversityNameRu { get; set; }
+        public string UniversityNameUz { get; set; }
     }
 }

@@ -1,33 +1,49 @@
 <div class="container">
   <div class="inner-container">
-    <div class="row">
-      <div class="col-md-2">
-        <div class="btn btn-primary">First</div>
+    <div class="d-flex flex-wrap flex-row justify-content-md-center">
+      <div class="item-text">
+        <div class="btn btn-primary item-text">{{repo.currentSubject.firstSubject?.ruVersion || 'первый блок'}}</div>
       </div>
-      <div class="col-md-2">
-        <div class="btn btn-primary">First</div>
+      <div class="item-text">
+        <div class="btn btn-primary item-text">{{repo.currentSubject.secondSubject?.ruVersion || 'второй блок'}}</div>
       </div>
-      <div class="col-md-2">
-        <div class="btn btn-primary">First</div>
-
+      <div class="item-text">
+        <div class="btn btn-primary item-text">{{repo.currentSubject.thirdSubject?.ruVersion || 'третий блок'}}</div>
       </div>
-      <div class="col-md-3">
-        <div class="btn btn-primary">First</div>
+    </div>
+    <div style="margin-top:5px;margin-bottom:5px;"></div>
+    <div class="d-flex flex-wrap flex-row justify-content-md-center">
+      <div class="item-text">
+        <button class="btn btn-primary item-text" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
+          {{e?.ruVersion|| 'Loading'}}
+        </button>
       </div>
-      <div class="col-md-3">
-        <div class="btn btn-primary">First</div>
+      <div class="item-text">
+        <button class="btn btn-primary item-text" *ngFor="let l of languages" (click)="selectLanguage(l)">
+          {{l?.ruVersion|| 'Loading'}}
+        </button>
       </div>
     </div>
   </div>
-  <button id="resetBtn" class="btn btn-dark d-block" style="margin:0 auto">Сбросить</button>
+  <button id="resetBtn" class="btn btn-dark d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
 
+  <div [class.d-none]="currentSubject.isFilled()">
+    <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 
-  <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap" >
-
-    <div class="btn btn-info m-1"  *ngFor="let subject of initialSubjects">
-      {{subject?.firstSubject.ruVersion || 'Loading'}}   
+      <button class="btn btn-info m-1 " *ngFor="let subject of initialSubjects" id="code" (click)="selectSubject(subject)">
+        {{subject?.ruVersion || 'Loading'}}
+      </button>
     </div>
   </div>
 
+  <div>
+    <table class="table table-striped table-bordered m-1">
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </div>
 

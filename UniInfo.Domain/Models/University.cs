@@ -5,7 +5,6 @@ using UniInfo.Domain.Models.Common;
 
 namespace UniInfo.Domain.Models
 {
-    //[Table("University")]
     public class University : BaseEntity
     {
         public string Name { get; set; }
