@@ -12,7 +12,7 @@ namespace UniInfo.Dapper.Services
 {
 	public class FacultyDataService : GenericDataService<Faculty>, IFacultyDataService
 	{
-		readonly string query = @"select f.facultyname,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird,f.universityid,u.name as universitynameuz ,u.nameru as universitynameru
+		readonly string query = @"select f.facultynameru,f.facultynameuz,f.code,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird,f.universityid,u.name as universitynameuz ,u.nameru as universitynameru
 								from faculties as f
 								left join subjects as s
 								on s.facultyid=f.id

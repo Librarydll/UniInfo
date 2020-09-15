@@ -1,8 +1,9 @@
 import { Subject } from './subject.model';
 
 export class ModelDictionary {
-  
-    static langDict: { [id: number]: ModelDictionary } = {
+
+ 
+  static langDict: { [id: number]: ModelDictionary } = {
     [1]: ModelDictionary.createModelDictionary("Узбекский","",1),
     [2]: ModelDictionary.createModelDictionary("Русский","",2),
     [3]: ModelDictionary.createModelDictionary("Каракалпакский","",3),

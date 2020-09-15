@@ -24,7 +24,8 @@ export class Faculty {
 export class FacultyDto {
   id: number;
   code: string;
-  facultyName: string;
+  facultyNameUz: string;
+  facultyNameRu: string;
   grant: number;
   contract: number;
   educationType: number;
@@ -35,7 +36,6 @@ export class FacultyDto {
   asFirst: number;
   asSecond: number;
   asThird: number;
-  facultyNameRu: string;
   universityNameRu: string;
   universityNameUz: string;
 

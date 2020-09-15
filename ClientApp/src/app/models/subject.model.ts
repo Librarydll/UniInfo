@@ -30,8 +30,21 @@ export class Subject implements ISubject<ModelDictionary>{
     };
     return true;
   }
- 
 
+}
+
+export class SubjectDto extends Subject {
+
+  language: ModelDictionary;
+  educationType: ModelDictionary;
+
+  public isPropertyFilled() {
+    if ((this.language === null || this.language === undefined) ||
+      (this.educationType === null || this.educationType === undefined)) {
+      return false
+    };
+    return true;
+  }
 }
 
 //export class Subject {

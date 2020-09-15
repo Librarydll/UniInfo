@@ -60,62 +60,62 @@ namespace UniInfo.CollectionData.Parser
 
 		public static void ParseWord(string filepath)
 		{
-			Dictionary<int, University> dict = new Dictionary<int, University>();
-			using (FileStream file = new FileStream(filepath, FileMode.Open, FileAccess.Read))
-			{
-				int n = 0;
-				int i = 1;
-				var document = new XWPFDocument(file);
-				foreach (var table in document.Tables)
-				{
-					foreach (var row in table.Rows)
-					{
-						var cell = row.GetTableCells();
-						if (cell.Count < 8) continue;
+			//Dictionary<int, University> dict = new Dictionary<int, University>();
+			//using (FileStream file = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+			//{
+			//	int n = 0;
+			//	int i = 1;
+			//	var document = new XWPFDocument(file);
+			//	foreach (var table in document.Tables)
+			//	{
+			//		foreach (var row in table.Rows)
+			//		{
+			//			var cell = row.GetTableCells();
+			//			if (cell.Count < 8) continue;
 
-						var code = cell[0].GetText();
-						University u = null;
-						long.TryParse(code, out long v);
-						var name = cell[1].GetText();
-						if (v == i && !string.IsNullOrWhiteSpace(name))
-						{				
-							i++;
-						}
-						if (!dict.TryGetValue((int)v, out u))
-						{
-							u = new University();
-							u.Name = name;
-							u.Faculties = new List<Faculty>();
-							dict.Add((int)v, u);
-						}
+			//			var code = cell[0].GetText();
+			//			University u = null;
+			//			long.TryParse(code, out long v);
+			//			var name = cell[1].GetText();
+			//			if (v == i && !string.IsNullOrWhiteSpace(name))
+			//			{				
+			//				i++;
+			//			}
+			//			if (!dict.TryGetValue((int)v, out u))
+			//			{
+			//				u = new University();
+			//				u.Name = name;
+			//				u.Faculties = new List<Faculty>();
+			//				dict.Add((int)v, u);
+			//			}
 
-						if (v < 5000) continue;
+			//			if (v < 5000) continue;
 
-						var facname = cell[1].GetText();
+			//			var facname = cell[1].GetText();
 
-						var totalg = GetNum(cell[3].GetText());//total grand
-						var totalk = GetNum(cell[6].GetText());//total contract
-						var uzg = GetNum(cell[4].GetText());//uz grand
-						var rug = Calculate(totalg, uzg);//ru grand			
-						var uzk = GetNum(cell[7].GetText());//uz contract
-						var ruk = Calculate(totalk, uzk);//ru contract
-						u.Faculties.Add(new Faculty
-						{
-							FacultyName = facname,
-							Grant = rug,
-							Contract = ruk,
-							Language=2
-						});
-						u.Faculties.Add(new Faculty
-						{
+			//			var totalg = GetNum(cell[3].GetText());//total grand
+			//			var totalk = GetNum(cell[6].GetText());//total contract
+			//			var uzg = GetNum(cell[4].GetText());//uz grand
+			//			var rug = Calculate(totalg, uzg);//ru grand			
+			//			var uzk = GetNum(cell[7].GetText());//uz contract
+			//			var ruk = Calculate(totalk, uzk);//ru contract
+			//			u.Faculties.Add(new Faculty
+			//			{
+			//				//FacultyName = facname,
+			//				Grant = rug,
+			//				Contract = ruk,
+			//				Language=2
+			//			});
+			//			u.Faculties.Add(new Faculty
+			//			{
 
-						});
-						//Console.WriteLine($"{code} {uzg} {rug} {uzk} {ruk}");
-						//Console.WriteLine(uzg);
-					}
-				}
-				Console.WriteLine(n);
-			}
+			//			});
+			//			//Console.WriteLine($"{code} {uzg} {rug} {uzk} {ruk}");
+			//			//Console.WriteLine(uzg);
+			//		}
+			//	}
+			//	Console.WriteLine(n);
+			//}
 		}
 
 		public static void ParsePdf(string filepath)

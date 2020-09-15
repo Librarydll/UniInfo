@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Subject } from './subject.model';
+import { Subject, SubjectDto } from './subject.model';
 import { ModelDictionary } from './modelDictionary.model';
 import { FilterByFirstSubject, IFilter, FilterBySecondSubject, FilterByNoSubject } from '../strategy/filterStrategy';
 import { Faculty, FacultyDto } from './faculty.model';
@@ -9,7 +9,7 @@ const universityUrl = "/api/university";
 
 @Injectable()
 export class Repository {
-  currentSubject: Subject;
+  currentSubject: SubjectDto;
   distinctedSubjects: Subject[];
   subjectNames: Subject[];
   filteredSubjects: ModelDictionary[];
@@ -19,7 +19,7 @@ export class Repository {
   allRelatedFaculties: FacultyDto[];
 
   constructor(private http: HttpClient) {
-      this.currentSubject = new Subject();
+    this.currentSubject = new SubjectDto();
       this.getSubjectNames();
     }
 
@@ -49,16 +49,15 @@ export class Repository {
       
     }
     if (order == 1) {//when select first subject
-      this.filterStrategy = new FilterByFirstSubject();
-      this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, model);
       this.currentSubject.firstSubject = model;
+      this.filterStrategy = new FilterByFirstSubject();
+      this.filteredSubjects = this.filterStrategy.filter(this.subjectNames,this.currentSubject);
 
     }
     if (order == 2) {//when select second subject
-      this.filterStrategy = new FilterBySecondSubject();
-      this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, model);
       this.currentSubject.secondSubject = model;
-
+      this.filterStrategy = new FilterBySecondSubject();
+      this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, this.currentSubject);
     }
     if (order == 3) {//when select third subject
       this.currentSubject.thirdSubject = model;

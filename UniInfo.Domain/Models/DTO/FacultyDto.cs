@@ -7,7 +7,8 @@ namespace UniInfo.Domain.Models.DTO
 	public class FacultyDto
 	{
         public string Code { get; set; }
-        public string FacultyName { get; set; }
+        public string FacultyNameRu { get; set; }
+        public string FacultyNameUz { get; set; }
         public int Grant { get; set; }
         public int Contract { get; set; }
         public double GrantPass { get; set; }

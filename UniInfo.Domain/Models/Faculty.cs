@@ -4,14 +4,15 @@ using UniInfo.Domain.Models.Common;
 namespace UniInfo.Domain.Models
 {
     [Table("Faculties")]
-    public class Faculty: BaseEntity
+    public class Faculty : BaseEntity
     {
         public string Code { get; set; }
-        public string FacultyName { get; set; }
+        public string FacultyNameRu { get; set; }
+        public string FacultyNameUz { get; set; }
         public string Direction { get; set; }
         public int Grant { get; set; }
         public int Contract { get; set; }
-       
+
         public double GrantPass { get; set; }
         public double ContractPass { get; set; }
         public int EducationType { get; set; }

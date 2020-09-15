@@ -1,0 +1,46 @@
+
+
+<div class="bg-info">
+  <div *ngFor="let d of dict | keyvalue" te>
+    <a class="text-center" href="/University/{d.key}">{{d.key}} </a>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>{{'N'}}</th>
+            <th>{{tableHeader.code}}</th>
+            <th>{{tableHeader.direction}}</th>
+            <th>{{tableHeader.plan}} (г/к)</th>
+            <th>{{tableHeader.pass}} (г/к)</th>
+            <th>{{tableHeader.accept}}</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let fac of d.value;let i=index">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{fac.code}}</td>
+            <td>{{fac.facultynameRu}}</td>
+            <td>
+              <span>
+                {{fac.grant}}/
+              </span>
+              <span>
+                {{fac.contract}}
+              </span>
+            </td>
+            <td>
+              <span>
+                {{fac.grantPass}}/
+              </span>
+              <span>
+                {{fac.contractPass}}
+              </span>
+            </td>
+
+            <td>{{fac.asFirst}} / {{fac.asSecond}} / {{fac.asThird}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+   
+  </div>
+</div>
