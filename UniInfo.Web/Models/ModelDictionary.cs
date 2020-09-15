@@ -15,4 +15,6 @@ namespace UniInfo.Web.Models
 		public string UzVersion { get; set; }
 		public int Code { get; set; }
 	}
+
+
 }

@@ -1,37 +1,54 @@
-  <div class="inner-container">
-    <div class="d-flex flex-wrap flex-row justify-content-md-center">
-      <div class="item-text">
-        <div class="btn btn-primary item-text">{{repo.currentSubject.firstSubject?.ruVersion || 'первый блок'}}</div>
-      </div>
-      <div class="item-text">
-        <div class="btn btn-primary item-text">{{repo.currentSubject.secondSubject?.ruVersion || 'второй блок'}}</div>
-      </div>
-      <div class="item-text">
-        <div class="btn btn-primary item-text">{{repo.currentSubject.thirdSubject?.ruVersion || 'третий блок'}}</div>
+<div class="inner-container">
+  <div class="d-flex flex-wrap flex-row justify-content-md-center">
+    <div class="item-text">
+      <div [className]="order>=1 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
+        {{repo.currentSubject.firstSubject?.ruVersion || 'первый блок'}}
       </div>
     </div>
-    <div style="margin-top:5px;margin-bottom:5px;"></div>
-    <div class="d-flex flex-wrap flex-row justify-content-md-center">
-      <div class="item-text">
-        <button class="btn btn-primary item-text" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
-          {{e?.ruVersion|| 'Loading'}}
-        </button>
+    <div class="item-text">
+      <div [className]="order>=2 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
+        {{repo.currentSubject.secondSubject?.ruVersion || 'второй блок'}}
       </div>
-      <div class="item-text">
-        <button class="btn btn-primary item-text" *ngFor="let l of languages" (click)="selectLanguage(l)">
-          {{l?.ruVersion|| 'Loading'}}
-        </button>
+    </div>
+    <div class="item-text">
+      <div [className]="order>=3 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
+        {{repo.currentSubject.thirdSubject?.ruVersion || 'третий блок'}}
       </div>
     </div>
   </div>
-  <button id="resetBtn" class="btn btn-dark d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
-
-  <div [class.d-none]="currentSubject.isFilled()">
-    <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
-
-      <button class="btn btn-info m-1 " *ngFor="let subject of initialSubjects" id="code" (click)="selectSubject(subject)">
-        {{subject?.ruVersion || 'Loading'}}
-      </button>
+  <div style="margin-top:5px;margin-bottom:5px;"></div>
+  <div class="d-flex flex-wrap flex-row justify-content-md-center">
+    <div [class.d-none]="educationTypes===undefined||educationTypes==null||educationTypes.length==0">
+      <div class="arr-container">
+        <div>
+          <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
+            {{e?.ruVersion|| 'Loading'}}
+          </button>
+        </div>
+        <p>Тип</p>
+      </div>
+    </div>
+    <div [class.d-none]="languages===undefined||languages==null||languages.length==0">
+      <div class="arr-container">
+        <div>
+          <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'"
+                  class="btn btn-primary" *ngFor="let l of languages" (click)="selectLanguage(l)">
+            {{l?.ruVersion|| 'Loading'}}
+          </button>
+        </div>
+        <p>Язык</p>
+      </div>
     </div>
   </div>
+</div>
+<button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
+
+<div [class.d-none]="currentSubject.isFilled()">
+  <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
+
+    <button class="btn btn-info m-1 color-black" *ngFor="let subject of initialSubjects" id="code" (click)="selectSubject(subject)">
+      {{subject?.ruVersion || 'Loading'}}
+    </button>
+  </div>
+</div>
 

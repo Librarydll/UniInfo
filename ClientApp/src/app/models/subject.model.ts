@@ -14,11 +14,7 @@ export class Subject implements ISubject<ModelDictionary>{
 
   constructor() { }
 
-  public clear() {
-    this.firstSubject = null;
-    this.secondSubject = null;
-    this.thirdSubject = null;
-  }
+  
 
   public isFilled(): boolean {
 
@@ -44,6 +40,14 @@ export class SubjectDto extends Subject {
       return false
     };
     return true;
+  }
+
+  public clear() {
+    this.firstSubject = null;
+    this.secondSubject = null;
+    this.thirdSubject = null;
+    this.language = null;
+    this.educationType = null;
   }
 }
 

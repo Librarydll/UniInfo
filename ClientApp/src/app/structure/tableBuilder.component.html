@@ -1,11 +1,15 @@
 
 
-<div class="bg-info">
-  <div *ngFor="let d of dict | keyvalue" te>
-    <a class="text-center" href="/University/{d.key}">{{d.key}} </a>
-      <table class="table table-bordered table-striped">
+<div class="container" id="con">
+  <div class="table100">
+    <div *ngFor="let d of dict | keyvalue">
+      <p class="text-center u-name-container">
+        <a class="u-name" href="/University/{d.key}">{{d.key}} </a>
+      </p>
+      
+      <table class="">
         <thead>
-          <tr>
+          <tr class="table100-head">
             <th>{{'N'}}</th>
             <th>{{tableHeader.code}}</th>
             <th>{{tableHeader.direction}}</th>
@@ -14,33 +18,33 @@
             <th>{{tableHeader.accept}}</th>
           </tr>
         </thead>
-        <tbody *ngFor="let fac of d.value;let i=index">
-          <tr>
+        <tbody >
+          <tr *ngFor="let fac of d.value;let i=index">
             <td>{{i+1}}</td>
-            <td>{{fac.code}}</td>
-            <td>{{fac.facultynameRu}}</td>
+            <td >{{fac.code}}</td>
+            <td style="text-align:left">{{fac.facultyNameRu}}</td>
             <td>
               <span>
-                {{fac.grant}}/
+                {{fac.grant}} /
               </span>
               <span>
-                {{fac.contract}}
+               {{fac.contract}}
               </span>
             </td>
             <td>
               <span>
-                {{fac.grantPass}}/
+                {{fac.grantPass}} /
               </span>
               <span>
                 {{fac.contractPass}}
               </span>
             </td>
 
-            <td>{{fac.asFirst}} / {{fac.asSecond}} / {{fac.asThird}}</td>
+            <td>{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
           </tr>
         </tbody>
 
       </table>
-   
+    </div>
   </div>
 </div>

@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 import { Repository } from '../models/repository';
-import { Subject } from '../models/subject.model';
+import { Subject, SubjectDto } from '../models/subject.model';
 import { ModelDictionary } from '../models/modelDictionary.model';
 import { MessageService } from '../models/messageService';
 import { EventEmitter } from 'events';
+import { TableHeader } from '../models/tableHeader';
 
 
 @Component({
@@ -14,9 +15,9 @@ import { EventEmitter } from 'events';
 export class SubjectFilterComponent{
 
   order: number = 0;
-  
+    constructor(private repo: Repository, private messageService: MessageService) {
 
-  constructor(private repo: Repository,private messageService:MessageService) { }
+  }
 
   get subjects(): Subject[] {
     return this.repo.subjectNames;
@@ -36,7 +37,7 @@ export class SubjectFilterComponent{
   getFaculties() {
     this.repo.getFaculties();
   }
-  get currentSubject():Subject{
+  get currentSubject():SubjectDto{
     return this.repo.currentSubject;
   }
 
@@ -60,6 +61,21 @@ export class SubjectFilterComponent{
     }
   }
 
+  isThisLanguage(id: number): boolean {
+  
+    if (id == 0) return false;
+
+    if (this.currentSubject.language === undefined || this.currentSubject.language === null) return false;
+
+    return this.currentSubject.language.code == id;
+  }
+  isThisEducationType(id: number): boolean {
+    if (id == 0) return false;
+
+    if (this.currentSubject.educationType === undefined || this.currentSubject.educationType === null) return false;
+
+    return this.currentSubject.educationType.code == id;
+  }
 
   clear() {
     this.order = 0;
@@ -77,4 +93,6 @@ export class SubjectFilterComponent{
   canBuild():boolean {
     return this.repo.currentSubject.isPropertyFilled();
   }
+
+
 }

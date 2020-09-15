@@ -7,7 +7,8 @@ import { MessageService } from '../models/messageService';
 
 @Component({
   selector: "table-builder",
-  templateUrl: "tableBuilder.component.html"
+  templateUrl: "tableBuilder.component.html",
+  styleUrls: ["./tableBuilder.component.css"],
 })
 export class TableBuilderComponent {
 

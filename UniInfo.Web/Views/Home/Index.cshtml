@@ -1,32 +1,37 @@
 ﻿@{
-        Layout = "_Layout";
-        ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .body-bg {
+        background: -webkit-linear-gradient(50deg, #09203f,#485563);
     }
+</style>
 
-    <div class="body-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 fade-animation">
-                    <div class="card-bg d-flex flex-column">
-                        <img src="~/images/futuristicsearch.jpg" class="img-fluid">
-                        <div class="text">Поиск вуза по критериям</div>
-                        <p class="img-dif fade-animation">Найдите для себя вуз по предметам,языку и по форме обучения</p>
-                        <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityFilter">
-                            Подробнее
-                        </a>
-                    </div>
+<div class="body-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 fade-animation">
+                <div class="card-bg d-flex flex-column">
+                    <img src="~/images/futuristicsearch.jpg" class="img-fluid">
+                    <div class="text">Поиск вуза по критериям</div>
+                    <p class="img-dif fade-animation">Найдите для себя вуз по предметам,языку и по форме обучения</p>
+                    <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityFilter">
+                        Подробнее
+                    </a>
                 </div>
+            </div>
 
-                <div class="col-md-6 fade-animation">
-                    <div class="card-bg d-flex flex-column">
-                        <img src="~/images/futuristiclist.jpg" class="img-fluid">
-                        <div class="text">Список Вузов</div>
-                        <p class="img-dif fade-animation">Список всех университетов и их факультетов </p>
-                        <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityList">
-                            Подробнее
-                        </a>
-                    </div>
+            <div class="col-md-6 fade-animation">
+                <div class="card-bg d-flex flex-column">
+                    <img src="~/images/futuristiclist.jpg" class="img-fluid">
+                    <div class="text">Список Вузов</div>
+                    <p class="img-dif fade-animation">Список всех университетов и их факультетов </p>
+                    <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityList">
+                        Подробнее
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+</div>
