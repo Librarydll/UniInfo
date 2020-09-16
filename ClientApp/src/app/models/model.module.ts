@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from './messageService';
 
 @NgModule({
-    imports: [HttpClientModule],
+  imports: [HttpClientModule],
   providers: [Repository,MessageService]
 })
 export class ModelModule { }

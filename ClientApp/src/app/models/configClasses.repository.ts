@@ -1,10 +1,8 @@
 export class Filter {
-    category?: string;
-    search?: string;
-    related: boolean = false;
+    code?: number;//university name code
+    city?: string; 
 
     reset() {
-        this.category = this.search = null;
-        this.related = false;
+     // this.code = this.search = null;
     }
 }

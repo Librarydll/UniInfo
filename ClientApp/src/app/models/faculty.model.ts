@@ -38,5 +38,6 @@ export class FacultyDto {
   asThird: number;
   universityNameRu: string;
   universityNameUz: string;
+  universityId: number;
 
 }

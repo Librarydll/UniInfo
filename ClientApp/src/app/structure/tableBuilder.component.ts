@@ -3,6 +3,7 @@ import { Repository } from '../models/repository';
 import { TableHeader } from '../models/tableHeader';
 import { FacultyDto } from '../models/faculty.model';
 import { MessageService } from '../models/messageService';
+import { ModelDictionary } from '../models/modelDictionary.model';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class TableBuilderComponent {
 
   tHeader: TableHeader;
   dict: IDictionary<FacultyDto[]>;
+
   constructor(private repo: Repository,private messageService:MessageService) {
 
     this.tHeader = new TableHeader();
@@ -49,13 +51,13 @@ export class TableBuilderComponent {
     this.repo.allRelatedFaculties.forEach(function(value) {
 
       if (value.educationType == edutype && value.language == lang) {
-        let f = dict[value.universityNameRu];
+        let f = dict[value.universityId];
         if (f===undefined||f===null) {
           
-          dict[value.universityNameRu] = [];
+          dict[value.universityId] = [];
 
-          dict[value.universityNameRu].push(value);
-          f = dict[value.universityNameRu];
+          dict[value.universityId].push(value);
+          f = dict[value.universityId];
         }
         f.push(value);
       }
@@ -69,6 +71,6 @@ export class TableBuilderComponent {
 }
 
 interface IDictionary<T> {
-  [Key: string]: T;
+  [Key: number]: T;
 }
 

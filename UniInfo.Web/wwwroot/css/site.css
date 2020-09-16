@@ -6,13 +6,22 @@
     
 }
 
+.bg-transparent-noimportant{
+    background-color:transparent;
+}
+.min-width500{
+    min-width:500px;
+}
+
 
 /*HEDER*/
 
 .bg-header {
     background: #03132b;
 }
-
+.body-bg {
+    background: -webkit-linear-gradient(50deg, #09203f,#485563);
+}
 /*BODY*/
 .body-container {
     max-width: 1200px;
@@ -71,3 +80,115 @@
 
 
 /*ANGULAR*/
+
+#containerCity ul li{
+    font-size:13px;
+    padding-right:5px;
+}
+
+.ul-li:hover {
+    background: #00ffe785;
+}
+
+.inner-container {
+    padding: 5px;
+    margin: 5px;
+}
+
+.item-text {
+    margin-right: 7px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.item-btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: #fff;
+}
+
+
+
+.item-btn-sub {
+    background-color: #007bff00;
+    border-color: #17a2b8;
+}
+
+.item-btn-city {
+    background-color: #00ffe785;
+    border-color: #17a2b8;
+}
+
+.item-btn-clear {
+    background-color: #007bff00;
+    border-color: #17a2b8;
+}
+
+    .item-btn-clear:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .item-btn-clear:hover {
+        background-color: #29329cf5;
+        border-color: #29329cf5;
+    }
+
+    .item-btn-clear:not(:disabled):not(.disabled):active {
+        background-color: #29329cf5;
+        border-color: #29329cf5;
+    }
+
+
+.arr-container {
+    border: 1px solid #17a2b8;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+    .arr-container div button {
+        margin: 2px;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .arr-container p {
+        display: block;
+        text-align: center;
+        margin: 0;
+        padding-right: 3px;
+        padding-left: 3px;
+        font-size: 12px;
+    }
+
+
+.color-white {
+    color: white;
+}
+
+.color-black {
+    color: black;
+}
+
+.list-group-item-dark {
+    background-color: #00000066;
+    color:white;
+}
+
+.hidden-select{
+    display:none;
+}

@@ -4,8 +4,12 @@ import { Subject, SubjectDto } from './subject.model';
 import { ModelDictionary } from './modelDictionary.model';
 import { FilterByFirstSubject, IFilter, FilterBySecondSubject, FilterByNoSubject } from '../strategy/filterStrategy';
 import { Faculty, FacultyDto } from './faculty.model';
+import { Filter } from './configClasses.repository';
+import { University } from './university.model';
 
 const universityUrl = "/api/university";
+const facultyUrl = "/api/faculty";
+const subjectyUrl = "/api/subject";
 
 @Injectable()
 export class Repository {
@@ -18,14 +22,27 @@ export class Repository {
   allLanguage: ModelDictionary[];
   allRelatedFaculties: FacultyDto[];
 
+  filter: Filter;
+  universities: University[];
+
   constructor(private http: HttpClient) {
     this.currentSubject = new SubjectDto();
-      this.getSubjectNames();
+    this.getSubjectNames();
+    this.filter = new Filter();
+  }
+
+    getUniversities(){
+      let url = universityUrl;
+
+      this.http.get<University[]>(url).subscribe(u => {
+        this.universities = u;
+
+      })
     }
 
 
     getSubjectNames() {
-      let url = universityUrl;
+      let url = subjectyUrl;
         
       this.http.get<Subject[]>(url).subscribe(subj =>
       {
@@ -67,13 +84,8 @@ export class Repository {
 
   getFaculties() {
     let url =
-      `${universityUrl}/faculties?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
-    //let data = {
-    //  firstSubject: this.currentSubject.firstSubject.code,
-    //  seccodSubject: this.currentSubject.secondSubject.code,
-    //  thirdSubject: this.currentSubject.thirdSubject.code,
-    //};
-    
+      `${facultyUrl}?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
+
     this.http.get<FacultyDto[]>(url).subscribe(fac => {
       this.allRelatedFaculties = fac;
       this.retriveEducationType();

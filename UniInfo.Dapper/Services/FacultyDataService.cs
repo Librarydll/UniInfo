@@ -12,14 +12,14 @@ namespace UniInfo.Dapper.Services
 {
 	public class FacultyDataService : GenericDataService<Faculty>, IFacultyDataService
 	{
-		readonly string query = @"select f.facultynameru,f.facultynameuz,f.code,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird,f.universityid,u.name as universitynameuz ,u.nameru as universitynameru
-								from faculties as f
-								left join subjects as s
+		readonly string query = @"select f.facultynameru,f.facultynameuz,f.code,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird,f.universityid,u.nameuz as universitynameuz ,u.nameru as universitynameru,u.id as universityid
+								from Faculties as f
+								left join Subjects as s
 								on s.facultyid=f.id
-								left join universities as u
+								left join Universities as u
 								on f.universityid =u.id
 								where s.firstsubject=@code1 and s.secondsubject =@code2  and s.thirdsubject=@code3
-								order by u.name,u.nameru";
+								order by u.nameuz,u.nameru";
 
 		public FacultyDataService(ApplicationDbConnectionFactory factory) : base(factory)
 		{

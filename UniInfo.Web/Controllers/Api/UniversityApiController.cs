@@ -14,35 +14,20 @@ namespace UniInfo.Web.Controllers.Api
 	[ApiController]
 	public class UniversityApiController:Controller
 	{
-		private readonly ISubjectDataService _subjectDataService;
-		private readonly IFacultyDataService _facultyDataService;
+		private readonly IUniversityDataService _universityDataService;
 
-		public UniversityApiController(ISubjectDataService subjectDataService,IFacultyDataService facultyDataService)
+		public UniversityApiController(IUniversityDataService universityDataService)
 		{
-			_subjectDataService = subjectDataService;
-			_facultyDataService = facultyDataService;
+			_universityDataService = universityDataService;
 		}
 
 
 		[HttpGet]
-		public async Task<IActionResult> GetSubjects()
+		public async Task<IActionResult> GetUniversities(string city="",int code=0)
 		{
-			var data = await _subjectDataService.GetDistinctedSubjectsAsync();
-			var result = data.GetModelSubjectNames();
-			return Ok(result);   
-		}
+			var data = await _universityDataService.GetUniversities(city, code);
 
-		[Route("faculties")]
-		[HttpGet]
-		public async Task<IActionResult> GetFaculties(int code1, int code2, int code3)
-		{
-			if (code1 == 0 || code2 == 0 || code3 == 0)
-			{
-				return BadRequest();
-			}
-
-			var d = await _facultyDataService.FilterFacultiesBySubjects(code1,code2,code3);
-			return Ok(d);
+			return Ok(data);
 		}
 	}
 }

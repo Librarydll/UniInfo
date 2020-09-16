@@ -1,0 +1,78 @@
+﻿@media screen and (max-width: 992px) {
+    tbody tr td {
+        font-size: 12px;
+    }
+
+    .table100-head th {
+        font-size: 14px;
+    }
+
+    .u-name {
+        font-size: 14px;
+    }
+    .min-width500 {
+        min-width: 0;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    
+    .hidden-select{
+        display:block;
+        margin-top:10px;
+    }
+    #containerCity{
+        display:none;
+    }
+ 
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .hidden-select {
+        display: block;
+        margin-top: 10px;
+    }
+
+    #containerCity {
+        display: none;
+    }
+
+    #eselectCity{
+        font-size:12px;
+    }
+    #containerUniversity ul li{
+        font-size:12px;
+    }
+}
+
+@media (max-width: 426px) {
+    .container-table100 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .table100-head th {
+        font-size: 12px;
+    }
+
+    table thead tr th:nth-child(2), th:nth-child(1) {
+        display: none;
+    }
+
+    table tbody tr td:nth-child(2), td:nth-child(1) {
+        display: none;
+    }
+
+    #con {
+        padding: 0;
+        margin: 0;
+    }
+
+    .u-name {
+        font-size: 12px;
+    }
+}
