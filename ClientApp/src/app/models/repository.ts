@@ -3,9 +3,10 @@ import { HttpClient } from "@angular/common/http";
 import { Subject, SubjectDto } from './subject.model';
 import { ModelDictionary } from './modelDictionary.model';
 import { FilterByFirstSubject, IFilter, FilterBySecondSubject, FilterByNoSubject } from '../strategy/filterStrategy';
-import { Faculty, FacultyDto } from './faculty.model';
+import { Faculty } from './faculty.model';
 import { Filter } from './configClasses.repository';
 import { University } from './university.model';
+import { RetriveService } from '../services/retriveService';
 
 const universityUrl = "/api/university";
 const facultyUrl = "/api/faculty";
@@ -20,7 +21,7 @@ export class Repository {
   filterStrategy: IFilter;
   allEducationType: ModelDictionary[];
   allLanguage: ModelDictionary[];
-  allRelatedFaculties: FacultyDto[];
+  allRelatedFaculties: Faculty[];
 
   filter: Filter;
   universities: University[];
@@ -86,7 +87,7 @@ export class Repository {
     let url =
       `${facultyUrl}?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
 
-    this.http.get<FacultyDto[]>(url).subscribe(fac => {
+    this.http.get<Faculty[]>(url).subscribe(fac => {
       this.allRelatedFaculties = fac;
       this.retriveEducationType();
       this.retriveLanguages();
@@ -94,12 +95,10 @@ export class Repository {
   }
 
   retriveEducationType() {
-    let z = this.allRelatedFaculties.filter((f, i, arr) => arr.findIndex(x => x.educationType == f.educationType) === i);
-    this.allEducationType = z.map(x => ModelDictionary.createModelDictionaryByEductaionType(x.educationType));
+    this.allEducationType = RetriveService.retriveEducationType(this.allRelatedFaculties);
   }
   retriveLanguages() {
-    let z = this.allRelatedFaculties.filter((f, i, arr) => arr.findIndex(x => x.language == f.language) === i);
-    this.allLanguage = z.map(x => ModelDictionary.createModelDictionaryByLanguage(x.language));
+    this.allLanguage = RetriveService.retriveLanguages(this.allRelatedFaculties);
   }
 
 }

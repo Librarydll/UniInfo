@@ -10,12 +10,18 @@ namespace UniInfo.Web.Controllers
 	{
 		public UniversityListController()
 		{
-
 		}
 
 		public IActionResult Index()
 		{
 			return View();
 		}
+
+		[HttpGet("[controller]/university/{id?}")]
+		public IActionResult University(int id)
+		{
+			return View();
+		}
+
 	}
 }

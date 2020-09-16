@@ -1,9 +1,9 @@
 import { Component, Pipe, PipeTransform } from "@angular/core";
-import { Repository } from '../models/repository';
-import { TableHeader } from '../models/tableHeader';
-import { FacultyDto } from '../models/faculty.model';
-import { MessageService } from '../models/messageService';
-import { ModelDictionary } from '../models/modelDictionary.model';
+import { TableHeader } from '../../models/tableHeader';
+import { Faculty } from '../../models/faculty.model';
+import { MessageService } from '../../models/messageService';
+import { Repository } from '../../models/repository';
+
 
 
 @Component({
@@ -19,7 +19,7 @@ export class TableBuilderComponent {
   }
 
   tHeader: TableHeader;
-  dict: IDictionary<FacultyDto[]>;
+  dict: IDictionary<Faculty[]>;
 
   constructor(private repo: Repository,private messageService:MessageService) {
 
@@ -43,7 +43,7 @@ export class TableBuilderComponent {
 
   createDictionary(){
 
-    let dict: IDictionary<FacultyDto[]> = {};
+    let dict: IDictionary<Faculty[]> = {};
     let edutype = this.repo.currentSubject.educationType.code;
     let lang = this.repo.currentSubject.language.code;
 

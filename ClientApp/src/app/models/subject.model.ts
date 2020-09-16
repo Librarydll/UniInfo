@@ -51,23 +51,14 @@ export class SubjectDto extends Subject {
   }
 }
 
-//export class Subject {
+export class SubjectMap {
 
-//  //constructor(firstSubject?: string, secondSubject: string = "", t: string = "", fRu: string = "", sRu: string = "", tRu: string = "") {
-//  //  this.secondSubject = s;
-//  //  this.thirdSubject = t;
-//  //  this.firstSubjectRu = fRu;
-//  //  this.secondSubjectRu = sRu;
-//  //  this.thirdSubjectRu = tRu;
-//  //}
+  constructor(public firstSubject?: string, public secondSubject?: string, public thirdSubject?: string,public certificate?:string) {
+    this.firstSubject = firstSubject;
+    this.secondSubject = secondSubject;
+    this.thirdSubject = thirdSubject;
+    this.certificate = certificate;
+  }
+ 
 
-//  //public clear() {
-//  //  this.firstSubject = "";
-//  //  this.secondSubject = "";
-//  //  this.thirdSubject = "";
-//  //  this.firstSubjectRu = "";
-//  //  this.secondSubjectRu = "";
-//  //  this.thirdSubjectRu = "";
-//  //}
-
-//}
+}

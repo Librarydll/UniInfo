@@ -4,9 +4,15 @@ import { Faculty } from './faculty.model';
 export class University {
   id?: number;
   nameUz?: string;
-  location?: number;
-  rating?: number;
-  isNational?: boolean;
   nameRu?: string;
+  location?: number;
+  faks?: string;
+  webppage?: string;
+  address?: string;
+  phone?: string;
+  universityIndex: string;
+  rating: number;
+  isNational?: boolean;
+
   faculties?: Faculty[] = [];
 }

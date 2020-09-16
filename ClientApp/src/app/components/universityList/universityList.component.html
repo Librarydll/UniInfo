@@ -15,7 +15,7 @@
       <div class="mt-5 float-left" id="containerUniversity">
         <ul class="list-group">
           <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li" style="cursor:pointer" *ngFor="let uu of listUniversity">
-            <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/{{uu.id}}">{{uu.ruVersion}}</a>
+            <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu.ruVersion}}</a>
           </li>
         </ul>
       </div>

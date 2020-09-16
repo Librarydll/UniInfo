@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SubjectFilterComponent } from './structure/subjectFilter.component';
-import { UniversityListComponent } from './structure/universityList.component';
-import { StructureComponent } from './structure/structure.component';
+import { UniversityListComponent } from './components/universityList/universityList.component';
+import { SingleUniversityComponent } from './components/singleUniversity/singleUniversity.component';
+import { AppListComponent } from './components/appList.component';
 
 
 const routes: Routes = [
-  { path: 'UniversityFilter', component: StructureComponent },
+  { path: 'UniversityFilter', component: AppListComponent },
+  { path: 'UniversityList/University/:id', component: SingleUniversityComponent },
   { path: 'UniversityList', component: UniversityListComponent },
   { path: "", redirectTo: '/',pathMatch:"full" }
 ];

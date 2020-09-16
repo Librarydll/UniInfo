@@ -1,10 +1,8 @@
 import { Component } from "@angular/core";
-import { Repository } from '../models/repository';
-import { Subject, SubjectDto } from '../models/subject.model';
-import { ModelDictionary } from '../models/modelDictionary.model';
-import { MessageService } from '../models/messageService';
-import { EventEmitter } from 'events';
-import { TableHeader } from '../models/tableHeader';
+import { Repository } from '../../models/repository';
+import { Subject, SubjectDto } from '../../models/subject.model';
+import { ModelDictionary } from '../../models/modelDictionary.model';
+import { MessageService } from '../../models/messageService';
 
 
 @Component({

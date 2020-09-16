@@ -1,0 +1,166 @@
+<style>
+  .img-bg {
+    width: 100% !important;
+    background-size: cover;
+    height: 300px;
+    background-image: url(assets/u.jpg);
+  }
+
+  .img-content {
+    background: rgba(36,123,160,.8);
+    width: 50%;
+    min-height: 200px;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .img-text-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 2rem 1rem;
+    color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .number {
+    font-family: 'Chakra Petch', sans-serif;
+  }
+
+  .web-page-p {
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+    .web-page-p:hover {
+      color: wheat;
+    }
+
+  .parallelogram {
+    display: inline-block;
+    padding: .2em 1em;
+    text-decoration: none;
+  }
+
+  .btn-parallelogram {
+    transform: skew(-20deg);
+  }
+
+  #containerOptions > div {
+    margin-right: 20px;
+  }
+</style>
+
+
+<div>
+  <div class="mt-5">
+    <div class="img-bg">
+
+      <div class="img-content">
+        <section class="img-text-content number">
+          <h3>{{university?.nameRu}}</h3>
+
+          <div class="container">
+            <div class="d-flex flex-column">
+              <div [className]="university?.phone ? 'd-flex' : 'd-none' ">
+                <p>
+                  <i class="fa fa-phone"></i>
+                  {{university?.phone}}
+                </p>
+              </div>
+              <div [className]="university?.faks ? 'd-flex' : 'd-none' ">
+                <p>
+                  <i class="fa fa-fax"></i>
+                  {{university?.faks}}
+                </p>
+              </div>
+              <div [className]="university?.webPage ? 'd-flex' : 'd-none' ">
+                <p class="web-page-p">
+                  <a class="fa fa-globe">
+                    {{removeHttpUrl(university?.webPage)}}
+                  </a>
+                </p>
+              </div>
+              <div [className]="(university?.universityIndex && university?.address) ? 'd-flex' : 'd-none' ">
+                <p>
+                  <i class="fa fa-map-marker"></i>
+                  {{university?.universityIndex}} {{university?.address}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="d-flex flex-row justify-content-md-center uk-flex-space-between" id="containerOptions">
+
+      <div class="container-edu">
+        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let e of eduTypes" (click)="selectEducationType(e)">
+          {{e.ruVersion}}
+        </div>
+
+      </div>
+      
+
+      <div class="container-lang">
+        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let l of languages"  (click)="selectLanguage(l)">
+          {{l.ruVersion}}
+        </div>
+      </div>
+
+      <div class="container-year">
+        <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
+          2019-2020
+        </div>
+      </div>
+
+
+    </div>
+    <div id="con">
+      <div class="table100">
+        <table>
+          <thead>
+            <tr class="table100-head">
+              <th>{{'N'}}</th>
+              <th>{{tableHeader.code}}</th>
+              <th>{{tableHeader.direction}}</th>
+              <th>{{tableHeader.plan}} (г/к)</th>
+              <th>{{tableHeader.pass}} (г/к)</th>
+              <th>{{tableHeader.accept}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fac of faculties;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{fac.code}}</td>
+              <td style="text-align:left">{{fac.facultyNameRu}}</td>
+              <td>
+                <span>
+                  {{fac.grant}} /
+                </span>
+                <span>
+                  {{fac.contract}}
+                </span>
+              </td>
+              <td>
+                <span>
+                  {{fac.grantPass}} /
+                </span>
+                <span>
+                  {{fac.contractPass}}
+                </span>
+              </td>
+
+              <td>{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
-import { Repository } from '../models/repository';
-import { ModelDictionary, ModelDictionaryUniversity } from '../models/modelDictionary.model';
-import { Filter } from '../models/configClasses.repository';
-import { University } from '../models/university.model';
-import { log } from 'util';
+import { Repository } from '../../models/repository';
+import { ModelDictionary, ModelDictionaryUniversity } from '../../models/modelDictionary.model';
+import { Filter } from '../../models/configClasses.repository';
+import { University } from '../../models/university.model';
 
 
 @Component({
