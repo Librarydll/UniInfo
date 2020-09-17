@@ -13,7 +13,7 @@ import { MessageService } from '../../models/messageService';
 export class SubjectFilterComponent{
 
   order: number = 0;
-    constructor(private repo: Repository, private messageService: MessageService) {
+    constructor(public repo: Repository, private messageService: MessageService) {
 
   }
 

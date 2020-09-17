@@ -4,6 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "UniInfo": {
+
+
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {

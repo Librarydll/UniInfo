@@ -7,7 +7,7 @@ export class University {
   nameRu?: string;
   location?: number;
   faks?: string;
-  webppage?: string;
+  webPage?: string;
   address?: string;
   phone?: string;
   universityIndex: string;

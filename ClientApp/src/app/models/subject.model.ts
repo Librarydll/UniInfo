@@ -53,7 +53,7 @@ export class SubjectDto extends Subject {
 
 export class SubjectMap {
 
-  constructor(public firstSubject?: string, public secondSubject?: string, public thirdSubject?: string,public certificate?:string) {
+  constructor(public firstSubject?: number, public secondSubject?: number, public thirdSubject?: number,public certificate?:string) {
     this.firstSubject = firstSubject;
     this.secondSubject = secondSubject;
     this.thirdSubject = thirdSubject;

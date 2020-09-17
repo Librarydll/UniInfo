@@ -1,13 +1,13 @@
 
 
-<div class="container" id="con">
+<div class="container" id="con" *ngIf="isNoResult;else nofaculty">
   <div class="table100">
     <div *ngFor="let d of dict | keyvalue">
       <p class="text-center u-name-container">
         <a class="u-name" href="UniversityList/University/{{d.key}}">{{d.value[0].universityNameRu}} </a>
       </p>
-      
-      <table class="">
+
+      <table class="exo2">
         <thead>
           <tr class="table100-head">
             <th>{{'N'}}</th>
@@ -18,20 +18,20 @@
             <th>{{tableHeader.accept}}</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <tr *ngFor="let fac of d.value;let i=index">
             <td>{{i+1}}</td>
-            <td >{{fac.code}}</td>
+            <td>{{fac.code}}</td>
             <td style="text-align:left">{{fac.facultyNameRu}}</td>
-            <td>
+            <td class="number">
               <span>
                 {{fac.grant}} /
               </span>
               <span>
-               {{fac.contract}}
+                {{fac.contract}}
               </span>
             </td>
-            <td>
+            <td class="number">
               <span>
                 {{fac.grantPass}} /
               </span>
@@ -40,7 +40,7 @@
               </span>
             </td>
 
-            <td>{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
+            <td class="number">{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
           </tr>
         </tbody>
 
@@ -48,3 +48,8 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #nofaculty>
+  <h1 class="mt-4 text-center" style="color:cyan">Данные отсутствуют</h1>
+</ng-template>

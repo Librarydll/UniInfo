@@ -6,6 +6,18 @@
     
 }
 
+.number {
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.exo2 {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.yura {
+    font-family: 'Jura', sans-serif;
+}
+
 .bg-transparent-noimportant{
     background-color:transparent;
 }
@@ -342,7 +354,6 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr {
-    font-family: OpenSans-Regular;
     font-size: 13px;
     color: black;
     line-height: 1.2;

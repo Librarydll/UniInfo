@@ -19,7 +19,7 @@ export class TableBuilderComponent {
   }
 
   tHeader: TableHeader;
-  dict: IDictionary<Faculty[]>;
+  dict: IDictionary<Faculty[]> = {};
 
   constructor(private repo: Repository,private messageService:MessageService) {
 
@@ -33,9 +33,24 @@ export class TableBuilderComponent {
       else {
         this.clear();
       }
-     
     })
   }
+
+  get isNoResult(): boolean {
+    let edutype = this.repo.currentSubject.educationType;
+    let lang = this.repo.currentSubject.language;
+    if (edutype === null || edutype === undefined) return true;
+    if (lang === null || lang === undefined) return true;
+
+    let n = 0;
+    for (let x in this.dict) {
+      n++;
+    }
+    if (n <= 0) return false;
+    return true;
+
+  }
+
 
   get tableHeader() : TableHeader {
     return this.tHeader;

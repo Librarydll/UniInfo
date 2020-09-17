@@ -6,7 +6,7 @@ import { ModelDictionary } from '../../models/modelDictionary.model';
 import { RetriveService } from '../../services/retriveService';
 import { TableHeader } from '../../models/tableHeader';
 import { Faculty } from '../../models/faculty.model';
-import { Subject, SubjectDto } from '../../models/subject.model';
+import { Subject, SubjectDto, SubjectMap } from '../../models/subject.model';
 
 const url ="/api/university"
 
@@ -22,12 +22,13 @@ export class SingleUniversityComponent {
   tHeader: TableHeader;
   currentSubject: SubjectDto;
   currentFaculties: Faculty[];
-  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(activateRoute: ActivatedRoute, private http: HttpClient) {
     this.id = activateRoute.snapshot.params['id'];
     this.getUniversity();
     this.tHeader = new TableHeader();
     this.tHeader.setTableHeader();
     this.currentSubject = new SubjectDto();
+
   }
 
   getUniversity() {
@@ -36,6 +37,9 @@ export class SingleUniversityComponent {
       this.currentUniversity = u;
       this.retriveEducationType();
       this.retriveLanguages();
+      this.currentSubject.educationType = this.allEducationType[0];
+      this.currentSubject.language = this.allLanguage[0];
+      this.buildTable();
     });
 
   }
@@ -58,6 +62,14 @@ export class SingleUniversityComponent {
     let x = url.replace("http://","");
     return x;
   }
+
+  createSubject(s: SubjectMap):string {
+    let first = ModelDictionary.createModelDictionaryBySubject(s.firstSubject);
+    let second = ModelDictionary.createModelDictionaryBySubject(s.secondSubject);
+    let third = ModelDictionary.createModelDictionaryBySubject(s.thirdSubject);
+   return  `${first.ruVersion}, ${second.ruVersion}, ${third.ruVersion}`;
+  }
+
 
   selectEducationType(e:ModelDictionary) {
     this.currentSubject.educationType = e;
@@ -119,4 +131,7 @@ export class SingleUniversityComponent {
 
     return this.currentSubject.educationType.code == id;
   }
+
+
+
 }

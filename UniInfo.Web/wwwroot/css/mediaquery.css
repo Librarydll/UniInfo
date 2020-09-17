@@ -26,6 +26,9 @@
     #containerCity{
         display:none;
     }
+    .extra-info{
+        font-size:14px;
+    }
  
 }
 
@@ -42,10 +45,18 @@
     }
 
     #eselectCity{
-        font-size:12px;
+        font-size:10px;
+        display:table-cell;
     }
     #containerUniversity ul li{
         font-size:12px;
+    }
+
+    .extra-info{
+        font-size:12px;
+    }
+    table td, table th {
+        padding-left: 6px;
     }
 }
 
@@ -54,6 +65,7 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+
 
     .table100-head th {
         font-size: 12px;
@@ -71,8 +83,14 @@
         padding: 0;
         margin: 0;
     }
+    table td, table th {
+        padding-left:2px;
+    }
 
     .u-name {
         font-size: 12px;
+    }
+    #subj-td{
+        display:table-cell;
     }
 }

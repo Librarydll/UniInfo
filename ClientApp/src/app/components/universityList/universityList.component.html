@@ -2,7 +2,7 @@
   <div class="mt-5 align-content-center mb-5 row">
     <div class="col-md-8">
       <div class="min-width500">
-        <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange($event)" class="form-control" type="text" placeholder="Название университета..." />
+        <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange()" class="form-control" type="text" placeholder="Название университета..." />
       </div>
       <div class="col-md-4 hidden-select">
         <select [ngModel]="filter.code" (ngModelChange)="onCityChange($event)" class="custom-select" id="eselectCity">
@@ -27,7 +27,7 @@
             (click)="selectCity(u)"
             *ngFor="let u of universityNames">
           {{u.ruVersion}}
-          <span class="badge badge-dark badge-pill" style="font-size:12px;">{{u.count}}</span>
+          <span class="badge badge-dark badge-pill number" style="font-size:12px;">{{u.count}}</span>
         </li>
       </ul>
     </div>

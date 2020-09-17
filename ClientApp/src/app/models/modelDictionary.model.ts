@@ -32,6 +32,28 @@ export class ModelDictionary {
     [3]: ModelDictionary.createModelDictionary("Вечерний", "", 3),
   }
 
+  static subjectDict: { [id: number]: ModelDictionary } = {
+    [1]: ModelDictionary.createModelDictionary("Английский язык", "", 1),
+    [2]: ModelDictionary.createModelDictionary("Биология", "", 2),
+    [3]: ModelDictionary.createModelDictionary("География", "", 3),
+    [4]: ModelDictionary.createModelDictionary("История", "", 4),
+    [5]: ModelDictionary.createModelDictionary("Информатика", "", 5),
+    [6]: ModelDictionary.createModelDictionary("Казакский язык", "", 6),
+    [7]: ModelDictionary.createModelDictionary("Каракалпакский язык", "", 7),
+    [8]: ModelDictionary.createModelDictionary("Киргизкий язык", "", 8),
+    [9]: ModelDictionary.createModelDictionary("Математика", "", 9),
+    [10]: ModelDictionary.createModelDictionary("Немецкий язык", "", 10),
+    [11]: ModelDictionary.createModelDictionary("Русский язык и литература", "", 11),
+    [12]: ModelDictionary.createModelDictionary("Таджиский язык", "", 12),
+    [13]: ModelDictionary.createModelDictionary("Творческий (профессиональный)", "", 13),
+    [14]: ModelDictionary.createModelDictionary("Туркманский язык", "", 14),
+    [15]: ModelDictionary.createModelDictionary("Узбекский язык и литература", "", 15),
+    [16]: ModelDictionary.createModelDictionary("Физика", "", 16),
+    [17]: ModelDictionary.createModelDictionary("Французкий язык", "", 17),
+    [18]: ModelDictionary.createModelDictionary("Химия", "", 18),
+    [19]: ModelDictionary.createModelDictionary("Логика", "", 19),
+  } 
+
   constructor(public ruVersion?: string, public uzVersion?: string, public code: number = 0) { }
 
 
@@ -47,6 +69,10 @@ export class ModelDictionary {
 
   static createModelDictionaryByLocation(location:number): ModelDictionary {
     return ModelDictionary.location[location];
+  }
+
+  static createModelDictionaryBySubject(subj: number) {
+    return ModelDictionary.subjectDict[subj];
   }
 }
 
