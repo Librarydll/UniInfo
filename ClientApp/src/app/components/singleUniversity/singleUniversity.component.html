@@ -24,12 +24,13 @@
   }
 
  
-  .web-page-p {
+  .web-page-p a {
     cursor: pointer;
     font-size: 16px;
+    color:white;
   }
 
-    .web-page-p:hover {
+    .web-page-p a:hover {
       color: wheat;
     }
 
@@ -73,7 +74,7 @@
               </div>
               <div [className]="university?.webPage ? 'd-flex' : 'd-none' ">
                 <p class="web-page-p">
-                  <a class="fa fa-globe">
+                  <a class="fa fa-globe" href="{{university?.webPage}}" target="_blank">
                     {{removeHttpUrl(university?.webPage)}}
                   </a>
                 </p>
