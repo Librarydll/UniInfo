@@ -30,7 +30,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ClientApp", "ClientApp\", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniInfo.Domain", "UniInfo.Domain\UniInfo.Domain.csproj", "{81ADCF96-B1CC-4BDB-B765-92F672F7400D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniInfo.Dapper", "UniInfo.Dapper\UniInfo.Dapper.csproj", "{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniInfo.Dapper", "UniInfo.Dapper\UniInfo.Dapper.csproj", "{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
