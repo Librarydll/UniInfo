@@ -7,6 +7,7 @@ import { RetriveService } from '../../services/retriveService';
 import { TableHeader } from '../../models/tableHeader';
 import { Faculty } from '../../models/faculty.model';
 import { Subject, SubjectDto, SubjectMap } from '../../models/subject.model';
+import { LanguageProvider } from '../../services/languageProvider';
 
 const url ="/api/university"
 
@@ -22,13 +23,17 @@ export class SingleUniversityComponent {
   tHeader: TableHeader;
   currentSubject: SubjectDto;
   currentFaculties: Faculty[];
-  constructor(activateRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(activateRoute: ActivatedRoute, private http: HttpClient, private languageProvider: LanguageProvider) {
     this.id = activateRoute.snapshot.params['id'];
     this.getUniversity();
     this.tHeader = new TableHeader();
-    this.tHeader.setTableHeader();
+    this.tHeader.setTableHeader(languageProvider.getLanguage());
     this.currentSubject = new SubjectDto();
 
+  }
+
+  get currentLanguage(): string {
+    return this.languageProvider.getLanguage();
   }
 
   getUniversity() {
@@ -67,7 +72,10 @@ export class SingleUniversityComponent {
     let first = ModelDictionary.createModelDictionaryBySubject(s.firstSubject);
     let second = ModelDictionary.createModelDictionaryBySubject(s.secondSubject);
     let third = ModelDictionary.createModelDictionaryBySubject(s.thirdSubject);
-   return  `${first.ruVersion}, ${second.ruVersion}, ${third.ruVersion}`;
+    if (this.currentLanguage == "ru")
+      return `${first.ruVersion}, ${second.ruVersion}, ${third.ruVersion}`;
+    return `${first.uzVersion}, ${second.uzVersion}, ${third.uzVersion}`;
+   
   }
 
 

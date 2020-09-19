@@ -4,7 +4,7 @@ import { SubjectFilterComponent } from '../components/universityFilter/subjectFi
 import { UniversityListComponent } from '../components/universityList/universityList.component';
 import { FormsModule } from '@angular/forms';
 import { SingleUniversityComponent } from '../components/singleUniversity/singleUniversity.component';
-import { TableBuilderComponent } from '../components/universityList/tableBuilder.component';
+import { TableBuilderComponent } from '../components/tblBuilder/tableBuilder.component';
 import { AppListComponent } from '../components/appList.component';
 
 @NgModule({

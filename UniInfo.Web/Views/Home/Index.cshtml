@@ -1,9 +1,9 @@
-﻿@{
+﻿@inject IViewLocalizer Localizer
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Home Page";
 }
 <style>
- 
 </style>
 
 <div class="body-container">
@@ -12,10 +12,10 @@
             <div class="col-md-6 fade-animation">
                 <div class="card-bg d-flex flex-column">
                     <img src="~/images/futuristicsearch.jpg" class="img-fluid">
-                    <div class="text">Поиск вуза по критериям</div>
-                    <p class="img-dif fade-animation">Найдите для себя вуз по предметам,языку и по форме обучения</p>
+                    <div class="text"> @Localizer["Text3"]</div>
+                    <p class="img-dif fade-animation">@Localizer["Text1"]</p>
                     <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityFilter">
-                        Подробнее
+                        @Localizer["About"]
                     </a>
                 </div>
             </div>
@@ -23,10 +23,10 @@
             <div class="col-md-6 fade-animation">
                 <div class="card-bg d-flex flex-column">
                     <img src="~/images/futuristiclist.jpg" class="img-fluid">
-                    <div class="text">Список Вузов</div>
-                    <p class="img-dif fade-animation">Список всех университетов и их факультетов </p>
+                    <div class="text">@Localizer["Text4"]</div>
+                    <p class="img-dif fade-animation">@Localizer["Text2"]</p>
                     <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityList">
-                        Подробнее
+                        @Localizer["About"]
                     </a>
                 </div>
             </div>

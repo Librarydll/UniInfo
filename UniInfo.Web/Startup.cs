@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
+using System.Globalization;
 using UniInfo.Dapper.Context;
 using UniInfo.Dapper.Services;
 using UniInfo.Domain.Services;
@@ -39,6 +44,20 @@ namespace UniInfo.Web
 			services.AddSwaggerGen();
 
 
+			services.AddMvc(option => option.EnableEndpointRouting = false)
+				.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix,options=> options.ResourcesPath= "Resources");
+
+			services.Configure<RequestLocalizationOptions>(options =>
+			{
+				var supportedCulture = new[]
+				{
+					new CultureInfo("uz"),
+					new CultureInfo("ru")
+				};
+				options.DefaultRequestCulture = new RequestCulture("uz");
+				options.SupportedCultures = supportedCulture;
+				options.SupportedUICultures = supportedCulture;
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +75,20 @@ namespace UniInfo.Web
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
+
+			//app.Run(async (context) =>
+			//{
+			//	if (!context.Request.Cookies.ContainsKey(".AspNetCore.Culture"))
+			//	{
+			//		context.Response.Cookies.Append(
+			//	CookieRequestCultureProvider.DefaultCookieName,
+			//	CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("uz")),
+			//	new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+			//	}		
+			//});
+
+			var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+			app.UseRequestLocalization(options.Value);
 
 			app.UseSwaggerUI(s =>
 			{

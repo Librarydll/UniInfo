@@ -1,10 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@inject IViewLocalizer Localizer
+@{ 
+    var returnUrl = string.IsNullOrWhiteSpace(Context.Request.Path) ? "~" : $"~{Context.Request.Path.Value}";
+    returnUrl += Context.Request.QueryString;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <base href="/">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Uniinfo</title>
+    <title>UniInfo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/mediaquery.css" rel="stylesheet" />
@@ -27,17 +32,26 @@
                         <div class="collapse navbar-collapse" id="navbarColor02">
                             <ul class="navbar-nav mr-auto" id="navUl">
                                 <li class="nav-item nav-line">
-                                    <a class="nav-link" asp-action="Index" asp-controller="Home">Главная</a>
+                                    <a class="nav-link" asp-action="Index" asp-controller="Home">@Localizer["Main"]</a>
                                 </li>
                                 <li class="nav-item nav-line">
-                                    <a class="nav-link" asp-action="Index" asp-controller="UniversityFilter">Выбор ВУЗА</a>
+                                    <a class="nav-link" asp-action="Index" asp-controller="UniversityFilter">@Localizer["FilterUniversity"]</a>
                                 </li>
                                 <li class="nav-item nav-line">
-                                    <a class="nav-link" asp-action="Index" asp-controller="UniversityList">Список Вузов</a>
+                                    <a class="nav-link" asp-action="Index" asp-controller="UniversityList">@Localizer["AllUniversity"]</a>
                                 </li>
                             </ul>
                         </div>
 
+
+                        <form id="selectLanguage" asp-controller="Home" asp-route-returnUrl="@returnUrl"
+                              asp-action="SetLanguage" method="post" class="form-inline" role="form">
+
+                            <div class="d-flex flex-row flex-wrap">
+                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang" id="uz_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangUz"].Value" />
+                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang" id="ru_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangRu"].Value" />
+                            </div>
+                        </form>
                     </nav>
 
                 </div>
@@ -56,7 +70,7 @@
                     <a><i class="fa fa-envelope-square icon"></i> library.dll@mail.ru</a>
                 </div>
             </div>
-        </footer>       
+        </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

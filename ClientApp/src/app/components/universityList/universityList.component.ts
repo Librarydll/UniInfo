@@ -3,6 +3,7 @@ import { Repository } from '../../models/repository';
 import { ModelDictionary, ModelDictionaryUniversity } from '../../models/modelDictionary.model';
 import { Filter } from '../../models/configClasses.repository';
 import { University } from '../../models/university.model';
+import { LanguageProvider } from '../../services/languageProvider';
 
 
 @Component({
@@ -13,17 +14,18 @@ export class UniversityListComponent {
 
   uNames: ModelDictionaryUniversity[];
   lUniversity: ModelDictionary[];
-  constructor(private repo: Repository) {
-   // this.createUniNames();
+  constructor(private repo: Repository, private languageProvider: LanguageProvider) {
     this.repo.getUniversities();
+  }
+
+  get currentLanguage(): string {
+    return this.languageProvider.getLanguage();
   }
 
   get universityNames(): ModelDictionaryUniversity[] {
 
     if (this.repo.universities === undefined || this.repo.universities === null) return null;
 
-    //let z = this.repo.universities
-    //  .filter((v, i, a) => a.findIndex(x => x.location == v.location) === i).sort();
 
     let result: ModelDictionaryUniversity[] =[];
     this.repo.universities.forEach((v) => {

@@ -3,6 +3,7 @@ import { TableHeader } from '../../models/tableHeader';
 import { Faculty } from '../../models/faculty.model';
 import { MessageService } from '../../models/messageService';
 import { Repository } from '../../models/repository';
+import { LanguageProvider } from '../../services/languageProvider';
 
 
 
@@ -21,10 +22,10 @@ export class TableBuilderComponent {
   tHeader: TableHeader;
   dict: IDictionary<Faculty[]> = {};
 
-  constructor(private repo: Repository,private messageService:MessageService) {
+  constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider) {
 
     this.tHeader = new TableHeader();
-    this.tHeader.setTableHeader();
+    this.tHeader.setTableHeader(languageProvider.getLanguage());
     this.messageService.listen().subscribe((value) => {
 
       if (value == "build") {
@@ -34,6 +35,10 @@ export class TableBuilderComponent {
         this.clear();
       }
     })
+  }
+
+  get currentLanguage(): string {
+    return this.languageProvider.getLanguage();
   }
 
   get isNoResult(): boolean {

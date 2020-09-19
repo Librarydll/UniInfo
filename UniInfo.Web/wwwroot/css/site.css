@@ -25,6 +25,9 @@
     min-width:500px;
 }
 
+.cursor-poiter{
+    cursor:pointer;
+}
 
 /*HEDER*/
 
@@ -33,6 +36,15 @@
 }
 .body-bg {
     background: -webkit-linear-gradient(50deg, #09203f,#485563);
+}
+
+.input-lang:hover {
+    background: #17a2b8;
+    color: black;
+}
+.input-lang-selected {
+    background: #17a2b8;
+    color: black;
 }
 /*BODY*/
 .body-container {

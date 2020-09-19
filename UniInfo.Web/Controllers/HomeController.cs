@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UniInfo.Domain.Services;
@@ -23,12 +25,8 @@ namespace UniInfo.Web.Controllers
 			_logger = logger;
 		}
 
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
-			//var data = await _subjectDataService.GetDistinctedSubjectsAsync();
-			//var d = data.GetModelSubjectNames();
-			//return Ok(data);
-
 			return View();
 		}
 
@@ -42,5 +40,26 @@ namespace UniInfo.Web.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
+
+		[HttpPost]
+		public IActionResult SetLanguage(string culture, string returnUrl)
+		{
+			string lang;
+			if (string.IsNullOrWhiteSpace(culture))
+				lang = "uz";
+			else
+			{
+				lang = culture.Contains("Ru") ? "ru" : "uz";
+			}
+
+
+			Response.Cookies.Append(
+			CookieRequestCultureProvider.DefaultCookieName,
+			CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
+			new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+			return LocalRedirect(returnUrl);
+		}
+
 	}
 }

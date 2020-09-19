@@ -3,18 +3,22 @@ import { Repository } from '../../models/repository';
 import { Subject, SubjectDto } from '../../models/subject.model';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { MessageService } from '../../models/messageService';
+import { LanguageProvider } from '../../services/languageProvider';
 
 
 @Component({
   selector: "subject-filter",
-  templateUrl: "subjectFilter.component.html",
-  styleUrls:["./subjectFilter.component.css"]
+  templateUrl: "subjectFilter.component.html"
 })
 export class SubjectFilterComponent{
 
   order: number = 0;
-    constructor(public repo: Repository, private messageService: MessageService) {
+  constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider) {
 
+  }
+
+  get currentLanguage():string {
+    return this.languageProvider.getLanguage();
   }
 
   get subjects(): Subject[] {
@@ -91,6 +95,5 @@ export class SubjectFilterComponent{
   canBuild():boolean {
     return this.repo.currentSubject.isPropertyFilled();
   }
-
 
 }
