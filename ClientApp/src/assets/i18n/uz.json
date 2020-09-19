@@ -1,5 +1,11 @@
 {
   "firstBlok": "birinchi fan",
   "secondBlok": "ikkinchi fan",
-  "thirdBlok": "uchinchi fan"
+  "thirdBlok": "uchinchi fan",
+
+  "HELP1": "Birinchi fanni t'anlang",
+  "HELP2": "Ikkinchi fanni t'anlang",
+  "HELP3": "Uchinchi fanni t'anlang",
+  "HELP4": "Ta'lim shakli va tillni ta'nlang"
+
 }

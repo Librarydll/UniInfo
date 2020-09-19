@@ -1,4 +1,4 @@
-import { Component, Pipe, PipeTransform } from "@angular/core";
+import { Component } from "@angular/core";
 import { TableHeader } from '../../models/tableHeader';
 import { Faculty } from '../../models/faculty.model';
 import { MessageService } from '../../models/messageService';
@@ -10,7 +10,6 @@ import { LanguageProvider } from '../../services/languageProvider';
 @Component({
   selector: "table-builder",
   templateUrl: "tableBuilder.component.html",
-  styleUrls: ["./tableBuilder.component.css"],
 })
 export class TableBuilderComponent {
 

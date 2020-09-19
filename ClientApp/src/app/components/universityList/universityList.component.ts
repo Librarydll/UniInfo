@@ -6,6 +6,7 @@ import { University } from '../../models/university.model';
 import { LanguageProvider } from '../../services/languageProvider';
 
 
+
 @Component({
   selector: "u-list",
   templateUrl: "universityList.component.html"
@@ -27,17 +28,23 @@ export class UniversityListComponent {
     if (this.repo.universities === undefined || this.repo.universities === null) return null;
 
 
-    let result: ModelDictionaryUniversity[] =[];
+    let allU = ModelDictionaryUniversity.createDefaultAll();
+    let result: ModelDictionaryUniversity[] = [];
+   // result.push(allU);
+    let count = 0;
     this.repo.universities.forEach((v) => {
 
-      
+
       let entity = result.find(x => x.code == v.location);
       if (entity === undefined || entity === null) {
-        entity = ModelDictionaryUniversity.createModelDictionaryCountByLocation(v.location ,0);
+        entity = ModelDictionaryUniversity.createModelDictionaryCountByLocation(v.location, 0);
 
         result.push(entity);
-      }      entity.count += 1;
-    })
+      }
+      count += 1;
+      entity.count += 1;
+    });
+ //   result[0].count = count;
 
     this.uNames = result.sort();
     return this.uNames;
@@ -106,11 +113,11 @@ export class UniversityListComponent {
   }
 
   get notActiveClass():string{
-    return 'list-group-item d-flex justify-content-between align-items-center bg-transparent-noimportant ul-li';
+    return 'list-group-item d-flex justify-content-between align-items-center bg-transparent-noimportant ul-li exo2';
   }
 
   get activeClass(): string {
-    return 'item-btn item-btn-city list-group-item d-flex justify-content-between align-items-center';
+    return 'item-btn item-btn-city list-group-item d-flex justify-content-between align-items-center exo2';
   }
 
 }

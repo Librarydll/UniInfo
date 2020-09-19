@@ -100,4 +100,8 @@ export class ModelDictionaryUniversity extends ModelDictionary {
     model.id = id;
     return model;
   }
+
+  public static createDefaultAll() {
+    return ModelDictionaryUniversity.createModelDictionaryCount("Все Вузы", "Barcha Oliygohlar", Number.MAX_VALUE, Number.MAX_VALUE);
+  }
 }

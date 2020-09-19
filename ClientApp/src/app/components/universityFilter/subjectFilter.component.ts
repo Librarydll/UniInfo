@@ -63,6 +63,7 @@ export class SubjectFilterComponent{
     }
   }
 
+
   isThisLanguage(id: number): boolean {
   
     if (id == 0) return false;

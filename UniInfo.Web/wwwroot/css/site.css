@@ -246,8 +246,10 @@ a {
 
 .u-name {
     text-decoration: none;
-    color: black;
+    color: #00ffe7;
     font-size: 18px;
+    font-weight: 900;
+    font-family: 'Jura',sans-serif;
 }
 
 .u-name-container {
@@ -256,7 +258,7 @@ a {
 }
 
 .u-name:hover {
-    color: red;
+    color: #00ff2b;
 }
 
 .limiter {
@@ -408,3 +410,18 @@ tbody tr {
 }
 
 
+.helper {
+    text-align: center !important;
+    padding-top: 15px;
+    text-align: center !important;
+    color: #00ffe7;
+    padding-top: 15px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.lang-selected {
+    background: #17a2b8;
+    color: black;
+    pointer-events: none;
+}

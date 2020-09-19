@@ -43,7 +43,10 @@
     </div>
   </div>
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
-
+  <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
+  <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
+  <div [className]="order==2 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP3' | translate}}</p></div>
+  <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 
@@ -64,12 +67,12 @@
       </div>
       <div class="item-text">
         <div [className]="order>=2 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
-          {{repo.currentSubject.secondSubject?.ruVersion || 'ikkinchi fan'}}
+          {{repo.currentSubject.secondSubject?.uzVersion || 'ikkinchi fan'}}
         </div>
       </div>
       <div class="item-text">
         <div [className]="order>=3 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
-          {{repo.currentSubject.thirdSubject?.ruVersion || 'uchinchi fan'}}
+          {{repo.currentSubject.thirdSubject?.uzVersion || 'uchinchi fan'}}
         </div>
       </div>
     </div>
@@ -99,7 +102,10 @@
     </div>
   </div>
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Tozalash</button>
-
+  <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
+  <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
+  <div [className]="order==2 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP3' | translate}}</p></div>
+  <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 

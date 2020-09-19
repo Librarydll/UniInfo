@@ -6,10 +6,25 @@ import { FormsModule } from '@angular/forms';
 import { SingleUniversityComponent } from '../components/singleUniversity/singleUniversity.component';
 import { TableBuilderComponent } from '../components/tblBuilder/tableBuilder.component';
 import { AppListComponent } from '../components/appList.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 @NgModule({
   declarations: [SubjectFilterComponent, TableBuilderComponent, AppListComponent, UniversityListComponent, SingleUniversityComponent],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    },
+    isolate: true,
+  })],
   exports: [AppListComponent]
 })
 export class StructureModule {}

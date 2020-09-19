@@ -2,6 +2,19 @@
 @{ 
     var returnUrl = string.IsNullOrWhiteSpace(Context.Request.Path) ? "~" : $"~{Context.Request.Path.Value}";
     returnUrl += Context.Request.QueryString;
+
+    var cookie = Context.Request.Cookies[".AspNetCore.Culture"];
+    string uz = "";
+    string ru = "";
+
+    if (!string.IsNullOrWhiteSpace(cookie)&&cookie.Contains("uz"))
+    {
+        uz = "lang-selected";
+    }
+    else
+    {
+        ru = "lang-selected";
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +33,7 @@
 
 </head>
 <body class="body-bg">
-    <div class="d-flex flex-column" style="min-height:100vh">
+    <div class="d-flex flex-column " style="min-height:100vh">
         <header id="site-header">
             <div id="header_area" class="bg-header">
                 <div class="container">
@@ -48,8 +61,8 @@
                               asp-action="SetLanguage" method="post" class="form-inline" role="form">
 
                             <div class="d-flex flex-row flex-wrap">
-                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang" id="uz_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangUz"].Value" />
-                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang" id="ru_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangRu"].Value" />
+                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang @uz" id="uz_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangUz"].Value" />
+                                <input class="item-btn item-btn-sub item-text cursor-poiter input-lang @ru" id="ru_input_lang_id" type="submit" name="culture" asp-for="@Localizer["LangRu"].Value" />
                             </div>
                         </form>
                     </nav>

@@ -15,7 +15,7 @@
         </div>
         <div class="mt-5 float-left" id="containerUniversity">
           <ul class="list-group">
-            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li" style="cursor:pointer" *ngFor="let uu of listUniversity">
+            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li yura" style="cursor:pointer" *ngFor="let uu of listUniversity">
               <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu.ruVersion}}</a>
             </li>
           </ul>
@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<ng-template #uzDiv>
+<ng-template #uzDiv>  
   <div class="container">
     <div class="mt-5 align-content-center mb-5 row">
       <div class="col-md-8">
@@ -54,7 +54,7 @@
         </div>
         <div class="mt-5 float-left" id="containerUniversity">
           <ul class="list-group">
-            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li" style="cursor:pointer" *ngFor="let uu of listUniversity">
+            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li yura" style="cursor:pointer" *ngFor="let uu of listUniversity">
               <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu.uzVersion}}</a>
             </li>
           </ul>
