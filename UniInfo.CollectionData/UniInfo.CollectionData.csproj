@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UniInfo.Core\UniInfo.Core.csproj" />
     <ProjectReference Include="..\UniInfo.Dapper\UniInfo.Dapper.csproj" />
   </ItemGroup>
 

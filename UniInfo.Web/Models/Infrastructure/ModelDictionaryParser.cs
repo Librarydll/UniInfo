@@ -9,7 +9,6 @@ namespace UniInfo.Web.Models.Infrastructure
 {
 	public static class ModelDictionaryParser
 	{
-	
 		private static Dictionary<int, ModelDictionary> langDict = new Dictionary<int, ModelDictionary>
 		{
 			[1]= new ModelDictionary { RuVersion = "Узбекский", UzVersion = "O`zbekcha", Code=1 },

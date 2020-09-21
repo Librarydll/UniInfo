@@ -117,7 +117,7 @@ export class UniversityListComponent {
   }
 
   get activeClass(): string {
-    return 'item-btn item-btn-city list-group-item d-flex justify-content-between align-items-center exo2';
+    return 'item-btn item-btn-city list-group-item d-flex justify-content-between align-items-center exo2 bg-blue';
   }
 
 }

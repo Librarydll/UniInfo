@@ -10,12 +10,12 @@ namespace UniInfo.Domain.Services
 {
 	public interface IUniversityDataService: IDataServiceAsync<University>
 	{
-		Task<IEnumerable<string>> GetLocationsByLanguage(string lang);
 
-		IEnumerable<University> GetFilteredUniversities(Subject subject, string lang);
 
 		Task<University> GetUniversity(int id);
 
 		Task<IEnumerable<UniversityDto>> GetUniversities(string city = "", int code=0);
+
+		Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2, int code3);
 	}
 }

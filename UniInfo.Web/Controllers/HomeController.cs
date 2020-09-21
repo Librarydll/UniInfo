@@ -16,17 +16,18 @@ namespace UniInfo.Web.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-		private readonly ISubjectDataService _subjectDataService;
+		private readonly IUniversityDataService universityDataService;
 
-		public HomeController(ILogger<HomeController> logger, ISubjectDataService subjectDataService)
+		public HomeController(ILogger<HomeController> logger, IUniversityDataService universityDataService)
 		{
-			_subjectDataService = subjectDataService;
+			this.universityDataService = universityDataService;
 
 			_logger = logger;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
+			var s = await universityDataService.FilterFacultiesBySubjects(9, 16, 1);
 			return View();
 		}
 

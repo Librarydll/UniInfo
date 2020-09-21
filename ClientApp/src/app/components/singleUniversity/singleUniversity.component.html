@@ -1,115 +1,21 @@
 <style>
-  .img-bg {
+  
+.img-bg {
     width: 100% !important;
     background-size: cover;
     height: 300px;
     background-image: url(assets/u.jpg);
-  }
-
-  .img-content {
-    background: rgba(36,123,160,.8);
-    width: 50%;
-    min-height: 200px;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .img-text-content {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 2rem 2rem 1rem;
-    color: #fff;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
  
-  .web-page-p a {
-    cursor: pointer;
-    font-size: 16px;
-    color:white;
-  }
+}
 
-    .web-page-p a:hover {
-      color: wheat;
-    }
-
-  .parallelogram {
-    display: inline-block;
-    padding: .2em 1em;
-    text-decoration: none;
-  }
-
-  .btn-parallelogram {
-    transform: skew(-20deg);
-  }
-
-  #containerOptions > div {
-    margin-right: 20px;
-  }
-
-  .arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-   
-  }
-
-  .arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-  }
-
-  .arrow-position-up {
-    right: 50%;
-    bottom: -5px;
-  }
-
-  .arrow-position-down {
-    right: 50%;
-    bottom: 0;
-    top: 28px;
-  }
-
-
-
-  .arrow-up-grand {
-    border-bottom: 7px solid #00dcff;
-  }
-
-  .arrow-up-contract {
-    border-bottom: 7px solid #33ff00;
-  }
-
-  .arrow-down-grand {
-    border-top: 7px solid #00dcff;
-  }
-
-  .arrow-down-contract {
-    border-top: 7px solid #33ff00;
-  }
-
-  .contract-light {
-    color: #64ec54;
-  }
-
-  .grand-light {
-    color: #0ddede;
-  }
 </style>
-
 <!-- ru -->
 <div *ngIf="currentLanguage=='ru';else uzDiv">
   <div class="mt-5">
     <div class="img-bg">
-
       <div class="img-content">
         <section class="img-text-content number yura">
           <h3 style="line-height:35px;" class="pb-2">{{university?.nameRu}}</h3>
-
           <div class="container">
             <div class="d-flex flex-column">
               <div [className]="university?.phone ? 'd-flex' : 'd-none' ">
@@ -144,89 +50,25 @@
       </div>
     </div>
   </div>
+
   <div class="container mt-5">
     <div class="d-flex flex-row justify-content-md-center uk-flex-space-between flex-wrap" id="containerOptions">
-
       <div class="container-edu">
-        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let e of eduTypes" (click)="selectEducationType(e)">
+        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'" *ngFor="let e of eduTypes" (click)="selectEducationType(e)">
           {{e.ruVersion}}
         </div>
-
       </div>
-
-
       <div class="container-lang">
-        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let l of languages" (click)="selectLanguage(l)">
+        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'" *ngFor="let l of languages" (click)="selectLanguage(l)">
           {{l.ruVersion}}
         </div>
       </div>
-
       <div class="container-year">
         <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
           2019-2020
         </div>
       </div>
-
-     
-
     </div>
-    <div id="con" class="mt-5" *ngIf="faculties?.length>0;else nofacultyRu">
-      <div class="table100">
-        <table class="exo2">
-          <thead>
-            <tr class="table100-head">
-              <th>{{'N'}}</th>
-              <th>{{tableHeader.code}}</th>
-              <th>{{tableHeader.direction}}</th>
-              <th  class="cursor-poiter" (click)="orderByCount()">
-                {{tableHeader.plan}}
-                <span class="{{arrowByCountClass}}"></span>
-              </th>
-              <th class="cursor-poiter" (click)="orderByPoint()">
-                {{tableHeader.pass}}
-                <span class="{{arrowByPointClass}}"></span>
-              </th>
-              <th>{{tableHeader.accept}}</th>
-            </tr>
-          </thead>
-          <tbody >
-            <ng-container *ngFor="let fac of faculties;let i=index">
-              <tr>
-                <td colspan="6" id="subj-td" class="extra-info">Предметы: {{createSubject(fac.subject)}}</td>
-              </tr>
-              <tr>
-                <td>{{i+1}}</td>
-                <td>{{fac.code}}</td>
-                <td style="text-align:left">{{fac.facultyNameUz}}</td>
-                <td class="number">
-                  <span [className]="grantCount ? 'grand-light' :''">
-                    {{fac.grant}} /
-                  </span>
-                  <span [className]="contractCount ? 'contract-light' :''">
-                    {{fac.contract}}
-                  </span>
-                </td>
-                <td class="number">
-                  <span [className]="grantPoint ? 'grand-light' :''">
-                    {{fac.grantPass}} /
-                  </span>
-                  <span [className]="contractPoint ? 'contract-light' :''">
-                    {{fac.contractPass}}
-                  </span>
-                </td>
-
-                <td class="number">{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
-              </tr>
-            </ng-container>
-
-          </tbody>
-
-        </table>
-      </div>
-    </div>
-
-   
-
   </div>
 </div>
 <!-- end ru -->
@@ -275,87 +117,23 @@
   </div>
   <div class="container mt-5">
     <div class="d-flex flex-row justify-content-md-center uk-flex-space-between flex-wrap" id="containerOptions">
-
       <div class="container-edu">
-        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let e of eduTypes" (click)="selectEducationType(e)">
+        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'" *ngFor="let e of eduTypes" (click)="selectEducationType(e)">
           {{e.uzVersion}}
         </div>
-
       </div>
-
-
       <div class="container-lang">
-        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black':'item-btn btn-parallelogram parallelogram item-btn-sub'" *ngFor="let l of languages" (click)="selectLanguage(l)">
+        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'" *ngFor="let l of languages" (click)="selectLanguage(l)">
           {{l.uzVersion}}
         </div>
       </div>
-
       <div class="container-year">
         <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
           2019-2020
         </div>
       </div>
-
-
     </div>
-    <div id="con" class="mt-5" *ngIf="faculties?.length>0;else nofacultyUz">
-      <div class="table100">
-        <table class="exo2">
-          <thead>
-            <tr class="table100-head">
-              <th>{{'N'}}</th>
-              <th>{{tableHeader.code}}</th>
-              <th>{{tableHeader.direction}}</th>
-              <th class="cursor-poiter" (click)="orderByCount()">{{tableHeader.plan}}  <span class="{{arrowByCountClass}}"></span></th>
-              <th class="cursor-poiter" (click)="orderByPoint()">{{tableHeader.pass}}  <span class="{{arrowByPointClass}}"></span></th>
-              <th>{{tableHeader.accept}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let fac of faculties;let i=index">
-              <tr> 
-                <td colspan="6" id="subj-td" class="extra-info">Fanlar: {{createSubject(fac.subject)}}</td>
-              </tr>
-              <tr>
-                <td>{{i+1}}</td>
-                <td>{{fac.code}}</td>
-                <td style="text-align:left">{{fac.facultyNameUz}}</td>
-                <td class="number">
-                  <span [className]="grantCount ? 'grand-light' :''">
-                    {{fac.grant}} /
-                  </span>
-                  <span [className]="contractCount ? 'contract-light' :''">
-                    {{fac.contract}}
-                  </span>
-                </td>
-                <td class="number">
-                  <span [className]="grantPoint ? 'grand-light' :''">
-                    {{fac.grantPass}} /
-                  </span>
-                  <span [className]="contractPoint ? 'contract-light' :''">
-                    {{fac.contractPass}}
-                  </span>
-                </td>
-
-                <td class="number">{{fac.asFirst}}/{{fac.asSecond}}/{{fac.asThird}}</td>
-              </tr>
-            </ng-container>
-
-          </tbody>
-
-        </table>
-      </div>
-    </div>
-
   </div>
-</ng-template>
-
-<ng-template #nofacultyRu>
-  <h1 class="mt-4 text-center" style="color:cyan">Данные отсутствуют</h1>
-</ng-template>
-
-<ng-template #nofacultyUz>
-  <h1 class="mt-4 text-center" style="color:cyan">Ma'lumot yo'q</h1>
 </ng-template>
 
 

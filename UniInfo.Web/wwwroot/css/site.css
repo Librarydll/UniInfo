@@ -25,8 +25,12 @@
     min-width:500px;
 }
 
-.cursor-poiter{
+.cursor-pointer{
     cursor:pointer;
+}
+
+.bg-blue {
+    background: #00ffe785;
 }
 
 /*HEDER*/
@@ -149,8 +153,20 @@
 .item-btn-sub {
     background-color: #007bff00;
     border-color: #17a2b8;
+
+}
+.item-btn:active {
+    color: #fff;
+    background-color: #117a8b;
+    border-color: #10707f;
 }
 
+.item-btn:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+}
 .item-btn-city {
     background-color: #00ffe785;
     border-color: #17a2b8;
@@ -424,4 +440,102 @@ tbody tr {
     background: #17a2b8;
     color: black;
     pointer-events: none;
+}
+.dis {
+    pointer-events: none;
+}
+
+
+
+.img-content {
+    background: rgba(36,123,160,.8);
+    width: 50%;
+    min-height: 200px;
+    display: inline-block;
+    height: 100%;
+}
+
+.img-text-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 2rem 1rem;
+    color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+.web-page-p a {
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+    .web-page-p a:hover {
+        color: wheat;
+    }
+
+.parallelogram {
+    display: inline-block;
+    padding: .2em 1em;
+    text-decoration: none;
+}
+
+.btn-parallelogram {
+    transform: skew(-20deg);
+}
+
+#containerOptions > div {
+    margin-right: 20px;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+}
+
+.arrow-position-up {
+    right: 50%;
+    bottom: -5px;
+}
+
+.arrow-position-down {
+    right: 50%;
+    bottom: 0;
+    top: 28px;
+}
+
+
+
+.arrow-up-grand {
+    border-bottom: 7px solid #00dcff;
+}
+
+.arrow-up-contract {
+    border-bottom: 7px solid #33ff00;
+}
+
+.arrow-down-grand {
+    border-top: 7px solid #00dcff;
+}
+
+.arrow-down-contract {
+    border-top: 7px solid #33ff00;
+}
+
+.contract-light {
+    color: #64ec54;
+}
+
+.grand-light {
+    color: #0ddede;
 }

@@ -13,18 +13,52 @@ namespace UniInfo.Dapper.Services
 {
 	public class UniversityDataService :GenericDataService<University>,IUniversityDataService
 	{
+		
+
 		public UniversityDataService(ApplicationDbConnectionFactory factory) : base(factory)
 		{
 		}
 
-		public IEnumerable<University> GetFilteredUniversities(Subject subject, string lang)
+		public async Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2, int code3)
 		{
-			throw new NotImplementedException();
-		}
+			string query = @"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird
+								from Universities as u
+								left join Faculties as f
+								on u.id=f.universityid
+								left join Subjects as s
+								on s.facultyid =f.id
+								where s.firstsubject=@code1 and s.secondsubject =@code2  and s.thirdsubject=@code3
+								order by u.nameuz,u.nameru";
 
-		public Task<IEnumerable<string>> GetLocationsByLanguage(string lang)
-		{
-			throw new NotImplementedException();
+			using (var connection = _factory.CreateConnection())
+			{
+				var lookup = new Dictionary<int, UniversityDto>();
+				var result = await connection.QueryAsync<UniversityDto, FacultyDto ,UniversityDto>(query,
+					(university, faculty) =>
+					{
+
+						if (!lookup.TryGetValue(university.Id, out UniversityDto u))
+						{
+							u = university;
+							u.Faculties = new List<FacultyDto>();
+							lookup.Add(university.Id, university);
+						}
+
+						u.Faculties.Add(faculty);
+
+						return u;
+					},
+					splitOn: "universityid",
+					param:
+					new
+					{
+						code1,
+						code2,
+						code3
+					}
+				);
+				return lookup.Values.ToList();
+			}
 		}
 
 		public async Task<IEnumerable<UniversityDto>> GetUniversities(string city = "", int code = 0)
@@ -81,7 +115,7 @@ namespace UniInfo.Dapper.Services
 						return university;
 					},param:new {id}
 					);
-				return result.FirstOrDefault();
+				return lookup.Values.FirstOrDefault();
 			}
 		}
 	}

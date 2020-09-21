@@ -23,20 +23,7 @@ namespace UniInfo.Web.Controllers.Api
 		}
 
 	
-		[HttpGet]
-		public async Task<IActionResult> GetFaculties(int code1, int code2, int code3)
-		{
-			_logger.LogInformation("request");
-			if (code1 == 0 || code2 == 0 || code3 == 0)
-			{
-				return BadRequest();
-			}
-
-			var d = await _facultyDataService.FilterFacultiesBySubjects(code1, code2, code3);
-			_logger.LogInformation("done");
-
-			return Ok(d);
-		}
+		
 		
 	}
 }

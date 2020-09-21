@@ -21,8 +21,8 @@ export class Repository {
   filterStrategy: IFilter;
   allEducationType: ModelDictionary[];
   allLanguage: ModelDictionary[];
-  allRelatedFaculties: Faculty[];
-
+ // allRelatedFaculties: Faculty[];
+  allUniversities: University[]=[];
   filter: Filter;
   universities: University[];
 
@@ -85,20 +85,22 @@ export class Repository {
 
   getFaculties() {
     let url =
-      `${facultyUrl}?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
+      `${universityUrl}/GetUniversities?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
 
-    this.http.get<Faculty[]>(url).subscribe(fac => {
-      this.allRelatedFaculties = fac;
+    this.http.get<University[]>(url).subscribe(uni => {
+      this.allUniversities = uni;
       this.retriveEducationType();
       this.retriveLanguages();
     });
   }
 
   retriveEducationType() {
-    this.allEducationType = RetriveService.retriveEducationType(this.allRelatedFaculties);
+    this.allEducationType = RetriveService.retriveEducationType(this.allUniversities.map(function (p) { return p.faculties; })
+      .reduce(function (a, b) { return a.concat(b); }));
   }
   retriveLanguages() {
-    this.allLanguage = RetriveService.retriveLanguages(this.allRelatedFaculties);
+    this.allLanguage = RetriveService.retriveLanguages(this.allUniversities.map(function (p) { return p.faculties; })
+      .reduce(function (a, b) { return a.concat(b); }));
   }
 
 }

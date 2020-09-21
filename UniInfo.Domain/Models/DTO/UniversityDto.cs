@@ -10,7 +10,7 @@ namespace UniInfo.Domain.Models.DTO
         public string NameRu { get; set; }
         public string NameUz { get; set; }
         public int Location { get; set; }
-        public int? Rating { get; set; }
-        public bool? IsNational { get; set; }
+
+        public ICollection<FacultyDto> Faculties { get; set; }
     }
 }

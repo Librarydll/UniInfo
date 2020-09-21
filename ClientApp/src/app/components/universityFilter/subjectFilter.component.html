@@ -22,7 +22,7 @@
       <div [class.d-none]="educationTypes===undefined||educationTypes==null||educationTypes.length==0">
         <div class="arr-container">
           <div>
-            <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
+            <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text cursor-pointer'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
               {{e?.ruVersion|| 'Loading'}}
             </button>
           </div>
@@ -32,7 +32,7 @@
       <div [class.d-none]="languages===undefined||languages==null||languages.length==0">
         <div class="arr-container">
           <div>
-            <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'"
+            <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text cursor-pointer'"
                     class="btn btn-primary" *ngFor="let l of languages" (click)="selectLanguage(l)">
               {{l?.ruVersion|| 'Loading'}}
             </button>
@@ -81,7 +81,7 @@
       <div [class.d-none]="educationTypes===undefined||educationTypes==null||educationTypes.length==0">
         <div class="arr-container">
           <div>
-            <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
+            <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text  cursor-pointer'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
               {{e?.uzVersion || 'Loading'}}
             </button>
           </div>
@@ -91,7 +91,7 @@
       <div [class.d-none]="languages===undefined||languages==null||languages.length==0">
         <div class="arr-container">
           <div>
-            <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'"
+            <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text  cursor-pointer'"
                     class="btn btn-primary" *ngFor="let l of languages" (click)="selectLanguage(l)">
               {{l?.uzVersion || 'Loading'}}
             </button>

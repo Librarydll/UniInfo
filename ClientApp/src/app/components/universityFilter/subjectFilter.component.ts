@@ -4,6 +4,7 @@ import { Subject, SubjectDto } from '../../models/subject.model';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { MessageService } from '../../models/messageService';
 import { LanguageProvider } from '../../services/languageProvider';
+import { Style } from '../../models/style';
 
 
 @Component({
@@ -13,8 +14,10 @@ import { LanguageProvider } from '../../services/languageProvider';
 export class SubjectFilterComponent{
 
   order: number = 0;
-  constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider) {
-
+  constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider,private style:Style) {
+    style.uNameDisplay = '';
+    style.subjectDisplay = 'none';
+    style.canOrder = false;
   }
 
   get currentLanguage():string {
@@ -50,7 +53,7 @@ export class SubjectFilterComponent{
     return this.repo.allLanguage;
   }
 
-  selectEducationType(edu:ModelDictionary) {
+  selectEducationType(edu: ModelDictionary) {
     this.repo.currentSubject.educationType = edu;
     if (this.canBuild()) {
       this.buildTable();

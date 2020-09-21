@@ -16,8 +16,6 @@ export class Faculty {
   asFirst: number;
   asSecond: number;
   asThird: number;
-  universityNameRu: string;
-  universityNameUz: string;
   universityId: number;
   subject: SubjectMap;
 }

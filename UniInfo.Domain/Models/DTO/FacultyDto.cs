@@ -19,8 +19,6 @@ namespace UniInfo.Domain.Models.DTO
         public int AsFirst { get; set; }
         public int AsSecond { get; set; }
         public int AsThird { get; set; }
-        public string UniversityNameRu { get; set; }
-        public string UniversityNameUz { get; set; }
 
         public int UniversityId { get; set; }
     }

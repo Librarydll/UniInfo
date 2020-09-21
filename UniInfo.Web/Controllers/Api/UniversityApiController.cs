@@ -39,5 +39,17 @@ namespace UniInfo.Web.Controllers.Api
 			var university = await _universityDataService.GetUniversity((int)id);
 			return Ok(university);
 		}
+		[HttpGet("/api/university/GetUniversities")]
+		public async Task<IActionResult> GetUniversities(int code1, int code2, int code3)
+		{
+			if (code1 == 0 || code2 == 0 || code3 == 0)
+			{
+				return BadRequest();
+			}
+
+			var data = await _universityDataService.FilterFacultiesBySubjects(code1, code2, code3);
+
+			return Ok(data);
+		}
 	}
 }
