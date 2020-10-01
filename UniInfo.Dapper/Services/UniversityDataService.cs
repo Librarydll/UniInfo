@@ -19,7 +19,7 @@ namespace UniInfo.Dapper.Services
 		{
 		}
 
-		public async Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2, int code3)
+		public async Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2)
 		{
 			string query = @"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird
 								from Universities as u
@@ -27,7 +27,7 @@ namespace UniInfo.Dapper.Services
 								on u.id=f.universityid
 								left join Subjects as s
 								on s.facultyid =f.id
-								where s.firstsubject=@code1 and s.secondsubject =@code2  and s.thirdsubject=@code3
+								where s.firstsubject=@code1 and s.secondsubject =@code2
 								order by u.nameuz,u.nameru";
 
 			using (var connection = _factory.CreateConnection())
@@ -54,7 +54,6 @@ namespace UniInfo.Dapper.Services
 					{
 						code1,
 						code2,
-						code3
 					}
 				);
 				return lookup.Values.ToList();

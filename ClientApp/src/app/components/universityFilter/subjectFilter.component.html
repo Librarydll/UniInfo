@@ -11,11 +11,10 @@
           {{repo.currentSubject.secondSubject?.ruVersion || 'второй блок'}}
         </div>
       </div>
-      <div class="item-text">
+      <!--<div class="item-text">
         <div [className]="order>=3 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
-          {{repo.currentSubject.thirdSubject?.ruVersion || 'третий блок'}}
         </div>
-      </div>
+      </div>-->
     </div>
     <div style="margin-top:5px;margin-bottom:5px;"></div>
     <div class="d-flex flex-wrap flex-row justify-content-md-center">
@@ -45,7 +44,6 @@
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
   <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
   <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
-  <div [className]="order==2 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP3' | translate}}</p></div>
   <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
@@ -69,12 +67,7 @@
         <div [className]="order>=2 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
           {{repo.currentSubject.secondSubject?.uzVersion || 'ikkinchi fan'}}
         </div>
-      </div>
-      <div class="item-text">
-        <div [className]="order>=3 ? 'btn btn-info color-black':'item-btn item-btn-sub item-text'">
-          {{repo.currentSubject.thirdSubject?.uzVersion || 'uchinchi fan'}}
-        </div>
-      </div>
+      </div>    
     </div>
     <div style="margin-top:5px;margin-bottom:5px;"></div>
     <div class="d-flex flex-wrap flex-row justify-content-md-center">
@@ -104,7 +97,6 @@
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Tozalash</button>
   <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
   <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
-  <div [className]="order==2 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP3' | translate}}</p></div>
   <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">

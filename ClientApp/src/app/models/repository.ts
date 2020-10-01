@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject, SubjectDto } from './subject.model';
 import { ModelDictionary } from './modelDictionary.model';
-import { FilterByFirstSubject, IFilter, FilterBySecondSubject, FilterByNoSubject } from '../strategy/filterStrategy';
+import { FilterByFirstSubject, IFilter, FilterByNoSubject } from '../strategy/filterStrategy';
 import { Faculty } from './faculty.model';
 import { Filter } from './configClasses.repository';
 import { University } from './university.model';
@@ -28,7 +28,6 @@ export class Repository {
 
   constructor(private http: HttpClient) {
     this.currentSubject = new SubjectDto();
-    this.getSubjectNames();
     this.filter = new Filter();
   }
 
@@ -74,18 +73,19 @@ export class Repository {
     }
     if (order == 2) {//when select second subject
       this.currentSubject.secondSubject = model;
-      this.filterStrategy = new FilterBySecondSubject();
-      this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, this.currentSubject);
-    }
-    if (order == 3) {//when select third subject
-      this.currentSubject.thirdSubject = model;
       this.getFaculties();
+     // this.filterStrategy = new FilterBySecondSubject();
+     // this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, this.currentSubject);
     }
+    //if (order == 3) {//when select third subject
+    //  this.currentSubject.thirdSubject = model;
+    //  this.getFaculties();
+    //}
   }
 
   getFaculties() {
     let url =
-      `${universityUrl}/GetUniversities?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}&code3=${this.currentSubject.thirdSubject.code}`;
+      `${universityUrl}/GetUniversities?code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}`;
 
     this.http.get<University[]>(url).subscribe(uni => {
       this.allUniversities = uni;

@@ -93,10 +93,9 @@ export class TableBuilderComponent {
     if (s === undefined || s === null) return null;
     let first = ModelDictionary.createModelDictionaryBySubject(s.firstSubject);
     let second = ModelDictionary.createModelDictionaryBySubject(s.secondSubject);
-    let third = ModelDictionary.createModelDictionaryBySubject(s.thirdSubject);
     if (this.currentLanguage == "ru")
-      return `${first.ruVersion}, ${second.ruVersion}, ${third.ruVersion}`;
-    return `${first.uzVersion}, ${second.uzVersion}, ${third.uzVersion}`;
+      return `${first.ruVersion}, ${second.ruVersion}`;
+    return `${first.uzVersion}, ${second.uzVersion}`;
 
   }
 

@@ -10,7 +10,6 @@ namespace UniInfo.Domain.Models
     {
         public int FirstSubject { get; set; }
         public int SecondSubject { get; set; }
-        public int ThirdSubject { get; set; }
         public string Certificate { get; set; }
 
         public int FacultyId { get; set; }

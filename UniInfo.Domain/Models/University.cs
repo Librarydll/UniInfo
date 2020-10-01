@@ -5,6 +5,7 @@ using UniInfo.Domain.Models.Common;
 
 namespace UniInfo.Domain.Models
 {
+    [Table("Universities")]
     public class University : BaseEntity
     {
         public string NameRu { get; set; }
@@ -15,9 +16,8 @@ namespace UniInfo.Domain.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string UniversityIndex { get; set; }
-        public int? Rating { get; set; }
-        public bool? IsNational { get; set; }
-
+        public int Rating { get; set; }
+        public bool IsNational { get; set; } = true;
 
         public ICollection<Faculty> Faculties { get; set; }
     }

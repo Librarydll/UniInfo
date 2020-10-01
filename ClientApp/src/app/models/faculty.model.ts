@@ -13,9 +13,7 @@ export class Faculty {
   grantPass: number;
   contractPass: number;
   period: string;
-  asFirst: number;
-  asSecond: number;
-  asThird: number;
+  totalApply: number;
   universityId: number;
   subject: SubjectMap;
 }

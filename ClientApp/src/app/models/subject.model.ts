@@ -3,14 +3,12 @@ import { ModelDictionary } from './modelDictionary.model';
 export interface ISubject<T> {
   firstSubject: T;
   secondSubject: T;
-  thirdSubject: T;
 }
 
 export class Subject implements ISubject<ModelDictionary>{
 
     firstSubject: ModelDictionary;
     secondSubject: ModelDictionary;
-    thirdSubject: ModelDictionary;
 
   constructor() { }
 
@@ -19,8 +17,7 @@ export class Subject implements ISubject<ModelDictionary>{
   public isFilled(): boolean {
 
     if ((this.firstSubject === null || this.firstSubject === undefined) ||
-      (this.secondSubject === null || this.secondSubject === undefined) ||
-      (this.thirdSubject === null || this.thirdSubject === undefined ))
+      (this.secondSubject === null || this.secondSubject === undefined))
     {
       return false
     };
@@ -45,7 +42,6 @@ export class SubjectDto extends Subject {
   public clear() {
     this.firstSubject = null;
     this.secondSubject = null;
-    this.thirdSubject = null;
     this.language = null;
     this.educationType = null;
   }
@@ -53,10 +49,9 @@ export class SubjectDto extends Subject {
 
 export class SubjectMap {
 
-  constructor(public firstSubject?: number, public secondSubject?: number, public thirdSubject?: number,public certificate?:string) {
+  constructor(public firstSubject?: number, public secondSubject?: number,public certificate?:string) {
     this.firstSubject = firstSubject;
     this.secondSubject = secondSubject;
-    this.thirdSubject = thirdSubject;
     this.certificate = certificate;
   }
  

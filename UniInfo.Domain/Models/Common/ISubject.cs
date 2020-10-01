@@ -8,6 +8,5 @@ namespace UniInfo.Domain.Models.Common
 	{
 		public T FirstSubject { get; set; }
 		public T SecondSubject { get; set; }
-		public T ThirdSubject { get; set; }
 	}
 }

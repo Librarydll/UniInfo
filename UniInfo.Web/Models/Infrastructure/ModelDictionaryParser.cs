@@ -95,8 +95,6 @@ namespace UniInfo.Web.Models.Infrastructure
 				{
 					FirstSubject = subjectDict.GetValueOrDefault(subject.FirstSubject),
 					SecondSubject = subjectDict.GetValueOrDefault(subject.SecondSubject),
-					ThirdSubject = subjectDict.GetValueOrDefault(subject.ThirdSubject),
-
 				});
 			}
 			return collection;

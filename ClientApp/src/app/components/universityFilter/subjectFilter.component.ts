@@ -18,6 +18,7 @@ export class SubjectFilterComponent{
     style.uNameDisplay = '';
     style.subjectDisplay = 'none';
     style.canOrder = false;
+    repo.getSubjectNames();
   }
 
   get currentLanguage():string {

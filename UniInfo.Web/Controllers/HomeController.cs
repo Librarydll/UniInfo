@@ -27,7 +27,6 @@ namespace UniInfo.Web.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-			var s = await universityDataService.FilterFacultiesBySubjects(9, 16, 1);
 			return View();
 		}
 

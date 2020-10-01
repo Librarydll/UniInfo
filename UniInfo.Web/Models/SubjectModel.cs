@@ -10,6 +10,5 @@ namespace UniInfo.Domain.Models.DTO
 	{
 		public ModelDictionary FirstSubject { get; set; }
 		public ModelDictionary SecondSubject { get; set; }
-		public ModelDictionary ThirdSubject { get; set; }
 	}
 }
