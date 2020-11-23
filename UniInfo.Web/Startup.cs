@@ -35,6 +35,7 @@ namespace UniInfo.Web
 			services.AddTransient<IUniversityDataService, UniversityDataService>();
 			services.AddTransient<IFacultyDataService, FacultyDataService>();
 			services.AddTransient<ISubjectDataService, SubjectDataService>();
+			services.AddTransient<IQuizDataService, QuizDataService>();
 			services.AddSingleton(service =>
 			{
 				var str = Configuration.GetConnectionString("LocalDb");
@@ -75,17 +76,6 @@ namespace UniInfo.Web
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-
-			//app.Run(async (context) =>
-			//{
-			//	if (!context.Request.Cookies.ContainsKey(".AspNetCore.Culture"))
-			//	{
-			//		context.Response.Cookies.Append(
-			//	CookieRequestCultureProvider.DefaultCookieName,
-			//	CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("uz")),
-			//	new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
-			//	}		
-			//});
 
 			var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
 			app.UseRequestLocalization(options.Value);
