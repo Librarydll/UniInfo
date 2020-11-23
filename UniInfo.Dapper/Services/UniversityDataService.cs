@@ -21,26 +21,26 @@ namespace UniInfo.Dapper.Services
 
 		public async Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2)
 		{
-			string query = @"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.asfirst,f.assecond,f.asthird
+			string query = @"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.TotalApply
 								from Universities as u
 								left join Faculties as f
 								on u.id=f.universityid
 								left join Subjects as s
 								on s.facultyid =f.id
-								where s.firstsubject=@code1 and s.secondsubject =@code2
+								where (s.firstsubject=@code1 and s.secondsubject =@code2) or (s.firstsubject=@code2 and s.secondsubject =@code1)
 								order by u.nameuz,u.nameru";
 
 			using (var connection = _factory.CreateConnection())
 			{
 				var lookup = new Dictionary<int, UniversityDto>();
-				var result = await connection.QueryAsync<UniversityDto, FacultyDto ,UniversityDto>(query,
+				var result = await connection.QueryAsync<UniversityDto, Faculty, UniversityDto>(query,
 					(university, faculty) =>
 					{
 
 						if (!lookup.TryGetValue(university.Id, out UniversityDto u))
 						{
 							u = university;
-							u.Faculties = new List<FacultyDto>();
+							u.Faculties = new List<Faculty>();
 							lookup.Add(university.Id, university);
 						}
 
@@ -84,7 +84,7 @@ namespace UniInfo.Dapper.Services
 				return result;
 			}
 		}
-
+		///TODO : CHANGE QUERYASYNC TO QueryFirstAsync
 		public async Task<University> GetUniversity(int id)
 		{
 			var lookup = new Dictionary<int, University>();
@@ -104,6 +104,10 @@ namespace UniInfo.Dapper.Services
 						{
 							lookup.Add(uni.Id, university = uni);
 						}
+
+						if (fac == null) 
+							return university;
+
 						if (!lookup2.TryGetValue(fac.Id, out Faculty faculty))
 						{
 							lookup2.Add(fac.Id, faculty = fac);

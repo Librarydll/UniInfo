@@ -11,6 +11,6 @@ namespace UniInfo.Domain.Models.DTO
         public string NameUz { get; set; }
         public int Location { get; set; }
 
-        public ICollection<FacultyDto> Faculties { get; set; }
+        public ICollection<Faculty> Faculties { get; set; }
     }
 }

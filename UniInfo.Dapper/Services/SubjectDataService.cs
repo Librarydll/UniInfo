@@ -13,7 +13,7 @@ namespace UniInfo.Dapper.Services
 	public class SubjectDataService : GenericDataService<Subject>, ISubjectDataService
 	{
 		readonly string distincScript =
-		$"SELECT DISTINCT s.FirstSubject,s.SecondSubjectFrom Subjects as s";
+		$"SELECT DISTINCT s.FirstSubject,s.SecondSubject From Subjects as s";
 		public SubjectDataService(ApplicationDbConnectionFactory factory) : base(factory)
 		{
 		}

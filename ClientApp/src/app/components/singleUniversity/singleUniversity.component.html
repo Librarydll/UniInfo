@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="container-year">
-        <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
+        <div *ngIf="facCount>0" class="btn-parallelogram parallelogram item-btn item-btn-sub number">
           2020-2021
         </div>
       </div>
@@ -128,12 +128,14 @@
         </div>
       </div>
       <div class="container-year">
-        <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
+        <div *ngIf="facCount>0" class="btn-parallelogram parallelogram item-btn item-btn-sub number">
           2020-2021 
         </div>
       </div>
     </div>
   </div>
 </ng-template>
+
+
 
 

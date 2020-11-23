@@ -46,14 +46,20 @@ export class SingleUniversityComponent {
    
     this.http.get<University>(url + '/' + this.id).subscribe(u => {
       this.currentUniversity = u;
-      this.retriveEducationType();
-      this.retriveLanguages();
-      this.repo.currentSubject.educationType = this.allEducationType[0];
-      this.repo.currentSubject.language = this.allLanguage[0];
-      this.repo.allUniversities.push(this.currentUniversity);
-      this.messageService.build();
+      if (this.currentUniversity.faculties != null) {
+        this.retriveEducationType();
+        this.retriveLanguages();
+        this.repo.currentSubject.educationType = this.allEducationType[0];
+        this.repo.currentSubject.language = this.allLanguage[0];
+        this.repo.allUniversities.push(this.currentUniversity);
+        this.messageService.build();
+      }
+     
     });
 
+  }
+  get facCount(): number {
+    return this.repo.allUniversities.length;
   }
 
   get tableHeader(): TableHeader {

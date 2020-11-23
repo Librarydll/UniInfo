@@ -25,10 +25,6 @@ export class SubjectFilterComponent{
     return this.languageProvider.getLanguage();
   }
 
-  get subjects(): Subject[] {
-    return this.repo.subjectNames;
-  }
-
   get initialSubjects(): ModelDictionary[] {
     return this.repo.filteredSubjects;
   }

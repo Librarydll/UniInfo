@@ -26,7 +26,7 @@
           <tbody>
             <ng-container *ngFor="let fac of u.faculties;let i=index">
               <tr [ngStyle]="{'display':style.subjectDisplay}">
-                <td colspan="6" id="subj-td" class="extra-info">Предметы: {{createSubject(fac.subject)}}</td>
+                <td colspan="6" id="subj-td" class="extra-info">Предметы: {{createSubject(fac.subject) || 'Данные отсутствуют'}}</td>
               </tr>
               <tr>
                 <td>{{i+1}}</td>
@@ -77,11 +77,11 @@
               <th>{{tableHeader.direction}}</th>
               <th class="cursor-pointer" (click)="orderByCount()">
                 {{tableHeader.plan}}
-                <span class="{{arrowByCountClass}}"></span>
+                <span [ngStyle]="{'display':style.subjectDisplay}" class="{{arrowByCountClass}}"></span>
               </th>
               <th class="cursor-pointer" (click)="orderByPoint()">
                 {{tableHeader.pass}}
-                <span class="{{arrowByPointClass}}"></span>
+                <span [ngStyle]="{'display':style.subjectDisplay}" class="{{arrowByPointClass}}"></span>
               </th>
               <th>{{tableHeader.accept}}</th>
             </tr>
@@ -89,7 +89,7 @@
           <tbody>
             <ng-container *ngFor="let fac of u.faculties;let i=index">
               <tr [ngStyle]="{'display':style.subjectDisplay}">
-                <td colspan="6" id="subj-td" class="extra-info">Предметы: {{createSubject(fac.subject)}}</td>
+                <td colspan="6" id="subj-td" class="extra-info">Fanlar: {{createSubject(fac.subject) || 'Ma\'lumot yo\'q'}}</td>
               </tr>
               <tr>
                 <td>{{i+1}}</td>

@@ -44,7 +44,7 @@
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Сбросить</button>
   <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
   <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
-  <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
+  <div [className]="(!canBuild() && order>=2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 
@@ -97,7 +97,7 @@
   <button id="resetBtn" class="item-btn item-btn-clear d-block" style="margin:0 auto" (click)="clear()">Tozalash</button>
   <div [className]="order==0 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP1' | translate}}</p></div>
   <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
-  <div [className]="(!canBuild() && order>2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
+  <div [className]="(!canBuild() && order>=2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
     <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 
