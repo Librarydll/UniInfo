@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { AppSingleComponent } from '../components/appSingle.component';
 import { QuizzesComponent } from '../components/quiz/Quizzes.component';
+import { QuizViewComponent } from '../components/quiz/quizView.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -18,7 +19,14 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  declarations: [SubjectFilterComponent, TableBuilderComponent, AppListComponent, UniversityListComponent, SingleUniversityComponent, AppSingleComponent,QuizzesComponent],
+  declarations: [SubjectFilterComponent,
+    TableBuilderComponent,
+    AppListComponent,
+    UniversityListComponent,
+    SingleUniversityComponent,
+    AppSingleComponent,
+    QuizzesComponent,
+    QuizViewComponent],
   imports: [BrowserModule, FormsModule, TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,

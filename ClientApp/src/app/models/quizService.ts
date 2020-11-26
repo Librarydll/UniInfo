@@ -9,14 +9,18 @@ const quizUrl = '/api/quiz';
 @Injectable()
 export class QuizService {
 
+  quizzes: Quiz[];
+
   constructor(private http:HttpClient) {
 
   }
 
 
-  getQuizzes(subject: Subject, lang: number) :Observable<Quiz[]> {
+  getQuizzes(subject: Subject, lang: number)  {
     let url = quizUrl + `?firstSubject=${subject.firstSubject.code}&secondSubject=${subject.secondSubject.code}&language=${lang}`;
-    return this.http.get<Quiz[]>(url);
+    this.http.get<Quiz[]>(url).subscribe(q =>
+      this.quizzes = q
+      );
 
   }
 

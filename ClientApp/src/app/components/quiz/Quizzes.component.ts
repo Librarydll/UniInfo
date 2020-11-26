@@ -16,6 +16,7 @@ import { LanguageProvider } from '../../services/languageProvider';
 export class QuizzesComponent {
 
   order: number = 0;
+  canBuild:boolean = false;
   constructor(private repo: Repository,
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
@@ -61,21 +62,17 @@ export class QuizzesComponent {
     this.repo.currentSubject.clear();
     this.repo.filterSubject();
     this.messageService.clear();
+    this.canBuild = false;
   }
 
   beginTest() {
     let langNumber = this.languageProvider.getLanguage() == "uz" ? 1 : 2;
-    this.quizService.getQuizzes(this.repo.currentSubject, langNumber).subscribe(x =>
-      console.log();
-    );
+    this.quizService.getQuizzes(this.repo.currentSubject, langNumber);
+    this.canBuild = true;
   }
 
   buildTable() {
     this.messageService.build();
-  }
-
-  canBuild(): boolean {
-    return this.repo.currentSubject.isPropertyFilled();
   }
 
   canBegin() {
