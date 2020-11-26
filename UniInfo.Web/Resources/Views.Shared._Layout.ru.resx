@@ -134,4 +134,7 @@
     <value>Главная</value>
     <comment>Главная home/index</comment>
   </data>
+  <data name="Quiz" xml:space="preserve">
+    <value>Тесты</value>
+  </data>
 </root>

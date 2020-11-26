@@ -159,13 +159,13 @@
     <value>Har qanday shahar</value>
   </data>
   <data name="Text1" xml:space="preserve">
-    <value>Найдите для себя вуз по предметам,языку и по форме обучения</value>
+    <value>Uziz uchun fanlar va til bo'yicha oliygohni  tanlang</value>
   </data>
   <data name="Text2" xml:space="preserve">
-    <value>Список всех университетов и их факультетов</value>
+    <value>Barcha universitetlar va ularning fakultetlari ro'yxati</value>
   </data>
   <data name="Text3" xml:space="preserve">
-    <value>Поиск вуза по критериям</value>
+    <value>Mezonlar bo'yicha universitetni qidirish</value>
   </data>
   <data name="Text4" xml:space="preserve">
     <value>Oliygohlar</value>

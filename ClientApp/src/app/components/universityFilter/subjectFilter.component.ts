@@ -96,5 +96,5 @@ export class SubjectFilterComponent{
   canBuild():boolean {
     return this.repo.currentSubject.isPropertyFilled();
   }
-
+  я
 }

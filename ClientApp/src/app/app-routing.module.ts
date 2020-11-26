@@ -4,12 +4,14 @@ import { UniversityListComponent } from './components/universityList/universityL
 import { SingleUniversityComponent } from './components/singleUniversity/singleUniversity.component';
 import { AppListComponent } from './components/appList.component';
 import { AppSingleComponent } from './components/appSingle.component';
+import { QuizzesComponent } from './components/quiz/Quizzes.component';
 
 
 const routes: Routes = [
   { path: 'UniversityFilter', component: AppListComponent },
   { path: 'UniversityList/University/:id', component: AppSingleComponent },
   { path: 'UniversityList', component: UniversityListComponent },
+  { path: 'Quiz', component: QuizzesComponent },
   { path: "", redirectTo: '/',pathMatch:"full" }
 ];
 
