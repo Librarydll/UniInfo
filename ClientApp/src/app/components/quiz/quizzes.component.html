@@ -1,4 +1,10 @@
-<div *ngIf="currentLanguage=='ru';else uzDiv">
+<style>
+  .quiz-container {
+    margin-top: 10vh;
+  }
+</style>
+
+<div *ngIf="currentLanguage=='ru';else uzDiv" [class.d-none]="canBuild">
   <div class="inner-container">
     <div class="d-flex flex-wrap flex-row justify-content-md-center">
       <div class="item-text">
@@ -51,8 +57,6 @@
   </button>
 
   
-  <quiz-view *ngIf="canBuild"></quiz-view>
-
 </div>
 
 <ng-template #uzDiv>
@@ -108,4 +112,6 @@
   </div>
 </ng-template>
 
-
+<div class="quiz-container">
+  <quiz-view *ngIf="canBuild"></quiz-view>
+</div>
