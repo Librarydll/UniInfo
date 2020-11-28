@@ -21,6 +21,6 @@ export class QuizAnswer {
   }
 
   get totalPoints(): number {
-    return this.totalRigthAnswer * 3.1;
+    return Math.round((this.totalRigthAnswer * 3.1 + Number.EPSILON) * 100) / 100
   }
 }

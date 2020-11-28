@@ -33,7 +33,7 @@ export class SubjectFilterComponent{
     this.order += 1;
     this.repo.filterSubject(this.order, sub);
 
-   // if (this.order == 3) this.buildTable();
+    if (this.order == 2) this.repo.getFaculties();
   }
 
   getFaculties() {

@@ -103,7 +103,7 @@ namespace UniInfo.Dapper.Services
 								on u.id=f.universityid
 								left join Subjects as s
 								on s.facultyid =f.id
-								where (f.grantpass<={passValue} and f.grant!=0 and f.grantpass!=0) || (f.contractpass<={passValue} and f.contract!=0 and f.contractpass!=0) 
+								where (f.grantpass<={passValue.ToString().Replace(",",".")} and f.grant!=0 and f.grantpass!=0) || (f.contractpass<={passValue.ToString().Replace(",", ".")} and f.contract!=0 and f.contractpass!=0) 
 								order by u.nameuz,u.nameru";
 
 			return await GenerateUniversitiesWithFacutlies(query);
@@ -128,8 +128,7 @@ namespace UniInfo.Dapper.Services
 						u.Faculties.Add(faculty);
 
 						return u;
-					},
-					splitOn: "universityid"				
+					}
 				);
 				return lookup.Values.ToList();
 			}
