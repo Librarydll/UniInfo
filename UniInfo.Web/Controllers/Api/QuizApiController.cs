@@ -9,6 +9,7 @@ using UniInfo.Domain.Services;
 namespace UniInfo.Web.Controllers.Api
 {
 	[Route("/api/quiz")]
+	[ApiController]
 	public class QuizApiController: Controller
 	{
 		private readonly IQuizDataService _quizDataService;

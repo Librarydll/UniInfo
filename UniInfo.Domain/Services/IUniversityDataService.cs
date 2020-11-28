@@ -17,5 +17,7 @@ namespace UniInfo.Domain.Services
 		Task<IEnumerable<UniversityDto>> GetUniversities(string city = "", int code=0);
 
 		Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2);
+
+		Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue);
 	}
 }

@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { MessageService } from '../../models/messageService';
 import { ModelDictionary } from '../../models/modelDictionary.model';
+import { QuizAnswer } from '../../models/quiz.model';
 import { QuizService } from '../../models/quizService';
 import { Repository } from '../../models/repository';
-import { Style } from '../../models/style';
 import { SubjectDto } from '../../models/subject.model';
 import { LanguageProvider } from '../../services/languageProvider';
 
@@ -15,8 +15,10 @@ import { LanguageProvider } from '../../services/languageProvider';
 })
 export class QuizzesComponent {
 
+  isQuizEnded: boolean = false;
   order: number = 0;
-  canBuild:boolean = false;
+  canBuild: boolean = false;
+  quizResult: QuizAnswer;
   constructor(private repo: Repository,
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
@@ -48,7 +50,7 @@ export class QuizzesComponent {
 
     if (id == 0) return false;
 
-    if (this.currentSubject.language === undefined || this.currentSubject.language === null) return false;
+    if (!this.currentSubject.language) return false;
 
     return this.currentSubject.language.code == id;
   }
@@ -76,8 +78,22 @@ export class QuizzesComponent {
   }
 
   canBegin() {
-
-    if (this.currentSubject.language === undefined || this.currentSubject.language === null) return false;
+    if (!this.currentSubject.language) return false;
     return true;
+  }
+  getStatus() {
+    this.isQuizEnded = true;
+  }
+  retry() {
+    this.clear();
+    this.quizService.clear();
+    this.isQuizEnded = false;
+  }
+  getUniversities() {
+    this.repo.getUniversitiesByPassValue(this.quizResult.totalPoints);
+  }
+
+  getQuizResult(q:QuizAnswer) {
+    this.quizResult = q;
   }
 }

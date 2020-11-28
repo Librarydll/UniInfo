@@ -2,6 +2,13 @@
   .quiz-container {
     margin-top: 10vh;
   }
+  .qv-result {
+    margin-top: 50px;
+  }
+
+    .qv-result button {
+      margin: 15px auto;
+    }
 </style>
 
 <div *ngIf="currentLanguage=='ru';else uzDiv" [class.d-none]="canBuild">
@@ -113,5 +120,9 @@
 </ng-template>
 
 <div class="quiz-container">
-  <quiz-view *ngIf="canBuild"></quiz-view>
+  <quiz-view *ngIf="canBuild" (isQuizEndedOutput)="getStatus($event)" (qResultOutput)="getQuizResult($event)"></quiz-view>
+  <div class="qv-result"  [class.d-none]="!isQuizEnded">
+    <button class="btn btn-info color-black d-block" (click)="retry()">Еще раз</button>
+    <button class="btn btn-info color-black d-block" (click)="getUniversities()">Посмотреть в какие вузы мог бы поступить</button>
+  </div>
 </div>

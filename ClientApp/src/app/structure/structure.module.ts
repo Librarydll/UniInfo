@@ -27,7 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppSingleComponent,
     QuizzesComponent,
     QuizViewComponent, SafePipe],
-  imports: [BrowserModule, FormsModule, TranslateModule.forRoot({
+  imports: [BrowserModule ,FormsModule,TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,

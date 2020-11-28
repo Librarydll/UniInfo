@@ -32,11 +32,20 @@
   .nav-link{
     color:white;
   }
+  .quiz-conclusion tr{
+    font-size:18px;
+  }
+  .quiz-conclusion tr th{
+    background-color:black;
+  }
+  .quiz-conclusion tr td {
+   padding:25px;
+   color:black;
+  }
+
 </style>
 
-<div class="container">
-
-
+<div class="container" [class.d-none]="isQuizEnded">
   <nav>
     <div class="nav nav-tabs tab-placement" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-selected="true">{{repo.currentSubject.firstSubject.ruVersion}}</a>
@@ -53,22 +62,23 @@
 
         <div class="d-flex flex-column" style="margin:0 auto;">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.firstAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.secondAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
-            <label [innerHtml]="q?.thirdAnswer | safe"></label>
+            <input (change)="onSelectionChange(q,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <label [innerHtml]="q.thirdAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.fourthAnswer | safe"></label>
           </div>
         </div>
+
 
       </div>
     </div>
@@ -82,19 +92,19 @@
 
           <div class="d-flex flex-column" style="margin:0 auto;">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.firstAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.secondAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
-              <label [innerHtml]="q?.thirdAnswer | safe"></label>
+              <input (change)="onSelectionChange(q,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <label [innerHtml]="q.thirdAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.fourthAnswer | safe"></label>
             </div>
           </div>
@@ -104,5 +114,55 @@
 
     </div>
   </div>
- 
+  <div class="text-center">
+    <button class="btn btn-success" (click)="finishQuiz()">
+      Завершить
+    </button>
+  </div>
+</div>
+<div class="container" [class.d-none]="!isQuizEnded">
+  <div class="quiz-conclusion">
+    <table class="table100 exo2">
+      <thead class="bg-dark">
+        <tr>
+          <th>{{repo.currentSubject.firstSubject.ruVersion}} (3,1)</th>
+          <th>{{repo.currentSubject.secondSubject.ruVersion}} (3,1)</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>
+          {{result?.firstSubjectRightAnswersCount}}
+        </td>
+        <td>
+          {{result?.secondSubjectRightAnswersCount}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{result?.firstSubjectRightAnswersCount*3.1}}
+        </td>
+        <td>
+          {{result?.secondSubjectRightAnswersCount*3.1}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{result?.totalPoints}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="canvas1">
+        {{ firstChart }}
+      </canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="canvas2">
+        {{ secondChart }}
+      </canvas>
+    </div>
+  </div>
+
 </div>

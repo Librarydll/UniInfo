@@ -10,7 +10,7 @@ import { RetriveService } from '../services/retriveService';
 
 const universityUrl = "/api/university";
 const facultyUrl = "/api/faculty";
-const subjectyUrl = "/api/subject";
+const subjectyUrl = "/api/subject"; 
 
 @Injectable()
 export class Repository {
@@ -103,4 +103,10 @@ export class Repository {
       .reduce(function (a, b) { return a.concat(b); }));
   }
 
+  getUniversitiesByPassValue(value:number) {
+    this.http.get<University[]>(universityUrl + `/getUniversitiesByValue?value=${value}`)
+      .subscribe(u => {
+        this.universities = u;
+      });
+  }
 }

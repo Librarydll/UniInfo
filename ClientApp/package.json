@@ -21,6 +21,7 @@
     "@angular/router": "~8.1.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "chart.js": "^2.9.4",
     "ngx-cookie": "^5.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
