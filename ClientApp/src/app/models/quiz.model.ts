@@ -23,4 +23,11 @@ export class QuizAnswer {
   get totalPoints(): number {
     return Math.round((this.totalRigthAnswer * 3.1 + Number.EPSILON) * 100) / 100
   }
+
+  get firstPoint():number {
+    return Math.round((this.firstSubjectRightAnswersCount * 3.1 + Number.EPSILON) * 100) / 100
+  }
+  get secondPoint(): number {
+    return Math.round((this.secondSubjectRightAnswersCount * 3.1 + Number.EPSILON) * 100) / 100
+  }
 }

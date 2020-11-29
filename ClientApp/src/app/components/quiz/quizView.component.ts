@@ -76,7 +76,7 @@ export class QuizViewComponent {
         data: {
         datasets: [
         {
-            data: [this.quizService.quizResult.firstSubjectRightAnswersCount, 30],
+            data: [this.quizService.quizResult.firstSubjectRightAnswersCount, this.quizService.questionsPerSubject - this.quizService.quizResult.firstSubjectRightAnswersCount],
             backgroundColor: [
               "#17a2b8",
               "#03132b"
@@ -110,7 +110,7 @@ export class QuizViewComponent {
       data: {
         datasets: [
           {
-            data: [this.quizService.quizResult.secondSubjectRightAnswersCount, 30],
+            data: [this.quizService.quizResult.secondSubjectRightAnswersCount, this.quizService.questionsPerSubject - this.quizService.quizResult.secondSubjectRightAnswersCount ],
             backgroundColor: [
               "#17a2b8",
               "#03132b"

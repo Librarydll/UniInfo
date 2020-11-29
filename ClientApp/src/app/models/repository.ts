@@ -41,7 +41,8 @@ export class Repository {
     }
 
 
-    getSubjectNames() {
+  getSubjectNames() {
+
       let url = subjectyUrl;
         
       this.http.get<Subject[]>(url).subscribe(subj =>
@@ -95,18 +96,28 @@ export class Repository {
   }
 
   retriveEducationType() {
-    this.allEducationType = RetriveService.retriveEducationType(this.allUniversities.map(function (p) { return p.faculties; })
-      .reduce(function (a, b) { return a.concat(b); }));
+    if (this.allUniversities.length > 0) {
+      this.allEducationType = RetriveService.retriveEducationType(this.allUniversities.map(function (p) { return p.faculties; })
+        .reduce(function (a, b) { return a.concat(b); }));
+    }
+   
   }
   retriveLanguages() {
-    this.allLanguage = RetriveService.retriveLanguages(this.allUniversities.map(function (p) { return p.faculties; })
-      .reduce(function (a, b) { return a.concat(b); }));
+
+    if (this.allUniversities.length > 0) {
+      this.allLanguage = RetriveService.retriveLanguages(this.allUniversities.map(function (p) { return p.faculties; })
+        .reduce(function (a, b) { return a.concat(b); }));
+    }
+
+   
   }
 
   getUniversitiesByPassValue(value:number) {
     this.http.get<University[]>(universityUrl + `/getUniversitiesByValue?value=${value}`)
       .subscribe(u => {
-        this.universities = u;
+        this.allUniversities = u;
+        this.retriveEducationType();
+        this.retriveLanguages();
       });
   }
 }

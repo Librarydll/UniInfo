@@ -36,9 +36,6 @@ export class SubjectFilterComponent{
     if (this.order == 2) this.repo.getFaculties();
   }
 
-  getFaculties() {
-    this.repo.getFaculties();
-  }
   get currentSubject():SubjectDto{
     return this.repo.currentSubject;
   }
@@ -96,5 +93,4 @@ export class SubjectFilterComponent{
   canBuild():boolean {
     return this.repo.currentSubject.isPropertyFilled();
   }
-  я
 }

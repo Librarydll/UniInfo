@@ -17,13 +17,15 @@ export class QuizzesComponent {
 
   isQuizEnded: boolean = false;
   order: number = 0;
-  canBuild: boolean = false;
+  canBuildQuiz: boolean = false;
+  canBuildTable: boolean = false;
+  
   quizResult: QuizAnswer;
   constructor(private repo: Repository,
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
     private quizService: QuizService) {
-      repo.getSubjectNames();
+     repo.getSubjectNames();
   }
 
   get currentLanguage(): string {
@@ -54,23 +56,43 @@ export class QuizzesComponent {
 
     return this.currentSubject.language.code == id;
   }
+
+  isThisEducationType(id: number): boolean {
+    if (id == 0) return false;
+
+    if (this.currentSubject.educationType === undefined || this.currentSubject.educationType === null) return false;
+
+    return this.currentSubject.educationType.code == id;
+  }
+
   selectLanguage(n: number) {
     this.repo.currentSubject.language = new ModelDictionary(null,null,n);
   }
-
-
+  selectEducationType(edu: ModelDictionary) {
+    this.repo.currentSubject.educationType = edu;
+    if (this.repo.currentSubject.isPropertyFilled()) {
+      this.buildTable();
+    }
+  }
+  selectLanguage2(l: ModelDictionary) {
+    this.repo.currentSubject.language = l;
+    if (this.repo.currentSubject.isPropertyFilled()) {
+      this.buildTable();
+    }
+  }
   clear() {
     this.order = 0;
     this.repo.currentSubject.clear();
     this.repo.filterSubject();
     this.messageService.clear();
-    this.canBuild = false;
+    this.canBuildQuiz = false;
+    this.canBuildTable =false;
   }
 
   beginTest() {
-    let langNumber = this.languageProvider.getLanguage() == "uz" ? 1 : 2;
+    let langNumber = this.repo.currentSubject.language.code;
     this.quizService.getQuizzes(this.repo.currentSubject, langNumber);
-    this.canBuild = true;
+    this.canBuildQuiz = true;
   }
 
   buildTable() {
@@ -91,9 +113,20 @@ export class QuizzesComponent {
   }
   getUniversities() {
     this.repo.getUniversitiesByPassValue(this.quizResult.totalPoints);
+    if (this.repo.allUniversities.length > 0) {
+      alert(this.repo.allUniversities.length)
+      this.canBuildTable = true;
+    }
   }
 
   getQuizResult(q:QuizAnswer) {
     this.quizResult = q;
+  }
+
+  get educationTypes(): ModelDictionary[] {
+    return this.repo.allEducationType;
+  }
+  get languages(): ModelDictionary[] {
+    return this.repo.allLanguage;
   }
 }

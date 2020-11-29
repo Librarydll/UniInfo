@@ -5,9 +5,9 @@ import { Quiz, QuizAnswer } from './quiz.model';
 import { Subject } from './subject.model';
 
 const quizUrl = '/api/quiz';
-
 @Injectable()
 export class QuizService {
+  public questionsPerSubject: number = 30;
 
   quizzes: Quiz[];
   quizResult: QuizAnswer;
@@ -43,14 +43,14 @@ export class QuizService {
   get firstSubjectQuestions(): Quiz[] {
     if (!this.quizzes) return null;
     return this.quizzes
-      .slice(0, 30)
+      .slice(0, this.questionsPerSubject)
       .map(x => x);
   }
   get secondSubjectQuestions(): Quiz[] {
     if (!this.quizzes) return null;
 
     return this.quizzes
-      .slice(30, 60)
+      .slice(this.questionsPerSubject, 60)
       .map(x => x);
   }
   clear() {

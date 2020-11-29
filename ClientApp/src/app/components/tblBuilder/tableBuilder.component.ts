@@ -66,7 +66,7 @@ export class TableBuilderComponent {
     return this.tHeader;
   }
 
-  createDictionary(){
+  createDictionary() {
     let edutype = this.repo.currentSubject.educationType.code;
     let lang = this.repo.currentSubject.language.code;
     let result: University[] = [];
