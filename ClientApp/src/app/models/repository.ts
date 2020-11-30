@@ -74,7 +74,6 @@ export class Repository {
     }
     if (order == 2) {//when select second subject
       this.currentSubject.secondSubject = model;
-      this.getFaculties();
      // this.filterStrategy = new FilterBySecondSubject();
      // this.filteredSubjects = this.filterStrategy.filter(this.subjectNames, this.currentSubject);
     }

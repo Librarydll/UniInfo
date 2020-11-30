@@ -19,7 +19,7 @@ export class QuizzesComponent {
   order: number = 0;
   canBuildQuiz: boolean = false;
   canBuildTable: boolean = false;
-  
+  noData: boolean = false;
   quizResult: QuizAnswer;
   constructor(private repo: Repository,
     private messageService: MessageService,
@@ -110,12 +110,14 @@ export class QuizzesComponent {
     this.clear();
     this.quizService.clear();
     this.isQuizEnded = false;
+    this.noData = false;
   }
   getUniversities() {
     this.repo.getUniversitiesByPassValue(this.quizResult.totalPoints);
     if (this.repo.allUniversities.length > 0) {
-      alert(this.repo.allUniversities.length)
       this.canBuildTable = true;
+    } else {
+      this.noData = true;
     }
   }
 
