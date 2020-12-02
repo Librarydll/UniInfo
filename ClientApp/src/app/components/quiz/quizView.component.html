@@ -48,8 +48,10 @@
 <div class="container" [class.d-none]="isQuizEnded">
   <nav>
     <div class="nav nav-tabs tab-placement" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-selected="true">{{repo.currentSubject.firstSubject.ruVersion}}</a>
-      <a class="nav-item nav-link" id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" aria-selected="false">{{repo.currentSubject.secondSubject.ruVersion}}</a>
+      <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first"
+         aria-selected="true">{{repo.currentSubject.firstSubject | validName }}</a>
+      <a class="nav-item nav-link" id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second"
+         aria-selected="false">{{repo.currentSubject.secondSubject | validName}}</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
@@ -116,7 +118,7 @@
   </div>
   <div class="text-center mt-5">
     <button class="btn btn-success" (click)="finishQuiz()">
-      Завершить
+      {{'FinishQuiz' | translate}}
     </button>
   </div>
 </div>
@@ -125,8 +127,8 @@
     <table class="table100 exo2">
       <thead class="bg-dark">
         <tr>
-          <th>{{repo.currentSubject.firstSubject.ruVersion}} (3,1)</th>
-          <th>{{repo.currentSubject.secondSubject.ruVersion}} (3,1)</th>
+          <th>{{repo.currentSubject.firstSubject | validName}} (3,1)</th>
+          <th>{{repo.currentSubject.secondSubject | validName}} (3,1)</th>
         </tr>
       </thead>
       <tr>

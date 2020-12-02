@@ -1,8 +1,7 @@
-import { Component,EventEmitter,OnInit, Output, Pipe, PipeTransform } from "@angular/core";
+import { Component,EventEmitter, Output } from "@angular/core";
 import { Repository } from '../../models/repository';
 import { QuizService } from '../../models/quizService';
 import { Quiz, QuizAnswer } from '../../models/quiz.model';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Chart } from 'chart.js'
 import { LanguageProvider } from '../../services/languageProvider';
 
@@ -146,10 +145,4 @@ export class QuizViewComponent {
 
 
 
-@Pipe({ name: 'safe' })
-export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) { }
-  transform(value) {
-    return this.sanitizer.bypassSecurityTrustHtml(value);
-  }
-}
+

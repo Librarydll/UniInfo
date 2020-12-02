@@ -6,6 +6,18 @@
   "HELP1": "Birinchi fanni t'anlang",
   "HELP2": "Ikkinchi fanni t'anlang",
   "HELP3": "Uchinchi fanni t'anlang",
-  "HELP4": "Ta'lim shakli va tillni ta'nlang"
+  "HELP4": "Ta'lim shakli va tillni ta'nlang",
+
+  "BeginTest": "Testni boshlash",
+  "Reset": "Tozalash",
+  "Language": "Til",
+  "EduType": "Shakl",
+  "NoOneUniversity": "К сожалению вы не смогли бы постутить ни в один ВУЗ",
+  "Retry": "Еще раз",
+  "UniversityList": "Посмотреть в какие вузы мог бы поступить",
+  "FinishQuiz": "Завершить",
+  "Subjects": "Fanlar",
+  "NoSubject": "Ma'lumot yo'q",
+  "SearchPlaceHolder": "Oliygohni nomi..."
 
 }

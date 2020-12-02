@@ -6,3 +6,11 @@ export class Filter {
      // this.code = this.search = null;
     }
 }
+
+export class BuildFilter {
+
+  canBuild: boolean = false;
+  hasData: boolean =false;
+
+
+}

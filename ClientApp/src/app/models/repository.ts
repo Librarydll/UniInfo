@@ -4,7 +4,7 @@ import { Subject, SubjectDto } from './subject.model';
 import { ModelDictionary } from './modelDictionary.model';
 import { FilterByFirstSubject, IFilter, FilterByNoSubject } from '../strategy/filterStrategy';
 import { Faculty } from './faculty.model';
-import { Filter } from './configClasses.repository';
+import { BuildFilter, Filter } from './configClasses.repository';
 import { University } from './university.model';
 import { RetriveService } from '../services/retriveService';
 
@@ -21,14 +21,15 @@ export class Repository {
   filterStrategy: IFilter;
   allEducationType: ModelDictionary[];
   allLanguage: ModelDictionary[];
- // allRelatedFaculties: Faculty[];
   allUniversities: University[]=[];
   filter: Filter;
+  buildFilter:BuildFilter
   universities: University[];
 
   constructor(private http: HttpClient) {
     this.currentSubject = new SubjectDto();
     this.filter = new Filter();
+    this.buildFilter = new BuildFilter();
   }
 
     getUniversities(){
@@ -117,6 +118,8 @@ export class Repository {
         this.allUniversities = u;
         this.retriveEducationType();
         this.retriveLanguages();
+        this.buildFilter.hasData = this.allUniversities.length > 0;
+        this.buildFilter.canBuild = this.allUniversities.length > 0;
       });
   }
 }

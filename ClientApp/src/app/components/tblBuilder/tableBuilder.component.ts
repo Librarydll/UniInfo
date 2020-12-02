@@ -8,6 +8,7 @@ import { University } from '../../models/university.model';
 import { SubjectMap } from '../../models/subject.model';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { Style } from '../../models/style';
+import { Filter } from '../../models/configClasses.repository';
 
 
 
@@ -70,11 +71,12 @@ export class TableBuilderComponent {
     let edutype = this.repo.currentSubject.educationType.code;
     let lang = this.repo.currentSubject.language.code;
     let result: University[] = [];
-    this.repo.allUniversities.forEach(function (university) {
+   
+    this.repo.allUniversities.forEach(function (university: University) {
+      
       let u = University.createUniversity(university.id, university.nameUz, university.nameRu, university.location);
-
       let f = university.faculties.filter(f => f.educationType == edutype && f.language == lang);
-
+      
       if (f !== undefined && f.length > 0) {
         u.faculties = f;
         result.push(u);
@@ -181,6 +183,7 @@ export class TableBuilderComponent {
   canOrder(): boolean {
     return this.style.canOrder;
   }
+
 }
 
 

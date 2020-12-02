@@ -21,7 +21,7 @@ namespace UniInfo.Dapper.Services
 
 		public async Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2)
 		{
-			string query = $@"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.TotalApply
+			string query = $@"select u.id ,u.nameuz,u.location,u.nameru,f.*
 								from Universities as u
 								left join Faculties as f
 								on u.id=f.universityid
@@ -97,7 +97,7 @@ namespace UniInfo.Dapper.Services
 
 		public async Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue)
 		{
-			string query = $@"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.facultynameru,f.facultynameuz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.TotalApply
+			string query = $@"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.FacultyNameRu,f.FacultyNameUz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.TotalApply
 								from Universities as u
 								left join Faculties as f
 								on u.id=f.universityid

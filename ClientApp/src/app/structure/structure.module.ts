@@ -11,7 +11,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { AppSingleComponent } from '../components/appSingle.component';
 import { QuizzesComponent } from '../components/quiz/Quizzes.component';
-import { QuizViewComponent, SafePipe } from '../components/quiz/quizView.component';
+import { QuizViewComponent,  } from '../components/quiz/quizView.component';
+import { SafePipe } from '../pipe/SafePipe';
+import { ObjectLanguagePipe } from '../pipe/objectLanguagePipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,7 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SingleUniversityComponent,
     AppSingleComponent,
     QuizzesComponent,
-    QuizViewComponent, SafePipe],
+    QuizViewComponent, SafePipe,ObjectLanguagePipe],
   imports: [BrowserModule ,FormsModule,TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,

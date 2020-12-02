@@ -1,77 +1,38 @@
-<div *ngIf="currentLanguage=='ru';else uzDiv">
-  <div class="container">
-    <div class="mt-5 align-content-center mb-5 row">
-      <div class="col-md-8">
-        <div class="min-width500">
-          <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange()" class="form-control" type="text" placeholder="Название университета..." />
-        </div>
-        <div class="col-md-4 hidden-select">
-          <select [ngModel]="filter.code" (ngModelChange)="onCityChange($event)" class="custom-select" id="eselectCity">
-            <option value="{{u.code}}" [selected]="isThatCity(u.code)"
-                    *ngFor="let u of universityNames">
-              {{u.ruVersion}}
-            </option>
-          </select>
-        </div>
-        <div class="mt-5 float-left" id="containerUniversity">
-          <ul class="list-group">
-            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li yura" style="cursor:pointer" *ngFor="let uu of listUniversity">
-              <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu.ruVersion}}</a>
-            </li>
-          </ul>
-        </div>
+<div class="container">
+  <div class="mt-5 align-content-center mb-5 row">
+    <div class="col-md-8">
+      <div class="min-width500">
+        <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange()" class="form-control" type="text" placeholder="{{'SearchPlaceHolder' | translate}}" />
       </div>
-      <div class="col-md-4" id="containerCity">
+      <div class="col-md-4 hidden-select">
+        <select [ngModel]="filter.code" (ngModelChange)="onCityChange($event)" class="custom-select" id="eselectCity">
+          <option value="{{u.code}}" [selected]="isThatCity(u.code)"
+                  *ngFor="let u of universityNames">
+            {{u | validName}}
+          </option>
+        </select>
+      </div>
+      <div class="mt-5 float-left" id="containerUniversity">
         <ul class="list-group">
-          <li style="cursor:pointer"
-              [className]="isThatCity(u.code) ? activeClass : notActiveClass"
-              (click)="selectCity(u)"
-              *ngFor="let u of universityNames">
-            {{u.ruVersion}}
-            <span class="badge badge-dark badge-pill number" style="font-size:12px;">{{u.count}}</span>
+          <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li yura" style="cursor:pointer" *ngFor="let uu of listUniversity">
+            <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu | validName}}</a>
           </li>
         </ul>
       </div>
     </div>
-
+    <div class="col-md-4" id="containerCity">
+      <ul class="list-group">
+        <li style="cursor:pointer"
+            [className]="isThatCity(u.code) ? activeClass : notActiveClass"
+            (click)="selectCity(u)"
+            *ngFor="let u of universityNames">
+          {{u | validName}}
+          <span class="badge badge-dark badge-pill number" style="font-size:12px;">{{u.count}}</span>
+        </li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
-<ng-template #uzDiv>  
-  <div class="container">
-    <div class="mt-5 align-content-center mb-5 row">
-      <div class="col-md-8">
-        <div class="min-width500">
-          <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange()" class="form-control" type="text" placeholder="Oliygohni nomi..." />
-        </div>
-        <div class="col-md-4 hidden-select">
-          <select [ngModel]="filter.code" (ngModelChange)="onCityChange($event)" class="custom-select" id="eselectCity">
-            <option value="{{u.code}}" [selected]="isThatCity(u.code)"
-                    *ngFor="let u of universityNames">
-              {{u.uzVersion}}
-            </option>
-          </select>
-        </div>
-        <div class="mt-5 float-left" id="containerUniversity">
-          <ul class="list-group">
-            <li (click)="selectUniversity(uu.id)" class="list-group-item list-group-item-dark d-block mb-2 ul-li yura" style="cursor:pointer" *ngFor="let uu of listUniversity">
-              <a id="{{'ul'+uu.id}}" style="text-decoration:none;color:white" href="/UniversityList/University/{{uu.id}}">{{uu.uzVersion}}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-4" id="containerCity">
-        <ul class="list-group">
-          <li style="cursor:pointer"
-              [className]="isThatCity(u.code) ? activeClass : notActiveClass"
-              (click)="selectCity(u)"
-              *ngFor="let u of universityNames">
-            {{u.uzVersion}}
-            <span class="badge badge-dark badge-pill number" style="font-size:12px;">{{u.count}}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
 
-  </div>
-</ng-template>

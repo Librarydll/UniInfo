@@ -19,7 +19,6 @@ export class QuizzesComponent {
   order: number = 0;
   canBuildQuiz: boolean = false;
   canBuildTable: boolean = false;
-  noData: boolean = false;
   quizResult: QuizAnswer;
   constructor(private repo: Repository,
     private messageService: MessageService,
@@ -110,15 +109,11 @@ export class QuizzesComponent {
     this.clear();
     this.quizService.clear();
     this.isQuizEnded = false;
-    this.noData = false;
+    this.canBuildTable = false;
   }
-  getUniversities() {
-    this.repo.getUniversitiesByPassValue(this.quizResult.totalPoints);
-    if (this.repo.allUniversities.length > 0) {
-      this.canBuildTable = true;
-    } else {
-      this.noData = true;
-    }
+   getUniversities() {
+     this.repo.getUniversitiesByPassValue(this.quizResult.totalPoints);
+     this.canBuildTable = true;
   }
 
   getQuizResult(q:QuizAnswer) {
@@ -130,5 +125,9 @@ export class QuizzesComponent {
   }
   get languages(): ModelDictionary[] {
     return this.repo.allLanguage;
+  }
+
+  get hasResult(): boolean {
+     return this.canBuildTable && !this.repo.buildFilter.hasData;
   }
 }
