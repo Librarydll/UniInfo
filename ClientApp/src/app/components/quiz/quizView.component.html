@@ -46,6 +46,8 @@
 </style>
 
 <div class="container" [class.d-none]="isQuizEnded">
+  <timer (timeIsOverEvent)="timeIsOverEvent($event)" [quizIsEnded]="isQuizEnded"></timer>
+  
   <nav>
     <div class="nav nav-tabs tab-placement" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first"

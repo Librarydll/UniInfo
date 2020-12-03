@@ -59,14 +59,13 @@ export class QuizViewComponent {
 
   finishQuiz() {
     if (confirm("Вы действительно хотите завершить тест ?")) {
-      this.quizService.calculateAnswer();
-      this.isQuizEnded = true;
-      this.generateChart();
-      this.isQuizEndedOutput.emit(true);
-      this.qResultOutput.emit(this.quizService.quizResult);
+      this.closeQuiz();
     } 
   }
 
+  timeIsOverEvent($event) {
+    this.closeQuiz();
+  }
   
   generateChart() {
     let l = this.lang.getLanguage();
@@ -141,6 +140,13 @@ export class QuizViewComponent {
   }
 
 
+  closeQuiz() {
+    this.quizService.calculateAnswer();
+    this.isQuizEnded = true;
+    this.generateChart();
+    this.isQuizEndedOutput.emit(true);
+    this.qResultOutput.emit(this.quizService.quizResult);
+  }
 }
 
 

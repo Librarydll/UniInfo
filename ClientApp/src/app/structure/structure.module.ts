@@ -14,6 +14,7 @@ import { QuizzesComponent } from '../components/quiz/Quizzes.component';
 import { QuizViewComponent,  } from '../components/quiz/quizView.component';
 import { SafePipe } from '../pipe/SafePipe';
 import { ObjectLanguagePipe } from '../pipe/objectLanguagePipe';
+import { TimerComponent } from '../components/timer/timer.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SingleUniversityComponent,
     AppSingleComponent,
     QuizzesComponent,
-    QuizViewComponent, SafePipe,ObjectLanguagePipe],
+    QuizViewComponent, SafePipe, ObjectLanguagePipe, TimerComponent],
   imports: [BrowserModule ,FormsModule,TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,

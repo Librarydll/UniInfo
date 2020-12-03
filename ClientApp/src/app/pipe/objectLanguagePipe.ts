@@ -8,7 +8,6 @@ export class ObjectLanguagePipe implements PipeTransform{
   constructor(private lang: LanguageProvider) { this.l = lang.getLanguage(); }
 
   transform(value: ModelDictionary) {
-    console.log(value);
     if (!value) return null;
     if (this.l == "uz") return value.uzVersion;
     return value.ruVersion;

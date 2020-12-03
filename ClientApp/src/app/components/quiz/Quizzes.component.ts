@@ -15,6 +15,7 @@ import { LanguageProvider } from '../../services/languageProvider';
 })
 export class QuizzesComponent {
 
+  
   isQuizEnded: boolean = false;
   order: number = 0;
   canBuildQuiz: boolean = false;

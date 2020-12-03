@@ -1,0 +1,33 @@
+<style>
+
+  #clock {
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+    text-align: center;
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+    font-size:35px;
+
+  }
+
+  .text {
+    letter-spacing: 0.1em;
+  }
+.colon{
+  padding: 0 5px;
+}
+
+
+</style>
+
+<div>
+  <div id="clock" class="d-flex flex-row justify-content-center">
+    <p class="hours">{{ hoursToDday }}</p>
+    <p class="colon">:</p>
+    <p class="minutes">{{ minutesToDday }}</p>
+    <p class="colon">:</p>
+    <p class="seconds">{{ secondsToDday }}</p>
+  </div>
+
+</div>
+
