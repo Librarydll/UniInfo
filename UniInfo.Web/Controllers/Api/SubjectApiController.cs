@@ -28,5 +28,14 @@ namespace UniInfo.Web.Controllers.Api
 			return Ok(result);
 		}
 
+		[HttpGet("/api/subject/getSubjectsForQuiz")]
+
+		public async Task<IActionResult> GetSubjectsForQuiz()
+		{
+			var data = await _subjectDataService.GetSubjectsForQuiz();
+			var result = data.GetModelSubjectNames();
+			return Ok(result);
+		}
+
 	}
 }

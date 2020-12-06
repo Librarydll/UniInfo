@@ -3,7 +3,7 @@
   <div class="table100">
     <div *ngFor="let u of universities">
       <p class="text-center u-name-container" [ngStyle]="{'display':style.uNameDisplay  }">
-        <a class="u-name" href="UniversityList/University/{{u.id}}">{{u | validName}} </a>
+        <a class="u-name" href="UniversityList/University/{{u.id}}">{{getUniversityName(u)}} </a>
       </p>
       <table class="exo2">
         <thead>

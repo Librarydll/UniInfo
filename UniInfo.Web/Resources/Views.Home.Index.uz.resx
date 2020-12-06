@@ -147,6 +147,12 @@
   <data name="MetaKeyWord" xml:space="preserve">
     <value>O'zbekistondagi universitetlarni qidirish, bloklar bo'yicha universitetni tanlash, fanlar bo'yicha universitetni tanlang</value>
   </data>
+  <data name="Quiz" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="QuizDescription" xml:space="preserve">
+    <value>Пройди тест и узнай в какой ВУЗ мог бы поступить с набранным баллом</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Izlash</value>
     <comment>Кнопка поиска</comment>

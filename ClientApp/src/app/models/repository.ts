@@ -39,9 +39,9 @@ export class Repository {
         this.universities = u;
 
       })
-    }
+  }
 
-
+ 
   getSubjectNames() {
 
       let url = subjectyUrl;
@@ -52,7 +52,18 @@ export class Repository {
         this.filterSubject();
       });
 
-    }
+  }
+  getSubjectNamesForQuizzes() {
+
+    let url = subjectyUrl;
+
+    this.http.get<Subject[]>(url +"/getSubjectsForQuiz").subscribe(subj => {
+      this.subjectNames = subj;
+      this.filterSubject();
+    });
+
+  }
+
 
 
   createDistinctedSubject() {

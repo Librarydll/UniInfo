@@ -9,7 +9,7 @@
 <div class="body-container">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 fade-animation">
+            <div class="col-md-6 fade-animation main-element">
                 <div class="card-bg d-flex flex-column">
                     <img src="~/images/futuristicsearch.jpg" class="img-fluid">
                     <div class="text"> @Localizer["Text3"]</div>
@@ -20,11 +20,23 @@
                 </div>
             </div>
 
-            <div class="col-md-6 fade-animation">
+            <div class="col-md-6 fade-animation main-element">
                 <div class="card-bg d-flex flex-column">
                     <img src="~/images/futuristiclist.jpg" class="img-fluid">
                     <div class="text">@Localizer["Text4"]</div>
                     <p class="img-dif fade-animation">@Localizer["Text2"]</p>
+                    <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityList">
+                        @Localizer["About"]
+                    </a>
+                </div>
+            </div>       
+        </div>
+        <div class="row text-center">
+            <div class="col-md-6 col-md-offset-3 fade-animation main-element">
+                <div class="card-bg d-flex flex-column">
+                    <img src="~/images/futuristicquiz.jpg" class="img-fluid">
+                    <div class="text">@Localizer["Quiz"]</div>
+                    <p class="img-dif fade-animation">@Localizer["QuizDescription"]</p>
                     <a class="btn btn-about fade-animation" asp-action="Index" asp-controller="UniversityList">
                         @Localizer["About"]
                     </a>

@@ -4,6 +4,11 @@ import { QuizService } from '../../models/quizService';
 import { Quiz, QuizAnswer } from '../../models/quiz.model';
 import { Chart } from 'chart.js'
 import { LanguageProvider } from '../../services/languageProvider';
+import { ModelDictionary } from '../../models/modelDictionary.model';
+
+
+const rigth: ModelDictionary = new ModelDictionary("Правильные", "To'g'ri", 0);
+const wrong: ModelDictionary = new ModelDictionary("Неправильные", "Noto'g'ri", 0);
 
 @Component({
   selector: "quiz-view",
@@ -14,11 +19,11 @@ export class QuizViewComponent {
 
   @Output() isQuizEndedOutput = new EventEmitter<boolean>();
   @Output() qResultOutput = new EventEmitter<QuizAnswer>();
-
   isQuizEnded: boolean = false;
   firstChart = [];
   secondChart = [];
-  constructor(private repo: Repository, private quizService: QuizService,private lang:LanguageProvider) {
+  constructor(private repo: Repository, private quizService: QuizService, private lang: LanguageProvider) {
+   
   }
 
   get quizzes():Quiz[] {
@@ -68,7 +73,10 @@ export class QuizViewComponent {
   }
   
   generateChart() {
+
     let l = this.lang.getLanguage();
+    let r = l == "uz" ? rigth.uzVersion : rigth.ruVersion;
+    let w = l == "uz" ? wrong.uzVersion : wrong.ruVersion;
     this.firstChart = new Chart('canvas1', {
       type: 'pie',
         data: {
@@ -82,8 +90,8 @@ export class QuizViewComponent {
             fill:true
         }],
         labels: [
-          'Правильные',
-          'Неправильные',
+          r,
+          w,
         ]
 
       },
@@ -116,8 +124,8 @@ export class QuizViewComponent {
             fill: true
           }],
         labels: [
-          'Правильные',
-          'Неправильные',
+          r,
+          w,
         ]
 
       },

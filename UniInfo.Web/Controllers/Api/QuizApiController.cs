@@ -23,6 +23,7 @@ namespace UniInfo.Web.Controllers.Api
 
 
 		[HttpGet]	
+
 		public async Task<IActionResult> GetQuiz(int firstSubject,int secondSubject,int language)
 		{
 		//	_logger.LogInformation(language.ToString());

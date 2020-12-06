@@ -11,5 +11,6 @@ namespace UniInfo.Domain.Services
 	public interface ISubjectDataService: IDataServiceAsync<Subject>
 	{
 		Task<IEnumerable<ISubject<int>>> GetDistinctedSubjectsAsync();
+		Task<IEnumerable<ISubject<int>>> GetSubjectsForQuiz();
 	}
 }

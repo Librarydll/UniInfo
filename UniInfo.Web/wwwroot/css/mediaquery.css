@@ -13,6 +13,12 @@
     .min-width500 {
         min-width: 0;
     }
+    .text{
+        font-size:20px;
+    }
+    .img-dif{
+        font-size:18px;
+    }
 }
 
 

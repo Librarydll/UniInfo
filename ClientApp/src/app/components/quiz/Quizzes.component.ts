@@ -25,7 +25,7 @@ export class QuizzesComponent {
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
     private quizService: QuizService) {
-     repo.getSubjectNames();
+    repo.getSubjectNamesForQuizzes();
   }
 
   get currentLanguage(): string {

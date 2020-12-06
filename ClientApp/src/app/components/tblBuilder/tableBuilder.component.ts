@@ -8,7 +8,6 @@ import { University } from '../../models/university.model';
 import { SubjectMap } from '../../models/subject.model';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { Style } from '../../models/style';
-import { Filter } from '../../models/configClasses.repository';
 
 
 
@@ -35,7 +34,6 @@ export class TableBuilderComponent {
   tHeader: TableHeader;
   universities: University[] = [];
   constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider, public style: Style) {
-
     this.tHeader = new TableHeader();
     this.tHeader.setTableHeader(languageProvider.getLanguage());
     this.messageService.listen().subscribe((value) => {
@@ -62,6 +60,11 @@ export class TableBuilderComponent {
 
   }
 
+  getUniversityName(u: University):string {
+    if (this.languageProvider.getLanguage() == "uz")
+      return u.nameUz;
+    return u.nameRu;
+  }
 
   get tableHeader() : TableHeader {
     return this.tHeader;
@@ -76,7 +79,7 @@ export class TableBuilderComponent {
       
       let u = University.createUniversity(university.id, university.nameUz, university.nameRu, university.location);
       let f = university.faculties.filter(f => f.educationType == edutype && f.language == lang);
-      
+
       if (f !== undefined && f.length > 0) {
         u.faculties = f;
         result.push(u);
