@@ -95,7 +95,7 @@ namespace UniInfo.Dapper.Services
 			}
 		}
 
-		public async Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue)
+		public async Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue,int code1,int code2)
 		{
 			string query = $@"select u.id ,u.nameuz,u.location,u.nameru,f.universityid,f.FacultyNameRu,f.FacultyNameUz,f.code,f.id,f.grant,f.contract,f.grantpass,f.contractpass,f.educationtype,f.language,f.period,f.TotalApply
 								from Universities as u
@@ -104,6 +104,7 @@ namespace UniInfo.Dapper.Services
 								left join Subjects as s
 								on s.facultyid =f.id
 								where (f.grantpass<={passValue.ToString().Replace(",",".")} and f.grant!=0 and f.grantpass!=0) || (f.contractpass<={passValue.ToString().Replace(",", ".")} and f.contract!=0 and f.contractpass!=0) 
+								and (s.firstsubject={code1} and s.secondsubject ={code2}) or (s.firstsubject={code2} and s.secondsubject ={code1})
 								order by u.nameuz,u.nameru";
 
 			return await GenerateUniversitiesWithFacutlies(query);

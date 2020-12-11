@@ -52,10 +52,10 @@ namespace UniInfo.Web.Controllers.Api
 			return Ok(data);
 		}
 		[HttpGet("/api/university/getUniversitiesByValue")]
-		public async Task<IActionResult> GetUniversities(double value)
+		public async Task<IActionResult> GetUniversities(double value, int code1, int code2)
 		{
 		
-			var data = await _universityDataService.GetUniversitiesByPassValue(value);
+			var data = await _universityDataService.GetUniversitiesByPassValue(value, code1, code2);
 
 			return Ok(data);
 		}

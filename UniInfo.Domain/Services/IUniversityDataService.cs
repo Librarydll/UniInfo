@@ -18,6 +18,6 @@ namespace UniInfo.Domain.Services
 
 		Task<IEnumerable<UniversityDto>> FilterFacultiesBySubjects(int code1, int code2);
 
-		Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue);
+		Task<IEnumerable<UniversityDto>> GetUniversitiesByPassValue(double passValue, int code1, int code2);
 	}
 }

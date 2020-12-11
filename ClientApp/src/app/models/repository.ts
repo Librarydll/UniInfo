@@ -124,7 +124,7 @@ export class Repository {
   }
 
   getUniversitiesByPassValue(value:number) {
-    this.http.get<University[]>(universityUrl + `/getUniversitiesByValue?value=${value}`)
+    this.http.get<University[]>(universityUrl + `/getUniversitiesByValue?value=${value}&code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}`)
       .subscribe(u => {
         this.allUniversities = u;
         this.retriveEducationType();
