@@ -18,8 +18,8 @@
   "FinishQuiz": "Завершить",
   "Subjects": "Предметы",
   "NoSubject": "Данные отсутствуют",
-  "SearchPlaceHolder": "Название университета..."
-
-
+  "SearchPlaceHolder": "Название университета...",
+  "Right":"правильно",
+  "Point": "Общий балл"
 
 }

@@ -17,11 +17,11 @@ namespace UniInfo.Dapper.Services
 		{
 
 			string query = @"((SELECT *FROM Quizzes
-							where subject = @firstSubject  and language = @lang
+							where subject = @firstSubject  and (language = @lang or bothlanguages = 1)
 							ORDER BY RAND() LIMIT 30)
 							UNION
 							(SELECT * FROM Quizzes
-							where subject = @secondSubject  and language = @lang
+							where subject = @secondSubject  and (language = @lang or bothlanguages = 1)
 							ORDER BY RAND() LIMIT 30))";
 
 			using (var connection = _factory.CreateConnection())

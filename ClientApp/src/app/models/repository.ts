@@ -123,14 +123,17 @@ export class Repository {
    
   }
 
-  getUniversitiesByPassValue(value:number) {
-    this.http.get<University[]>(universityUrl + `/getUniversitiesByValue?value=${value}&code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}`)
+  getUniversitiesByPassValue(value: number) {
+    let url = universityUrl + `/getUniversitiesByValue?value=${value}&code1=${this.currentSubject.firstSubject.code}&code2=${this.currentSubject.secondSubject.code}`;
+    console.log(url);
+    this.http.get<University[]>(url)
       .subscribe(u => {
         this.allUniversities = u;
         this.retriveEducationType();
         this.retriveLanguages();
         this.buildFilter.hasData = this.allUniversities.length > 0;
         this.buildFilter.canBuild = this.allUniversities.length > 0;
+        console.log(this.allUniversities.length);
       });
   }
 }

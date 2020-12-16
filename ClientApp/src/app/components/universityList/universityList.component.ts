@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Repository } from '../../models/repository';
 import { ModelDictionary, ModelDictionaryUniversity } from '../../models/modelDictionary.model';
 import { Filter } from '../../models/configClasses.repository';
@@ -11,11 +11,14 @@ import { LanguageProvider } from '../../services/languageProvider';
   selector: "u-list",
   templateUrl: "universityList.component.html"
 })
-export class UniversityListComponent {
+export class UniversityListComponent implements OnInit {
 
   uNames: ModelDictionaryUniversity[];
   lUniversity: ModelDictionary[];
   constructor(private repo: Repository, private languageProvider: LanguageProvider) {
+  }
+
+  ngOnInit(): void {
     this.repo.getUniversities();
   }
 
@@ -30,7 +33,7 @@ export class UniversityListComponent {
 
     let allU = ModelDictionaryUniversity.createDefaultAll();
     let result: ModelDictionaryUniversity[] = [];
-   // result.push(allU);
+    result.push(allU);
     let count = 0;
     this.repo.universities.forEach((v) => {
 
@@ -44,52 +47,51 @@ export class UniversityListComponent {
       count += 1;
       entity.count += 1;
     });
- //   result[0].count = count;
+    allU.count = count;
 
     this.uNames = result.sort();
     return this.uNames;
   }
 
-  get filter() : Filter {
+  get filter(): Filter {
     return this.repo.filter;
   }
 
   searchUniversity() {
   }
 
-  get listUniversity():ModelDictionary[]{
+  get listUniversity(): ModelDictionary[] {
     return this.lUniversity;
   }
 
-  
+
 
   selectCity(u: ModelDictionary) {
     this.repo.filter.code = u.code;
     this.createList();
   }
 
-  isThatCity(id:number):boolean {
+  isThatCity(id: number): boolean {
 
     if (this.filter === undefined || this.filter === null) return false;
     return this.filter.code == id;
   }
 
-  onTextChange() {
-    this.createList();
-  }
   onCityChange(code: number) {
     this.repo.filter.code = code;
     this.createList();
   }
 
   createList() {
-   
+
     if (this.filter === undefined || this.filter === null) return null;
     let z: University[] = [];
-    if (this.filter.code != 0) {//when select city
+    if (this.filter.code == Number.MAX_VALUE) {
+      z = this.repo.universities;
+    }
+    else if (this.filter.code != 0) {//when select city
       z = this.repo.universities.filter(x => x.location == this.filter.code);
     }
-
     if (this.filter.city !== undefined) {
 
       if (this.filter.city.length > 0) {
@@ -103,16 +105,22 @@ export class UniversityListComponent {
         }
       }
     }
-    this.lUniversity = z.map(x => ModelDictionaryUniversity.createModelDictionaryCount(x.nameRu, x.nameUz, x.location,x.id));
+    this.lUniversity = z.map(x => ModelDictionaryUniversity.createModelDictionaryCount(x.nameRu, x.nameUz, x.location, x.id));
   }
-
+  onKeyUpEvent(event: any) {
+    if (!this.filter.code) {
+      this.filter.code = 13;
+    }
+    this.repo.filter.city = event.target.value;
+    this.createList();
+  }
   selectUniversity(id: number) {
-   let elemet = document.getElementById("ul" + id) as HTMLElement;
-   elemet.click();
-   
+    let elemet = document.getElementById("ul" + id) as HTMLElement;
+    elemet.click();
+
   }
 
-  get notActiveClass():string{
+  get notActiveClass(): string {
     return 'list-group-item d-flex justify-content-between align-items-center bg-transparent-noimportant ul-li exo2';
   }
 

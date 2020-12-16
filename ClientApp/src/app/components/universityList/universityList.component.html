@@ -2,7 +2,7 @@
   <div class="mt-5 align-content-center mb-5 row">
     <div class="col-md-8">
       <div class="min-width500">
-        <input #s="ngModel" name="s" [(ngModel)]="filter.city" (ngModelChange)="onTextChange()" class="form-control" type="text" placeholder="{{'SearchPlaceHolder' | translate}}" />
+        <input (keyup)="onKeyUpEvent($event)" class="form-control" type="text" placeholder="{{'SearchPlaceHolder' | translate}}" />
       </div>
       <div class="col-md-4 hidden-select">
         <select [ngModel]="filter.code" (ngModelChange)="onCityChange($event)" class="custom-select" id="eselectCity">

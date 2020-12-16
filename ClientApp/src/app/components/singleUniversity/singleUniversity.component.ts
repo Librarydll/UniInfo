@@ -34,7 +34,7 @@ export class SingleUniversityComponent {
     this.tHeader = new TableHeader();
     this.tHeader.setTableHeader(languageProvider.getLanguage());
     style.subjectDisplay = '';
-    style.uNameDisplay = 'none';
+  //  style.uNameDisplay = 'none';
     style.canOrder = true;
   }
 
@@ -127,6 +127,6 @@ export class SingleUniversityComponent {
   }
 
 
-
+ 
 
 }

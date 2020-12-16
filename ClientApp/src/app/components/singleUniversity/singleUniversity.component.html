@@ -1,76 +1,80 @@
 <style>
-.img-bg {
+  .img-bg {
     width: 100% !important;
     background-size: cover;
     height: 300px;
-    background-image: url(assets/u.jpg);
-}
+  }
 </style>
-<div *ngIf="currentLanguage=='ru';else uzDiv">
+<div>
   <div class="mt-5">
-    <div class="img-bg">
-      <div class="img-content">
-        <section class="img-text-content number yura">
-          <h3 style="line-height:35px;" class="pb-2">{{university | validName}}</h3>
-          <div class="container">
-            <div class="d-flex flex-column">
-              <div [className]="university?.phone ? 'd-flex' : 'd-none' ">
-                <p>
-                  <i class="fa fa-phone"></i>
-                  {{university?.phone}}
-                </p>
-              </div>
-              <div [className]="university?.faks ? 'd-flex' : 'd-none' ">
-                <p>
-                  <i class="fa fa-fax"></i>
-                  {{university?.faks}}
-                </p>
-              </div>
-              <div [className]="university?.webPage ? 'd-flex' : 'd-none' ">
-                <p class="web-page-p">
-                  <a class="fa fa-globe" href="{{university?.webPage}}" target="_blank">
-                    {{removeHttpUrl(university?.webPage)}}
-                  </a>
-                </p>
-              </div>
-              <div [className]="(university?.universityIndex && university?.address) ? 'd-flex' : 'd-none' ">
-                <p>
-                  <i class="fa fa-map-marker"></i>
-                  {{university?.universityIndex}} {{university?.address}}
-                </p>
-              </div>
+    <!--<div class="img-bg" [style.background-image]="'url(assets/universities/' + 'inha' + '.jpg)'"></div>-->
+    <div class="img-content">
+      <section class="img-text-content number yura">
+        <h3 style="line-height:35px;" class="pb-2">{{university | validName}}</h3>
+        <div class="container">
+          <div class="d-flex flex-column">
+            <div [className]="university?.phone ? 'd-flex' : 'd-none' ">
+              <p>
+                <i class="fa fa-phone"></i>
+                {{university?.phone}}
+              </p>
+            </div>
+            <div [className]="university?.faks ? 'd-flex' : 'd-none' ">
+              <p>
+                <i class="fa fa-fax"></i>
+                {{university?.faks}}
+              </p>
+            </div>
+            <div [className]="university?.webPage ? 'd-flex' : 'd-none' ">
+              <p class="web-page-p">
+                <a class="fa fa-globe" href="{{university?.webPage}}" target="_blank">
+                  {{removeHttpUrl(university?.webPage)}}
+                </a>
+              </p>
+            </div>
+            <div [className]="(university?.universityIndex && university?.address) ? 'd-flex' : 'd-none' ">
+              <p>
+                <i class="fa fa-map-marker"></i>
+                {{university?.universityIndex}} {{university?.address}}
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div *ngIf="facCount>0;else noInfo ">
+    <div class="container mt-5">
+      <div class="d-flex flex-row justify-content-center uk-flex-space-between flex-wrap" id="containerOptions">
+        <div class="container-edu">
+          <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'"
+               *ngFor="let e of eduTypes"
+               (click)="selectEducationType(e)">
+            {{e | validName}}
+          </div>
+        </div>
+        <div class="container-lang">
+          <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'"
+               *ngFor="let l of languages"
+               (click)="selectLanguage(l)">
+            {{l | validName}}
+          </div>
+        </div>
+        <div class="container-year">
+          <div class="btn-parallelogram parallelogram item-btn item-btn-sub number">
+            2020-2021
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container mt-5">
-    <div class="d-flex flex-row justify-content-center uk-flex-space-between flex-wrap" id="containerOptions">
-      <div class="container-edu">
-        <div [className]="isThisEducationType(e.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'"
-             *ngFor="let e of eduTypes"
-             (click)="selectEducationType(e)">
-          {{e | validName}}
-        </div>
-      </div>
-      <div class="container-lang">
-        <div [className]="isThisLanguage(l.code) ? 'btn-parallelogram parallelogram btn btn-info color-black dis':'item-btn btn-parallelogram parallelogram item-btn-sub cursor-pointer'"
-             *ngFor="let l of languages"
-             (click)="selectLanguage(l)">
-          {{l | validName}}
-        </div>
-      </div>
-      <div class="container-year">
-        <div *ngIf="facCount>0" class="btn-parallelogram parallelogram item-btn item-btn-sub number">
-          2020-2021
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 
 
+
+<ng-template #noInfo>
+  <h1 class="mt-4 text-center" style="color:cyan">{{'NoSubject' | translate}}</h1>
+</ng-template>
 
