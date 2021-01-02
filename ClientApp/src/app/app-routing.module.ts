@@ -5,9 +5,11 @@ import { SingleUniversityComponent } from './components/singleUniversity/singleU
 import { AppListComponent } from './components/appList.component';
 import { AppSingleComponent } from './components/appSingle.component';
 import { QuizzesComponent } from './components/quiz/Quizzes.component';
+import { AuthGuard } from './models/auth.guard';
 
 
 const routes: Routes = [
+  { path: "admin", loadChildren: () => import("./admin/admin.module").then(module => module.AdminModule) }, 
   { path: 'UniversityFilter', component: AppListComponent },
   { path: 'UniversityList/University/:id', component: AppSingleComponent },
   { path: 'UniversityList', component: UniversityListComponent },
@@ -17,7 +19,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[]
 })
 export class AppRoutingModule { }
 

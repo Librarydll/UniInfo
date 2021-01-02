@@ -10,6 +10,7 @@
   subject: number;
   questionUniqueId: number;
   selectedAnswer: string;
+  bothLanguages: boolean;
 }
 
 export class QuizAnswer {

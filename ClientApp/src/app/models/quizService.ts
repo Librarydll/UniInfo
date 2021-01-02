@@ -24,6 +24,11 @@ export class QuizService {
 
   }
 
+  createQuiz(quiz: Quiz):Observable<boolean> {
+
+    return this.http.post<boolean>(quizUrl ,quiz);
+  }
+
 
   calculateAnswer():QuizAnswer {
     let a1 = this.firstSubjectQuestions

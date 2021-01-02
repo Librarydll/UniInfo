@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,11 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Globalization;
+using System.Text;
 using UniInfo.Dapper.Context;
 using UniInfo.Dapper.Services;
 using UniInfo.Domain.Services;
+using UniInfo.Web.Services.Authenticate;
 
 namespace UniInfo.Web
 {
@@ -29,6 +34,11 @@ namespace UniInfo.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+
+			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Sets the default scheme to cookies
+				.AddCookie(options => options.LoginPath = "/api/admin/login");
+
+
 			services.AddControllersWithViews();
 
 
@@ -36,6 +46,8 @@ namespace UniInfo.Web
 			services.AddTransient<IFacultyDataService, FacultyDataService>();
 			services.AddTransient<ISubjectDataService, SubjectDataService>();
 			services.AddTransient<IQuizDataService, QuizDataService>();
+			services.AddTransient<IUserDataService, UserDataService>();
+			services.AddTransient<IAuthenticateService, AuthenticateService>();
 			services.AddSingleton(service =>
 			{
 				var str = Configuration.GetConnectionString("LocalDb");
@@ -98,15 +110,28 @@ namespace UniInfo.Web
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
-			app.UseRouting();
 
+			app.UseRouting();
+			app.UseAuthentication(); 
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapControllerRoute(
+
+
+                //endpoints.MapControllerRoute(name: "angular_fallback", pattern:
+                //    "{target:regex(admin)}/{*catchall}",
+                //    defaults: new { controller = "Home", action = "Index" });
+
+
+                endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+
+				endpoints.MapControllerRoute(
+					name: "admin",
+					pattern: "admin/{controller}/{action}",
+					defaults: new { controller = "Admin", action = "Index" });
 			});
 
 			app.UseSpa(spa =>
