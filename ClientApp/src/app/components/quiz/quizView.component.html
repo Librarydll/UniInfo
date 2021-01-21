@@ -1,22 +1,25 @@
-
 <style>
+
   .quiz-container {
     border: 2px solid #00f3ff;
     margin: 1rem;
     padding: 1rem;
     border-radius: 10px;
   }
+
   .question-number {
     font-size: 20px;
     color: #00f3ff;
     float: left;
-    margin: 0 5px;  
+    margin: 0 5px;
   }
-  .question{
-    font-size:18px;
+
+  .question {
+    font-size: 18px;
   }
-  .tab-placement{
-    margin:0 2rem;
+
+  .tab-placement {
+    margin: 0 2rem;
   }
 
   .question-active {
@@ -24,95 +27,143 @@
     background-color: #17a2b8;
     border-color: #17a2b8 #17a2b8 #17a2b8;
   }
+
   .nav-tabs .nav-link.active {
     color: black;
     background-color: #17a2b8;
     border-color: #17a2b8 #17a2b8 #17a2b8;
   }
-  .nav-link{
-    color:white;
+
+  .nav-link {
+    color: white;
   }
-  .quiz-conclusion tr{
-    font-size:18px;
+
+  .quiz-conclusion tr {
+    font-size: 18px;
   }
-  .quiz-conclusion tr th{
-    background-color:black;
+
+    .quiz-conclusion tr th {
+      background-color: black;
+    }
+
+    .quiz-conclusion tr td {
+      padding: 25px;
+      color: black;
+    }
+
+  .border-out-questions {
+    border: 1px solid #daf6ff;
   }
-  .quiz-conclusion tr td {
-   padding:25px;
-   color:black;
+
+  .border-inner-questions {
+    border: 1px solid #daf6ff;
+    font-family: 'Share Tech Mono', monospace;
+    padding:8px;
+    margin:6px;
+    width:35px;
+    text-align:center !important;
   }
+
+  .checked-question {
+    background: #17a2b8;
+    color:black;
+  }
+
+  .unchecked-question {
+    background : inherit;
+    color : white;
+  }
+
+  .non-a{
+    text-decoration:none;
+  }
+    .non-a:hover {
+      background: #4c77a5;
+    }
 
 </style>
 
 <div class="container" [class.d-none]="isQuizEnded">
   <timer (timeIsOverEvent)="timeIsOverEvent($event)" [quizIsEnded]="isQuizEnded"></timer>
-  
+  <div class="d-flex justify-content-center flex-wrap border-out-questions mb-5 mt-2">
+    <a id="blank_{{j+1}}" (click)="goToAnchor(j)" class="border-inner-questions non-a cursor-pointer" *ngFor="let i of [].constructor(60);let j=index">
+      {{j+1}}
+    </a>
+  </div>
   <nav>
     <div class="nav nav-tabs tab-placement" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first"
-         aria-selected="true">{{repo.currentSubject.firstSubject | validName }}</a>
+         aria-selected="true" (click)="ariaSelected(1)">{{repo.currentSubject.firstSubject | validName }}</a>
       <a class="nav-item nav-link" id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second"
-         aria-selected="false">{{repo.currentSubject.secondSubject | validName}}</a>
+         aria-selected="false" (click)="ariaSelected(2)">{{repo.currentSubject.secondSubject | validName}}</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-first" role="tabpanel" aria-labelledby="nav-home-tab">
-      <div *ngFor="let q of firstSubjectQuestions;let i=index" style="font-family:sans-serif" class="quiz-container">
+      <div id="q_{{i}}" *ngFor="let q of firstSubjectQuestions;let i=index" style="font-family:sans-serif" class="quiz-container">
         <div class="question text-center">
           <span class="question-number">{{i+1}})</span><p [innerHtml]="q.question | safe" class="d-inline"></p>
         </div>
         <div class="mt-5 mb-5"></div>
 
-        <div class="d-flex flex-column" style="margin:0 auto;">
+        <div class="d-flex flex-column" style="margin:0 auto;" id="d_{{i}}">
           <div class="form-check">
-            <input (change)="onSelectionChange(q,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,i,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.firstAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input (change)="onSelectionChange(q,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,i,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.secondAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input (change)="onSelectionChange(q,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,i,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.thirdAnswer | safe"></label>
           </div>
           <div class="form-check">
-            <input (change)="onSelectionChange(q,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+            <input (change)="onSelectionChange(q,i,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
             <label [innerHtml]="q.fourthAnswer | safe"></label>
           </div>
         </div>
 
-
+        <div *ngIf="q.selectedAnswer">
+          <button class="btn btn-danger" (click)="clearSelectedAnswers(q,i)">
+            {{'ClearSelectedAnswer' | translate}}
+          </button>
+        </div>
       </div>
     </div>
     <div class="tab-pane fade" id="nav-second" role="tabpanel" aria-labelledby="nav-profile-tab">
       <div class="tab-pane fade show active" id="nav-first" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div *ngFor="let q of secondSubjectQuestions;let i=index" style="font-family:sans-serif" class="quiz-container">
+        <div id="q_{{i+29}}" *ngFor="let q of secondSubjectQuestions;let i=index" style="font-family:sans-serif" class="quiz-container">
           <div class="question text-center">
             <span class="question-number">{{i+1}})</span><p [innerHtml]="q.question | safe" class="d-inline"></p>
           </div>
           <div class="mt-5 mb-5"></div>
 
-          <div class="d-flex flex-column" style="margin:0 auto;">
+          <div class="d-flex flex-column" style="margin:0 auto;" id="d_{{i+29}}">
             <div class="form-check">
-              <input (change)="onSelectionChange(q,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,i+29,1)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.firstAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input (change)="onSelectionChange(q,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,i+29,2)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.secondAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input (change)="onSelectionChange(q,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,i+29,3)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.thirdAnswer | safe"></label>
             </div>
             <div class="form-check">
-              <input (change)="onSelectionChange(q,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
+              <input (change)="onSelectionChange(q,i+29,4)" class="form-check-input" type="radio" name="{{q.questionUniqueId}}" />
               <label [innerHtml]="q.fourthAnswer | safe"></label>
             </div>
           </div>
 
+          <div *ngIf="q.selectedAnswer">
+            <button class="btn btn-danger" (click)="clearSelectedAnswers(q,i+29)">
+              {{'ClearSelectedAnswer' | translate}}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -124,6 +175,7 @@
     </button>
   </div>
 </div>
+
 <div class="container" [class.d-none]="!isQuizEnded">
   <div class="quiz-conclusion">
     <table class="table100 exo2">

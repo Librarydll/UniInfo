@@ -148,7 +148,7 @@
     <value>O'zbekistondagi universitetlarni qidirish, bloklar bo'yicha universitetni tanlash, fanlar bo'yicha universitetni tanlang</value>
   </data>
   <data name="Quiz" xml:space="preserve">
-    <value>Test</value>
+    <value>Test topshirish</value>
   </data>
   <data name="QuizDescription" xml:space="preserve">
     <value>Пройди тест и узнай в какой ВУЗ мог бы поступить с набранным баллом</value>
@@ -181,6 +181,6 @@
     <comment>Третий блок</comment>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Universitetlar poiski</value>
+    <value>Asosiy</value>
   </data>
 </root>

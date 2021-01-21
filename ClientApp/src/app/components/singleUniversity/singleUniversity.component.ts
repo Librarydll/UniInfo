@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { University } from '../../models/university.model';
@@ -10,6 +10,7 @@ import { LanguageProvider } from '../../services/languageProvider';
 import { MessageService } from '../../models/messageService';
 import { Repository } from '../../models/repository';
 import { Style } from '../../models/style';
+import { Title } from '@angular/platform-browser';
 
 const url ="/api/university"
 
@@ -17,7 +18,7 @@ const url ="/api/university"
   selector:"single-university",
   templateUrl: "singleUniversity.component.html"
 })
-export class SingleUniversityComponent {
+export class SingleUniversityComponent implements OnInit {
   order: number;
   id: number;
   currentUniversity: University;
@@ -25,18 +26,24 @@ export class SingleUniversityComponent {
   allLanguage: ModelDictionary[];
   tHeader: TableHeader;
   constructor(activateRoute: ActivatedRoute,
+    private titleService:Title,
     private http: HttpClient,
     private languageProvider: LanguageProvider,
     private messageService: MessageService,
     private repo: Repository, private style: Style) {
     this.id = activateRoute.snapshot.params['id'];
-    this.getUniversity();
     this.tHeader = new TableHeader();
     this.tHeader.setTableHeader(languageProvider.getLanguage());
     style.subjectDisplay = '';
   //  style.uNameDisplay = 'none';
     style.canOrder = true;
+
+   
   }
+  ngOnInit(): void {
+    this.getUniversity();
+  
+    }
 
   get currentLanguage(): string {
     return this.languageProvider.getLanguage();
@@ -53,6 +60,8 @@ export class SingleUniversityComponent {
         this.repo.currentSubject.language = this.allLanguage[0];
         this.repo.allUniversities.push(this.currentUniversity);
         this.messageService.build();
+        let title =this. currentLanguage =="uz" ? this.university.nameUz :this.university.nameRu;
+        this.titleService.setTitle(title);
       }
      
     });

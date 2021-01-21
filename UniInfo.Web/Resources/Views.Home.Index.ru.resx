@@ -148,7 +148,7 @@
     <value>Поиск университетов Узбекистана,Поиск Вузов Узбекистана,Выбор Вуза по предметам,Выбор Вуза по блокам,Выбор университета по предметам,Выбор университета по блокам</value>
   </data>
   <data name="Quiz" xml:space="preserve">
-    <value>Тест</value>
+    <value>Cдать Тест</value>
   </data>
   <data name="QuizDescription" xml:space="preserve">
     <value>Пройди тест и узнай в какой ВУЗ мог бы поступить с набранным баллом</value>
@@ -181,6 +181,6 @@
     <comment>Третий блок</comment>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Поиск университетов</value>
+    <value>Главная</value>
   </data>
 </root>

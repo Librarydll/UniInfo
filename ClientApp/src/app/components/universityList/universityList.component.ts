@@ -4,6 +4,7 @@ import { ModelDictionary, ModelDictionaryUniversity } from '../../models/modelDi
 import { Filter } from '../../models/configClasses.repository';
 import { University } from '../../models/university.model';
 import { LanguageProvider } from '../../services/languageProvider';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -15,11 +16,16 @@ export class UniversityListComponent implements OnInit {
 
   uNames: ModelDictionaryUniversity[];
   lUniversity: ModelDictionary[];
-  constructor(private repo: Repository, private languageProvider: LanguageProvider) {
+  constructor(private repo: Repository,
+    private languageProvider: LanguageProvider,
+    private titleService :Title)
+  {
+    let title = languageProvider.getLanguage() == "uz" ? "Oliygohlar" : "Список вузов";
+    titleService.setTitle(title);
   }
 
   ngOnInit(): void {
-    this.repo.getUniversities();
+     this.repo.getUniversities();
   }
 
   get currentLanguage(): string {

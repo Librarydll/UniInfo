@@ -1,10 +1,11 @@
-import { Component,EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Repository } from '../../models/repository';
 import { QuizService } from '../../models/quizService';
 import { Quiz, QuizAnswer } from '../../models/quiz.model';
 import { Chart } from 'chart.js'
 import { LanguageProvider } from '../../services/languageProvider';
 import { ModelDictionary } from '../../models/modelDictionary.model';
+import { delay } from 'rxjs/operators';
 
 
 const rigth: ModelDictionary = new ModelDictionary("Правильные", "To'g'ri", 0);
@@ -12,7 +13,7 @@ const wrong: ModelDictionary = new ModelDictionary("Неправильные", "
 
 @Component({
   selector: "quiz-view",
-  templateUrl :"quizView.component.html"
+  templateUrl: "quizView.component.html"
 
 })
 export class QuizViewComponent {
@@ -22,11 +23,13 @@ export class QuizViewComponent {
   isQuizEnded: boolean = false;
   firstChart = [];
   secondChart = [];
-  constructor(private repo: Repository, private quizService: QuizService, private lang: LanguageProvider) {
-   
+  isFirstAriaSelected: boolean = true;
+  constructor(private repo: Repository,
+    private quizService: QuizService,
+    private lang: LanguageProvider) {
   }
 
-  get quizzes():Quiz[] {
+  get quizzes(): Quiz[] {
     return this.quizService.quizzes;
   }
 
@@ -37,41 +40,52 @@ export class QuizViewComponent {
     return this.quizService.secondSubjectQuestions;
   }
 
-  onSelectionChange(quiz: Quiz, n: number) {
+  onSelectionChange(quiz: Quiz, questionNumber: number, answerNumberPlace: number) {
 
-    if (n == 1) {
+    if (answerNumberPlace == 1) {
       quiz.selectedAnswer = quiz.firstAnswer;
     }
-    else if (n == 2) {
+    else if (answerNumberPlace == 2) {
       quiz.selectedAnswer = quiz.secondAnswer;
 
     }
-    else if (n == 3) {
+    else if (answerNumberPlace == 3) {
       quiz.selectedAnswer = quiz.thirdAnswer;
 
     }
-    else if (n == 4) {
+    else if (answerNumberPlace == 4) {
       quiz.selectedAnswer = quiz.fourthAnswer;
     }
-    else {
-     // throw new argu(`onSelectionChange number must be 1<=x<=4,it is ${n}`)
-    }
+    this.fillBlank(questionNumber + 1);
   }
 
-  get result() : QuizAnswer {
-    return this.quizService.quizResult;
+  fillBlank(questionNumber: number) {
+    let emptyBlank = document.getElementById(`blank_${questionNumber}`);
+    if (emptyBlank.classList.contains("checked-question")) return;
+    emptyBlank.classList.remove("unchecked-question");
+    emptyBlank.classList.add("checked-question");
   }
 
-  finishQuiz() {
-    if (confirm("Вы действительно хотите завершить тест ?")) {
-      this.closeQuiz();
-    } 
+
+  clearSelectedAnswers(quiz: Quiz, questionNumber: number) {
+    console.log(questionNumber);
+    quiz.selectedAnswer = null;
+    let checkBoxes = document.querySelectorAll(`#d_${questionNumber} input`);
+    checkBoxes.forEach(checkBox => {
+      checkBox.setAttribute("checked", "checked");
+      checkBox.removeAttribute("checked");
+    });
+    this.emptyBlank(questionNumber + 1);
   }
 
-  timeIsOverEvent($event) {
-    this.closeQuiz();
+  emptyBlank(questionNumber: number) {
+    let fullBlank = document.getElementById(`blank_${questionNumber}`);
+    if (fullBlank.classList.contains("unchecked-question")) return;
+
+    fullBlank.classList.remove("checked-question");
+    fullBlank.classList.add("unchecked-question");
   }
-  
+
   generateChart() {
 
     let l = this.lang.getLanguage();
@@ -79,16 +93,16 @@ export class QuizViewComponent {
     let w = l == "uz" ? wrong.uzVersion : wrong.ruVersion;
     this.firstChart = new Chart('canvas1', {
       type: 'pie',
-        data: {
+      data: {
         datasets: [
-        {
+          {
             data: [this.quizService.quizResult.firstSubjectRightAnswersCount, this.quizService.questionsPerSubject - this.quizService.quizResult.firstSubjectRightAnswersCount],
             backgroundColor: [
               "#17a2b8",
               "#03132b"
             ],
-            fill:true
-        }],
+            fill: true
+          }],
         labels: [
           r,
           w,
@@ -98,7 +112,7 @@ export class QuizViewComponent {
       options: {
         title: {
           display: true,
-          text: l=="uz" ? this.repo.currentSubject.firstSubject.uzVersion:this.repo.currentSubject.firstSubject.ruVersion,
+          text: l == "uz" ? this.repo.currentSubject.firstSubject.uzVersion : this.repo.currentSubject.firstSubject.ruVersion,
           fontColor: "White",
           fontSize: 15
 
@@ -116,7 +130,7 @@ export class QuizViewComponent {
       data: {
         datasets: [
           {
-            data: [this.quizService.quizResult.secondSubjectRightAnswersCount, this.quizService.questionsPerSubject - this.quizService.quizResult.secondSubjectRightAnswersCount ],
+            data: [this.quizService.quizResult.secondSubjectRightAnswersCount, this.quizService.questionsPerSubject - this.quizService.quizResult.secondSubjectRightAnswersCount],
             backgroundColor: [
               "#17a2b8",
               "#03132b"
@@ -147,6 +161,19 @@ export class QuizViewComponent {
     });
   }
 
+  get result(): QuizAnswer {
+    return this.quizService.quizResult;
+  }
+
+  finishQuiz() {
+    if (confirm("Вы действительно хотите завершить тест ?")) {
+      this.closeQuiz();
+    }
+  }
+
+  timeIsOverEvent($event) {
+    this.closeQuiz();
+  }
 
   closeQuiz() {
     this.quizService.calculateAnswer();
@@ -154,6 +181,35 @@ export class QuizViewComponent {
     this.generateChart();
     this.isQuizEndedOutput.emit(true);
     this.qResultOutput.emit(this.quizService.quizResult);
+  }
+
+
+  goToAnchor(id: string) {
+  //  this.changeAriaSelected();
+    let element = document.getElementById("q_" + id);
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  changeAriaSelected() {
+    let firstAria = document.getElementById("nav-first-tab");
+    let secondAria = document.getElementById("nav-second-tab");
+    if (this.isFirstAriaSelected) {
+      secondAria.click();
+    }
+    else {
+      firstAria.click();
+    }
+
+  }
+
+  ariaSelected(n: number) {
+
+    if (n == 1) {
+      this.isFirstAriaSelected = true;
+    }
+    if (n == 2) {
+      this.isFirstAriaSelected = false;
+    }
   }
 }
 

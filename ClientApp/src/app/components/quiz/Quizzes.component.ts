@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Title } from '@angular/platform-browser';
 import { MessageService } from '../../models/messageService';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { QuizAnswer } from '../../models/quiz.model';
@@ -24,8 +25,11 @@ export class QuizzesComponent {
   constructor(private repo: Repository,
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
+    private titleService:Title,
     private quizService: QuizService) {
     repo.getSubjectNamesForQuizzes();
+    let title = languageProvider.getLanguage() == "uz" ? "Test topshirish" : "Сдача теста";
+    titleService.setTitle(title);
   }
 
   get currentLanguage(): string {
