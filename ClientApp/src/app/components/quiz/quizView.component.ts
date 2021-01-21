@@ -68,7 +68,6 @@ export class QuizViewComponent {
 
 
   clearSelectedAnswers(quiz: Quiz, questionNumber: number) {
-    console.log(questionNumber);
     quiz.selectedAnswer = null;
     let checkBoxes = document.querySelectorAll(`#d_${questionNumber} input`);
     checkBoxes.forEach(checkBox => {
