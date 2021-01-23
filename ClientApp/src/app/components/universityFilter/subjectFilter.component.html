@@ -19,7 +19,7 @@
     <div class="d-flex flex-wrap flex-row justify-content-center">
       <div [class.d-none]="educationTypes===undefined||educationTypes==null||educationTypes.length==0">
         <div class="arr-container">
-          <div class="d-flex justify-content-center flex-wrap">
+          <div  id="eduDiv" class="d-flex justify-content-center flex-wrap">
             <button [className]="isThisEducationType(e.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text cursor-pointer'" *ngFor="let e of educationTypes" (click)="selectEducationType(e)">
               {{e | validName }}
             </button>
@@ -29,7 +29,7 @@
       </div>
       <div [class.d-none]="languages===undefined||languages==null||languages.length==0">
         <div class="arr-container">
-          <div class="d-flex justify-content-center flex-wrap">
+          <div id="langDiv" class="d-flex justify-content-center flex-wrap">
             <button id="{{l.code}}" [className]="isThisLanguage(l.code) ? 'btn btn-info color-black':'item-btn item-btn-sub item-text cursor-pointer'"
                     class="btn btn-primary" *ngFor="let l of languages" (click)="selectLanguage(l)">
               {{l | validName }}
@@ -45,7 +45,7 @@
   <div [className]="order==1 ? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP2' | translate}}</p></div>
   <div [className]="(!canBuild() && order>=2 )? 'd-block' : 'd-none'"><p class="helper yura">{{'HELP4' | translate}}</p></div>
   <div [class.d-none]="currentSubject.isFilled()">
-    <div style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
+    <div id="subjectDiv" style="margin-top:50px" class="d-flex justify-content-center flex-wrap">
 
       <button class="btn btn-info m-1 color-black" *ngFor="let subject of initialSubjects" id="{{subject.code}}" (click)="selectSubject(subject)">
         {{subject | validName }}

@@ -35,7 +35,11 @@
     .extra-info{
         font-size:14px;
     }
- 
+
+    #eduDiv button, #langDiv button, #subjectDiv button, .item-text div, #resetBtn,.quiz-lang {
+        font-size: 15px;
+    }
+
 }
 
 
@@ -63,6 +67,21 @@
     }
     table td, table th {
         padding-left: 6px;
+    }
+
+    .btn-parallelogram {
+        margin-bottom: .4rem;
+    }
+
+    .question p, .question-number {
+        font-size: 15px;
+    }
+    .border-inner-questions {
+        font-size: 12px;
+        width:30px;
+        margin:6px;
+        padding:6px;
+
     }
 }
 
@@ -98,5 +117,13 @@
     }
     #subj-td{
         display:table-cell;
+    }
+
+    #eduDiv button, #langDiv button, #subjectDiv button, .item-text div, #resetBtn, .quiz-lang {
+        font-size: 13px;
+    }
+
+    .question p, .question-number {
+        font-size: 13px;
     }
 }

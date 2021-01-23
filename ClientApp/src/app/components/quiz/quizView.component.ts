@@ -165,7 +165,8 @@ export class QuizViewComponent {
   }
 
   finishQuiz() {
-    if (confirm("Вы действительно хотите завершить тест ?")) {
+    let alertText = this.lang.getLanguage() == "uz" ? "Mashg'ulotni yakunlaysizmi?" : "Вы действительно хотите завершить тест ?";
+    if (confirm(alertText)) {
       this.closeQuiz();
     }
   }
