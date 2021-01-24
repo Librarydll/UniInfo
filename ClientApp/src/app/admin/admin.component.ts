@@ -13,6 +13,9 @@ import { Subject } from '../models/subject.model';
   templateUrl: "admin.component.html"
 })
 export class AdminComponent implements OnInit {
+  affectedRowCount: number = 0;
+  shuffle: boolean = false;
+  canShuffle: boolean = true;
   created: boolean = false;
   currentSubject: ModelDictionary;
   quiz:Quiz
@@ -31,6 +34,8 @@ export class AdminComponent implements OnInit {
     this.currentSubject = s;
     this.reset();
     this.quiz.subject = s.code;
+    this.affectedRowCount = 0;
+
   }
 
   createQuiz(ngForm: NgForm) {
@@ -47,7 +52,26 @@ export class AdminComponent implements OnInit {
     this.quiz.bothLanguages = false;
     this.quiz.language = 1;
     this.created = false;
+    this.affectedRowCount = 0;
 
+  }
+
+
+  openShuffleQuizButton() {
+    this.shuffle = true;
+    this.currentSubject = null;
+  }
+
+  shuffleQuizes() {
+    if (this.canShuffle) {
+      this.canShuffle = false
+      this.quizService.shuffleQuizes()
+        .subscribe(x => {
+          this.affectedRowCount = x.rowAffectedCount;
+        });
+      this.canShuffle = true
+    }
+      
   }
 
   logout() {

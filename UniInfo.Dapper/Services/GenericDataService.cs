@@ -61,5 +61,19 @@ namespace UniInfo.Dapper.Services
 				return updated;
 			}
 		}
-	}
+
+        public async Task<int> UpdateRangeAsync(IEnumerable<T> entities)
+        {
+			using (var connection = _factory.CreateConnection())
+			{
+				int rowAffectedCount = 0;
+                foreach (var entity in entities)
+                {
+					var updated = await connection.UpdateAsync(entity);
+					if (updated) rowAffectedCount++;
+				}
+				return rowAffectedCount;
+			}
+		}
+    }
 }

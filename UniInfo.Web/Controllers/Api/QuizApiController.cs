@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UniInfo.Domain.Models;
 using UniInfo.Domain.Services;
+using UniInfo.Web.Services.Shuffle;
 
 namespace UniInfo.Web.Controllers.Api
 {
@@ -15,33 +16,42 @@ namespace UniInfo.Web.Controllers.Api
 	public class QuizApiController: Controller
 	{
 		private readonly IQuizDataService _quizDataService;
-		private readonly ILogger<HomeController> _logger;
+        private readonly IShuffleQuizService _shuffleQuizService;
 
-		public QuizApiController(IQuizDataService quizDataService, ILogger<HomeController> logger)
+        public QuizApiController(IQuizDataService quizDataService, IShuffleQuizService shuffleQuizService)
 		{
 			_quizDataService = quizDataService;
-			_logger = logger;
-		}
+            _shuffleQuizService = shuffleQuizService;
+        }
 
 
 		[HttpGet]	
 
 		public async Task<IActionResult> GetQuiz(int firstSubject,int secondSubject,int language)
 		{
-		//	_logger.LogInformation(language.ToString());
 			var data = await _quizDataService.GetQuizzesBySubjects(firstSubject,secondSubject,language);
 
 			return Ok(data);
 		}
 
-		[HttpPost, Authorize]
+		[HttpPost]
+		[Authorize]
 		public async Task<IActionResult> CreateQuiz([FromBody]Quiz quiz)
-        {
+        {	
 			await _quizDataService.CreateAsync(quiz);
 			if (quiz.Id != 0)
 				return Ok();
 
 			return BadRequest("Cannot create quiz");
         }
+
+		[HttpGet("/api/quiz/ShuffleQuizes")]
+		public async Task<IActionResult> ShuffleQuizes()
+        {
+			var quizes = await _quizDataService.GetAllAsync();
+			var shuffledQuizes = _shuffleQuizService.ShuffleAnswersInQuizes(quizes);
+			var rowAffectedCount = await _quizDataService.UpdateRangeAsync(quizes);
+			return Ok(new { rowAffectedCount });
+		}
 	}
 }

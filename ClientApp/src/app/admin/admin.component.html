@@ -22,7 +22,11 @@
               *ngFor="let s of subjects">
         {{s.ruVersion}}
       </button>
-
+      <div class="mt-5">
+        <button (click)="openShuffleQuizButton()" class="btn btn-outline-primary btn-block">
+            Перемешка вопросов 
+        </button>
+      </div>
     </div>
     <div class="col-6" *ngIf="currentSubject">
       <p class="m-2 text-center">{{currentSubject.ruVersion}}</p>
@@ -81,5 +85,16 @@
           <button class="btn btn-primary m-1" type="submit">Create question</button>
         </div>
       </form>
+    </div>
+
+    <div class="col-8" *ngIf="!currentSubject && shuffle">
+      <h1 class="bg-info text-center" *ngIf="affectedRowCount>0">
+        Affected Row Count {{affectedRowCount}}
+      </h1>
+      <div class="text-center" style="margin:0 auto;">
+        <button (click)="shuffleQuizes()" class="btn btn-outline-primary btn-block">
+          Перемешать вопросы
+        </button>
+      </div>
     </div>
 </div>

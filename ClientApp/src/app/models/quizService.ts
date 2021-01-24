@@ -1,8 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Quiz, QuizAnswer } from './quiz.model';
 import { Subject } from './subject.model';
+
+type shuffleQuizMetadata = {
+  rowAffectedCount: number
+}
 
 const quizUrl = '/api/quiz';
 @Injectable()
@@ -13,6 +17,10 @@ export class QuizService {
   quizResult: QuizAnswer;
   constructor(private http:HttpClient) {
 
+  }
+
+  shuffleQuizes(): Observable<shuffleQuizMetadata> {
+   return this.http.get<shuffleQuizMetadata>(quizUrl + `/shuffleQuizes`)   
   }
 
 

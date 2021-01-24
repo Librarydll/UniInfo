@@ -30,6 +30,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniInfo.Domain", "UniInfo.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniInfo.Dapper", "UniInfo.Dapper\UniInfo.Dapper.csproj", "{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShuffleQuiz.Test", "ShuffleQuiz.Test\ShuffleQuiz.Test.csproj", "{74E992A1-D780-4454-BAC5-2D2CC16F9741}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7D6ABFEB-1661-4B05-9CDB-041BA2688606}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,9 +56,16 @@ Global
 		{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{646308EB-7CC6-4EB8-94DF-C48EBCA9AC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E992A1-D780-4454-BAC5-2D2CC16F9741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E992A1-D780-4454-BAC5-2D2CC16F9741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E992A1-D780-4454-BAC5-2D2CC16F9741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E992A1-D780-4454-BAC5-2D2CC16F9741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74E992A1-D780-4454-BAC5-2D2CC16F9741} = {7D6ABFEB-1661-4B05-9CDB-041BA2688606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0FA2DE4D-07D3-4AF3-A543-702523C1CB59}

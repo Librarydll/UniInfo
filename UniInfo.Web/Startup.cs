@@ -18,6 +18,7 @@ using UniInfo.Dapper.Context;
 using UniInfo.Dapper.Services;
 using UniInfo.Domain.Services;
 using UniInfo.Web.Services.Authenticate;
+using UniInfo.Web.Services.Shuffle;
 
 namespace UniInfo.Web
 {
@@ -48,6 +49,7 @@ namespace UniInfo.Web
 			services.AddTransient<IQuizDataService, QuizDataService>();
 			services.AddTransient<IUserDataService, UserDataService>();
 			services.AddTransient<IAuthenticateService, AuthenticateService>();
+			services.AddTransient<IShuffleQuizService, ShuffleQuizService>();
 			services.AddSingleton(service =>
 			{
 				var str = Configuration.GetConnectionString("LocalDb");
