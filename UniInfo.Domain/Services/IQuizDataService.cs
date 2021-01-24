@@ -10,5 +10,6 @@ namespace UniInfo.Domain.Services
 	public interface IQuizDataService: IDataServiceAsync<Quiz>
 	{
 		Task<IEnumerable<Quiz>> GetQuizzesBySubjects(int firstSubject, int secondSubject,int lang);
+
 	}
 }

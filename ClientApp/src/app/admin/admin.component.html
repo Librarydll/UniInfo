@@ -6,95 +6,92 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row" *ngIf="created">
-    <div class="col bg-success text-white text-center">
-      <a class="navbar-brand text-center">Question succesfully created</a>
-    </div>
-  </div>
-</div>
 
 <div class="row mt-2">
-    <div class="col-4">
-      <button class="btn btn-outline-info btn-block"
-              (click)="selectSubject(s)"
-              routerLinkActive="active"
-              *ngFor="let s of subjects">
-        {{s.ruVersion}}
+  <div class="col-4">
+    <button class="btn btn-outline-info btn-block"
+            (click)="selectSubject(s)"
+            routerLinkActive="active"
+            *ngFor="let s of subjects">
+      {{s.ruVersion}}
+    </button>
+    <div class="mt-5">
+      <button (click)="openShuffleQuizButton()" class="btn btn-outline-primary btn-block">
+        Перемешка вопросов
       </button>
-      <div class="mt-5">
-        <button (click)="openShuffleQuizButton()" class="btn btn-outline-primary btn-block">
-            Перемешка вопросов 
-        </button>
-      </div>
     </div>
-    <div class="col-6" *ngIf="currentSubject">
-      <p class="m-2 text-center">{{currentSubject.ruVersion}}</p>
-      <form novalidate #form="ngForm" (ngSubmit)="createQuiz(form)">
-        <div class="form-group">
-          <label>Question</label>
-          <input class="form-control" name="question" [(ngModel)]="quiz.question" required />
-        </div>
+  </div>
+  <div class="col-6" *ngIf="currentSubject">
+    <h1 class="col bg-success text-white text-center" *ngIf="created">
+        Вопрос успешно создался
+    </h1>
 
-        <div class="form-group">
-          <label>Right answer</label>
-          <input class="form-control" name="rightAnswer" [(ngModel)]="quiz.rightAnswer" required />
-        </div>
+    <p class="m-2 text-center">{{currentSubject.ruVersion}}</p>
+    <form novalidate #form="ngForm" (ngSubmit)="createQuiz(form)">
+      <div class="form-group">
+        <label>Question</label>
+        <input class="form-control" name="question" [(ngModel)]="quiz.question" required />
+      </div>
 
-        <div class="form-group">
-          <label>First answer</label>
-          <input class="form-control" name="firstAnswer" [(ngModel)]="quiz.firstAnswer" required />
-        </div>
+      <div class="form-group">
+        <label>Right answer</label>
+        <input class="form-control" name="rightAnswer" [(ngModel)]="quiz.rightAnswer" required />
+      </div>
 
-        <div class="form-group">
-          <label>Second asnwer</label>
-          <input class="form-control" name="secondAnswer" [(ngModel)]="quiz.secondAnswer" required />
-        </div>
+      <div class="form-group">
+        <label>First answer</label>
+        <input class="form-control" name="firstAnswer" [(ngModel)]="quiz.firstAnswer" required />
+      </div>
 
-        <div class="form-group">
-          <label>Third answer</label>
-          <input class="form-control" name="thirdAnswer" [(ngModel)]="quiz.thirdAnswer" required />
-        </div>
+      <div class="form-group">
+        <label>Second asnwer</label>
+        <input class="form-control" name="secondAnswer" [(ngModel)]="quiz.secondAnswer" required />
+      </div>
 
-        <div class="form-group">
-          <label>Fourth answer</label>
-          <input class="form-control" name="fourthAnswer" [(ngModel)]="quiz.fourthAnswer" required />
-        </div>
-        <div class="form-group">
-          <label>Language</label>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="uz" [(ngModel)]="quiz.language" [value]="1">Uz
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" [(ngModel)]="quiz.language" [value]="2">Ru
-            </label>
-          </div>
-        </div>
+      <div class="form-group">
+        <label>Third answer</label>
+        <input class="form-control" name="thirdAnswer" [(ngModel)]="quiz.thirdAnswer" required />
+      </div>
 
+      <div class="form-group">
+        <label>Fourth answer</label>
+        <input class="form-control" name="fourthAnswer" [(ngModel)]="quiz.fourthAnswer" required />
+      </div>
+      <div class="form-group">
+        <label>Language</label>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="both" [(ngModel)]="quiz.bothLanguages">
-          <label class="form-check-label" for="defaultCheck1">
-            Is for both languages?
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="uz" [(ngModel)]="quiz.language" [value]="1">Uz
           </label>
         </div>
-            
-        <div class="text-center">
-          <button class="btn btn-primary m-1" type="submit">Create question</button>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="optradio" [(ngModel)]="quiz.language" [value]="2">Ru
+          </label>
         </div>
-      </form>
-    </div>
-
-    <div class="col-8" *ngIf="!currentSubject && shuffle">
-      <h1 class="bg-info text-center" *ngIf="affectedRowCount>0">
-        Affected Row Count {{affectedRowCount}}
-      </h1>
-      <div class="text-center" style="margin:0 auto;">
-        <button (click)="shuffleQuizes()" class="btn btn-outline-primary btn-block">
-          Перемешать вопросы
-        </button>
       </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="both" [(ngModel)]="quiz.bothLanguages">
+        <label class="form-check-label" for="defaultCheck1">
+          Is for both languages?
+        </label>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary m-1" type="submit">Create question</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-8" *ngIf="!currentSubject && shuffle">
+    <h1 class="col bg-success text-white text-center" *ngIf="affectedRowCount>0">
+      Affected Row Count {{affectedRowCount}}
+    </h1>
+    <div class="text-center" style="margin:0 auto;">
+      <button (click)="shuffleQuizes()" class="btn btn-outline-primary btn-block">
+        Перемешать вопросы
+      </button>
     </div>
+  </div>
 </div>

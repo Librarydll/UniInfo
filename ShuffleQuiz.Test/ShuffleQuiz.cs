@@ -41,7 +41,7 @@ namespace ShuffleQuiz.Test
                 Id = 5,
                 Subject = 1,
                 RightAnswer = "Fourh",
-                QuestionUniqueId = 213.ToString(),
+                QuestionUniqueId = 213,
                 Question = question,
                 Language = 405,
                 BothLanguages = false
@@ -57,7 +57,7 @@ namespace ShuffleQuiz.Test
             Assert.Equal(question, single.Question);
             Assert.False(single.BothLanguages);
             Assert.Equal(405, single.Language);
-            Assert.Equal("213", single.QuestionUniqueId);
+            Assert.Equal(213, single.QuestionUniqueId);
         }
 
 

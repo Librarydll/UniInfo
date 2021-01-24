@@ -17,7 +17,7 @@ namespace UniInfo.Domain.Models
 		public string FourthAnswer { get; set; }
 		public	int	Language { get; set; }
 		public int Subject { get; set; }
-		public string QuestionUniqueId { get; set; }
+		public int QuestionUniqueId { get; set; }
 		/// <summary>
 		/// get if quiz assosiates in both russian and uzbek languages
 		/// </summary>

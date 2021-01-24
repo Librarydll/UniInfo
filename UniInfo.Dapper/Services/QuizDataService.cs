@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UniInfo.Dapper.Context;
@@ -30,5 +31,16 @@ namespace UniInfo.Dapper.Services
 				return quizzes;
 			}
 		}
-	}
+
+        public async override Task CreateAsync(Quiz entity)
+        {
+			using (var connection = _factory.CreateConnection())
+			{
+				string query = "Select Max(QuestionUniqueId) from quizzes";
+				var maxUniqueId =  await connection.QueryFirstAsync<int>(query);
+				entity.QuestionUniqueId = maxUniqueId + 1;
+				entity.Id = await connection.InsertAsync(entity);
+			}
+		}
+    }
 }

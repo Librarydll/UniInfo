@@ -40,17 +40,18 @@ namespace UniInfo.Web.Controllers.Api
         {	
 			await _quizDataService.CreateAsync(quiz);
 			if (quiz.Id != 0)
-				return Ok();
+				return Ok(true);
 
 			return BadRequest("Cannot create quiz");
         }
 
 		[HttpGet("/api/quiz/ShuffleQuizes")]
+		[Authorize]
 		public async Task<IActionResult> ShuffleQuizes()
         {
 			var quizes = await _quizDataService.GetAllAsync();
 			var shuffledQuizes = _shuffleQuizService.ShuffleAnswersInQuizes(quizes);
-			var rowAffectedCount = await _quizDataService.UpdateRangeAsync(quizes);
+			var rowAffectedCount = await _quizDataService.UpdateRangeAsync(shuffledQuizes);
 			return Ok(new { rowAffectedCount });
 		}
 	}

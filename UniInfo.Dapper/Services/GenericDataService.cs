@@ -16,7 +16,7 @@ namespace UniInfo.Dapper.Services
 		{
 			_factory = factory;
 		}
-		public async Task CreateAsync(T entity)
+		public virtual async Task CreateAsync(T entity)
 		{
 			using (var connection=_factory.CreateConnection())
 			{

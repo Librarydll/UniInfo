@@ -32,7 +32,7 @@ export class QuizService {
 
   }
 
-  createQuiz(quiz: Quiz):Observable<boolean> {
+  createQuiz(quiz: Quiz): Observable<boolean> {
 
     return this.http.post<boolean>(quizUrl ,quiz);
   }
