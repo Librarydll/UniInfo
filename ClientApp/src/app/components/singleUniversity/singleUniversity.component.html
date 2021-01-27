@@ -10,7 +10,7 @@
     <!--<div class="img-bg" [style.background-image]="'url(assets/universities/' + 'inha' + '.jpg)'"></div>-->
     <div class="img-content">
       <section class="img-text-content number yura">
-        <h3 style="line-height:35px;" class="pb-2">{{university | validName}}</h3>
+        <h3 style="line-height:35px;" class="pb-2 u-info-name">{{currentLanguage=='uz' ? university?.nameUz : university?.nameRu}}</h3>
         <div class="container">
           <div class="d-flex flex-column">
             <div [className]="university?.phone ? 'd-flex' : 'd-none' ">

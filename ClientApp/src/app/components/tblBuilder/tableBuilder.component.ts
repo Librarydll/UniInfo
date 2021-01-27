@@ -25,7 +25,6 @@ export class TableBuilderComponent {
   grantCount: boolean;
   contractPoint: boolean;
   contractCount: boolean;
-  currentFaculties: Faculty[];
   
   onBuild() {
    this.createDictionary();
@@ -86,8 +85,7 @@ export class TableBuilderComponent {
       }
     });
     this.universities = result;
-    if (this.universities[0]!==undefined)
-      this.currentFaculties = this.universities[0].faculties;
+    
   }
   clear() {
     this.universities = [];
@@ -104,25 +102,25 @@ export class TableBuilderComponent {
 
   }
 
-  orderByPoint() {
+  orderByPoint(university:University) {
     if (!this.canOrder()) return;
     this.orderByPointFlag += 1;
     if (this.orderByPointFlag == 1) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.grantPass < b.grantPass) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.grantPass < b.grantPass) ? 1 : -1);
       this.arrowByPointClass = "arrow-up arrow-position-up arrow-up-grand";
 
       this.grantPoint = true;
       this.contractPoint = false;
 
     } else if (this.orderByPointFlag == 2) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.grant > b.grant) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.grant > b.grant) ? 1 : -1);
       this.arrowByPointClass = "arrow-down arrow-position-down arrow-down-grand";
 
       this.grantPoint = true;
       this.contractPoint = false;
 
     } else if (this.orderByPointFlag == 3) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.contractPass < b.contractPass) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.contractPass < b.contractPass) ? 1 : -1);
       this.arrowByPointClass = "arrow-up arrow-position-up arrow-up-contract";
 
       this.grantPoint = false;
@@ -130,7 +128,7 @@ export class TableBuilderComponent {
 
     }
     else if (this.orderByPointFlag == 4) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.contractPass > b.contractPass) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.contractPass > b.contractPass) ? 1 : -1);
       this.arrowByPointClass = "arrow-down arrow-position-down arrow-down-contract";
 
       this.grantPoint = false;
@@ -142,25 +140,25 @@ export class TableBuilderComponent {
     }
   }
 
-  orderByCount() {
+  orderByCount(university: University) {
     if (!this.canOrder()) return;
     this.orderByCountFlag += 1;
     if (this.orderByCountFlag == 1) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.grant < b.grant) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.grant < b.grant) ? 1 : -1);
       this.arrowByCountClass = "arrow-up arrow-position-up arrow-up-grand";
 
       this.grantCount = true;
       this.contractCount = false;
 
     } else if (this.orderByCountFlag == 2) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.grant > b.grant) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.grant > b.grant) ? 1 : -1);
       this.arrowByCountClass = "arrow-down arrow-position-down arrow-down-grand";
 
       this.grantCount = true;
       this.contractCount = false;
 
     } else if (this.orderByCountFlag == 3) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.contract < b.contract) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.contract < b.contract) ? 1 : -1);
       this.arrowByCountClass = "arrow-up arrow-position-up arrow-up-contract";
 
       this.grantCount = false;
@@ -168,7 +166,7 @@ export class TableBuilderComponent {
 
     }
     else if (this.orderByCountFlag == 4) {
-      this.currentFaculties = this.currentFaculties.sort((a, b) => (a.contract > b.contract) ? 1 : -1);
+      university.faculties = university.faculties.sort((a, b) => (a.contract > b.contract) ? 1 : -1);
       this.arrowByCountClass = "arrow-down arrow-position-down arrow-down-contract";
 
       this.grantCount = false;

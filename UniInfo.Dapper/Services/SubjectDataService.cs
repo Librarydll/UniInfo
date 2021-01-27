@@ -13,12 +13,12 @@ namespace UniInfo.Dapper.Services
 	public class SubjectDataService : GenericDataService<Subject>, ISubjectDataService
 	{
 		readonly string distincScript =
-		$"SELECT DISTINCT s.FirstSubject,s.SecondSubject From Subjects as s";
+		$"SELECT DISTINCT s.FirstSubject,s.SecondSubject From subjects as s";
 		public SubjectDataService(ApplicationDbConnectionFactory factory) : base(factory)
 		{
 		}
 
-	
+
 		public async Task<IEnumerable<ISubject<int>>> GetDistinctedSubjectsAsync()
 		{
 			using (var connection = _factory.CreateConnection())
@@ -30,9 +30,9 @@ namespace UniInfo.Dapper.Services
 
 		public async Task<IEnumerable<ISubject<int>>> GetSubjectsForQuiz()
 		{
-			string query = @"SELECT DISTINCT s.FirstSubject,s.SecondSubject From Subjects as s
-							Where s.firstSubject in (SELECT distinct q.Subject From Quizzes as q) 
-							and s.secondSubject in (SELECT distinct q.Subject From Quizzes as q)";
+			string query = @"SELECT DISTINCT s.FirstSubject,s.SecondSubject From subjects as s
+							Where s.firstSubject in (SELECT distinct q.Subject From quizzes as q) 
+							and s.secondSubject in (SELECT distinct q.Subject From quizzes as q)";
 
 			using (var connection = _factory.CreateConnection())
 			{

@@ -11,11 +11,11 @@
             <th>{{'N'}}</th>
             <th>{{tableHeader.code}}</th>
             <th>{{tableHeader.direction}}</th>
-            <th class="cursor-pointer" (click)="orderByCount()">
+            <th class="cursor-pointer" (click)="orderByCount(u)">
               {{tableHeader.plan}}
               <span [ngStyle]="{'display':style.subjectDisplay}" class="{{arrowByCountClass}}"></span>
             </th>
-            <th class="cursor-pointer" (click)="orderByPoint()">
+            <th class="cursor-pointer" (click)="orderByPoint(u)">
               {{tableHeader.pass}}
               <span [ngStyle]="{'display':style.subjectDisplay}" class="{{arrowByPointClass}}"></span>
             </th>

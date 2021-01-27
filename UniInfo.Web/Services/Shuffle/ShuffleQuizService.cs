@@ -6,20 +6,20 @@ using UniInfo.Domain.Models;
 
 namespace UniInfo.Web.Services.Shuffle
 {
-    public class ShuffleQuizService: IShuffleQuizService
+    public class ShuffleQuizService : IShuffleQuizService
     {
-        public const int RandomNumberCount = 4;
+        public const int RandomNumbersCount = 4;
         public IEnumerable<Quiz> ShuffleAnswersInQuizes(IEnumerable<Quiz> quizzes)
         {
             foreach (var quiz in quizzes)
             {
-               var randomNumbers = GenerateRandomNumbers();
+                var randomNumbers = GenerateRandomNumbers();
 
-               var firstAnswer = GetPropertyByNumber(quiz, randomNumbers[0]);
-               var secondAnswer = GetPropertyByNumber(quiz, randomNumbers[1]);
-               var thirdAnswer = GetPropertyByNumber(quiz, randomNumbers[2]);
-               var fourthAnswer = GetPropertyByNumber(quiz, randomNumbers[3]);
-                Swap(ref firstAnswer,ref secondAnswer);
+                var firstAnswer = GetPropertyByNumber(quiz, randomNumbers[0]);
+                var secondAnswer = GetPropertyByNumber(quiz, randomNumbers[1]);
+                var thirdAnswer = GetPropertyByNumber(quiz, randomNumbers[2]);
+                var fourthAnswer = GetPropertyByNumber(quiz, randomNumbers[3]);
+                Swap(ref firstAnswer, ref secondAnswer);
                 Swap(ref thirdAnswer, ref fourthAnswer);
                 var resultQuiz = new Quiz()
                 {
@@ -43,8 +43,8 @@ namespace UniInfo.Web.Services.Shuffle
         {
             var random = new Random();
             int i = 0;
-            int[] result = new int[RandomNumberCount];
-            while (i != RandomNumberCount)
+            int[] result = new int[RandomNumbersCount];
+            while (i != RandomNumbersCount)
             {
                 var randomNumber = random.Next(1, 5);
 
@@ -59,8 +59,8 @@ namespace UniInfo.Web.Services.Shuffle
             return result;
         }
 
-       
-        public string GetPropertyByNumber(Quiz quiz,int number)
+
+        public string GetPropertyByNumber(Quiz quiz, int number)
         {
             if (number == 1)
             {
@@ -83,14 +83,14 @@ namespace UniInfo.Web.Services.Shuffle
             throw new ArgumentException($"Number was more 4 and less than 1 ,number is {number}");
         }
 
-        public void Swap(ref string from ,ref string to)
+        public void Swap(ref string from, ref string to)
         {
             var temp = from;
             from = to;
             to = temp;
         }
 
-  
+
     }
 
 }

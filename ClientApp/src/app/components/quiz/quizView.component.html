@@ -58,29 +58,39 @@
   .border-inner-questions {
     border: 1px solid #daf6ff;
     font-family: 'Share Tech Mono', monospace;
-    padding:8px;
-    margin:6px;
-    width:35px;
-    text-align:center !important;
+    padding: 8px;
+    margin: 6px;
+    width: 35px;
+    text-align: center !important;
   }
 
   .checked-question {
     background: #17a2b8;
-    color:black;
+    color: black;
   }
 
   .unchecked-question {
-    background : inherit;
-    color : white;
+    background: inherit;
+    color: white;
   }
 
-  .non-a{
-    text-decoration:none;
+  .non-a {
+    text-decoration: none;
   }
+
     .non-a:hover {
       background: #4c77a5;
     }
 
+  @media (max-width: 426px) {
+    .quiz-conclusion thead tr th:nth-child(2), th:nth-child(1) {
+      display: table-cell;
+    }
+
+    .quiz-conclusion tbody tr td:nth-child(2), td:nth-child(1) {
+      display: table-cell;
+    }
+  }
 </style>
 
 <div class="container" [class.d-none]="isQuizEnded">

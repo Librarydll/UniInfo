@@ -1,5 +1,5 @@
 ﻿@inject IViewLocalizer Localizer
-@{ 
+@{
     var returnUrl = string.IsNullOrWhiteSpace(Context.Request.Path) ? "~" : $"~{Context.Request.Path.Value}";
     returnUrl += Context.Request.QueryString;
 
@@ -7,7 +7,7 @@
     string uz = "";
     string ru = "";
 
-    if (!string.IsNullOrWhiteSpace(cookie)&&cookie.Contains("uz"))
+    if (!string.IsNullOrWhiteSpace(cookie) && cookie.Contains("uz"))
     {
         uz = "lang-selected";
     }
@@ -82,8 +82,8 @@
         <footer class="footer">
             <div class="container">
                 <div class="d-flex justify-content-center" id="footer-element-container">
-                    <a href="https://t.me/KomilKhamidov"><i class="fa fa-telegram icon"></i></a>
-                    <a><i class="fa fa-envelope-square icon"></i> library.dll@mail.ru</a>
+                    <a href="https://t.me/KomilKhamidov"><i class="fa fa-telegram icon" style="font-size:22px;"></i></a>
+                    <a><i class="fa fa-envelope-square icon" style="padding-right:2px"></i>library.dll@mail.ru </a>
                 </div>
             </div>
         </footer>
