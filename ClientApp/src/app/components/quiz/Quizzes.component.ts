@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Title } from '@angular/platform-browser';
+import { Component, OnInit } from "@angular/core";
+import { Meta, Title } from '@angular/platform-browser';
 import { MessageService } from '../../models/messageService';
 import { ModelDictionary } from '../../models/modelDictionary.model';
 import { QuizAnswer } from '../../models/quiz.model';
@@ -7,14 +7,14 @@ import { QuizService } from '../../models/quizService';
 import { Repository } from '../../models/repository';
 import { SubjectDto } from '../../models/subject.model';
 import { LanguageProvider } from '../../services/languageProvider';
-
-
+import *  as  metaUz from '../../../assets/meta/metaUz.json';
+import *  as  metaRu from '../../../assets/meta/metaRu.json';
 
 @Component({
   selector: "quiz",
   templateUrl: "quizzes.component.html"
 })
-export class QuizzesComponent {
+export class QuizzesComponent implements OnInit {
 
   
   isQuizEnded: boolean = false;
@@ -26,10 +26,21 @@ export class QuizzesComponent {
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
     private titleService:Title,
-    private quizService: QuizService) {
+    private quizService: QuizService,
+    private metaService:Meta) {
     repo.getSubjectNamesForQuizzes();
     let title = languageProvider.getLanguage() == "uz" ? "Test topshirish" : "Сдача теста";
     titleService.setTitle(title);
+  }
+    ngOnInit(): void {
+      this.initializeMetaTags(this.titleService.getTitle());
+    }
+
+  initializeMetaTags(title: string) {
+    this.metaService.addTags([
+      { name: 'keywords', content: this.currentLanguage=="uz" ? metaUz.quiz: metaRu.quiz },
+      { name: 'description', content: title },
+    ]);
   }
 
   get currentLanguage(): string {

@@ -10,7 +10,7 @@ import { LanguageProvider } from '../../services/languageProvider';
 import { MessageService } from '../../models/messageService';
 import { Repository } from '../../models/repository';
 import { Style } from '../../models/style';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 const url ="/api/university"
 
@@ -30,7 +30,9 @@ export class SingleUniversityComponent implements OnInit {
     private http: HttpClient,
     private languageProvider: LanguageProvider,
     private messageService: MessageService,
-    private repo: Repository, private style: Style) {
+    private repo: Repository,
+    private style: Style,
+    private metaService:Meta) {
     this.id = activateRoute.snapshot.params['id'];
     this.tHeader = new TableHeader();
     this.tHeader.setTableHeader(languageProvider.getLanguage());
@@ -42,7 +44,7 @@ export class SingleUniversityComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getUniversity();
-  
+   
     }
 
   get currentLanguage(): string {
@@ -62,11 +64,19 @@ export class SingleUniversityComponent implements OnInit {
         this.messageService.build();
         let title =this. currentLanguage =="uz" ? this.university.nameUz :this.university.nameRu;
         this.titleService.setTitle(title);
+        this.initializeMetaTags(title);
       }
      
     });
-
   }
+
+  initializeMetaTags(title:string) {
+    this.metaService.addTags([
+      { name: 'keywords', content: title.split(" ").join(",") },
+      { name: 'description', content: title },
+    ]);
+  }
+
   get facCount(): number {
     return this.repo.allUniversities.length;
   }

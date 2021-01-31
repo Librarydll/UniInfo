@@ -4,9 +4,9 @@ import { ModelDictionary, ModelDictionaryUniversity } from '../../models/modelDi
 import { Filter } from '../../models/configClasses.repository';
 import { University } from '../../models/university.model';
 import { LanguageProvider } from '../../services/languageProvider';
-import { Title } from '@angular/platform-browser';
-
-
+import { Meta, Title } from '@angular/platform-browser';
+import *  as  metaUz from '../../../assets/meta/metaUz.json';
+import *  as  metaRu from '../../../assets/meta/metaRu.json';
 
 @Component({
   selector: "u-list",
@@ -18,14 +18,23 @@ export class UniversityListComponent implements OnInit {
   lUniversity: ModelDictionary[];
   constructor(private repo: Repository,
     private languageProvider: LanguageProvider,
-    private titleService :Title)
+    private titleService: Title,
+    private metaService: Meta)
   {
     let title = languageProvider.getLanguage() == "uz" ? "Oliygohlar" : "Список вузов";
     titleService.setTitle(title);
   }
 
   ngOnInit(): void {
-     this.repo.getUniversities();
+    this.repo.getUniversities();
+    this.initializeMetaTags(this.titleService.getTitle());
+  }
+
+  initializeMetaTags(title: string) {
+    this.metaService.addTags([
+      { name: 'keywords', content: this.currentLanguage == "uz" ? metaUz.universityList : metaRu.universityList },
+      { name: 'description', content: title },
+    ]);
   }
 
   get currentLanguage(): string {
