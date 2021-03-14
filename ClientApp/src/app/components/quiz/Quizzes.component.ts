@@ -22,7 +22,7 @@ export class QuizzesComponent implements OnInit {
   canBuildQuiz: boolean = false;
   canBuildTable: boolean = false;
   quizResult: QuizAnswer;
-  constructor(private repo: Repository,
+  constructor(public repo: Repository,
     private messageService: MessageService,
     private languageProvider: LanguageProvider,
     private titleService:Title,

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UniversityListComponent } from './components/universityList/universityList.component';
-import { SingleUniversityComponent } from './components/singleUniversity/singleUniversity.component';
 import { AppListComponent } from './components/appList.component';
 import { AppSingleComponent } from './components/appSingle.component';
 import { QuizzesComponent } from './components/quiz/Quizzes.component';
-import { AuthGuard } from './models/auth.guard';
 
 
 const routes: Routes = [

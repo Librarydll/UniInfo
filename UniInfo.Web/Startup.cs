@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using UniInfo.Dapper.Context;
 using UniInfo.Dapper.Services;
@@ -56,7 +58,7 @@ namespace UniInfo.Web
 				return new ApplicationDbConnectionFactory(str);
 			});
 
-			services.AddSwaggerGen();
+		//	services.AddSwaggerGen();
 
 
 			services.AddMvc(option => option.EnableEndpointRouting = false)
@@ -78,7 +80,7 @@ namespace UniInfo.Web
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.UseSwagger();
+		//	app.UseSwagger();
 			
 			if (env.IsDevelopment())
 			{
@@ -104,13 +106,19 @@ namespace UniInfo.Web
 			var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
 			app.UseRequestLocalization(options.Value);
 
-			app.UseSwaggerUI(s =>
-			{
-				s.SwaggerEndpoint("/swagger/v1/swagger.json", "MY API 1");
-			});
+			//app.UseSwaggerUI(s =>
+			//{
+			//	s.SwaggerEndpoint("/swagger/v1/swagger.json", "MY API 1");
+			//});
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				RequestPath = "",
+				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "./wwwroot/app"))
+			});
 
 
 			app.UseRouting();
@@ -136,19 +144,19 @@ namespace UniInfo.Web
 					defaults: new { controller = "Admin", action = "Index" });
 			});
 
-			app.UseSpa(spa =>
-			{
-				string strategy = Configuration.GetValue<string>("DevTools:ConnectionStrategy");
-				if (strategy == "proxy")
-				{
-					spa.UseProxyToSpaDevelopmentServer("http://127.0.0.1:4200");
-				}
-				else if (strategy == "managed")
-				{
+			//app.UseSpa(spa =>
+			//{
+			//	string strategy = Configuration.GetValue<string>("DevTools:ConnectionStrategy");
+			//	if (strategy == "proxy")
+			//	{
+			//		spa.UseProxyToSpaDevelopmentServer("http://127.0.0.1:4200");
+			//	}
+			//	else if (strategy == "managed")
+			//	{
 
-					spa.Options.SourcePath = "../ClientApp"; spa.UseAngularCliServer("start");
-				}
-			});
+			//		spa.Options.SourcePath = "../ClientApp"; spa.UseAngularCliServer("start");
+			//	}
+			//});
 		}
 	}
 }

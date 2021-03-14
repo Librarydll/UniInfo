@@ -5,7 +5,6 @@ import { Quiz, QuizAnswer } from '../../models/quiz.model';
 import { Chart } from 'chart.js'
 import { LanguageProvider } from '../../services/languageProvider';
 import { ModelDictionary } from '../../models/modelDictionary.model';
-import { delay } from 'rxjs/operators';
 
 
 const rigth: ModelDictionary = new ModelDictionary("Правильные", "To'g'ri", 0);
@@ -24,7 +23,7 @@ export class QuizViewComponent {
   firstChart = [];
   secondChart = [];
   isFirstAriaSelected: boolean = true;
-  constructor(private repo: Repository,
+  constructor(public repo: Repository,
     private quizService: QuizService,
     private lang: LanguageProvider) {
   }

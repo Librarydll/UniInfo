@@ -14,7 +14,7 @@ import { Style } from '../../models/style';
 export class SubjectFilterComponent{
 
   order: number = 0;
-  constructor(private repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider,private style:Style) {
+  constructor(public repo: Repository, private messageService: MessageService, private languageProvider: LanguageProvider,private style:Style) {
     style.uNameDisplay = '';
     style.subjectDisplay = 'none';
     style.canOrder = false;

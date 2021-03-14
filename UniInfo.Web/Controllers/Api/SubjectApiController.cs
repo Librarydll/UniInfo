@@ -32,9 +32,16 @@ namespace UniInfo.Web.Controllers.Api
 
 		public async Task<IActionResult> GetSubjectsForQuiz()
 		{
-			var data = await _subjectDataService.GetSubjectsForQuiz();
-			var result = data.GetModelSubjectNames();
-			return Ok(result);
+            try
+            {
+                var data = await _subjectDataService.GetSubjectsForQuiz();
+                var result = data.GetModelSubjectNames();
+				return Ok(result);
+			}
+			catch (Exception ex)
+            {
+				return BadRequest(ex.Message+" "+ex.InnerException?.Message);
+            }
 		}
 
 	}

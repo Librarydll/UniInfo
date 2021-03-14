@@ -30,7 +30,7 @@
             <tr>
               <td>{{i+1}}</td>
               <td>{{fac.code}}</td>
-              <td style="text-align:left">{{currentLanguage=='uz' ? fac.facultyNameUz : facultyNameRu}}</td>
+              <td style="text-align:left">{{currentLanguage=='uz' ? fac.facultyNameUz : fac.facultyNameRu}}</td>
               <td class="number">
                 <span [className]="grantCount ? 'grand-light' :''">
                   {{fac.grant}} /

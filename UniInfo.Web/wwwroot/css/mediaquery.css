@@ -49,6 +49,9 @@
         width: 100%;
         text-align: center !important;
     }
+    #navUl a {
+        font-size: 16px;
+    }
 }
 
 
@@ -105,6 +108,9 @@
 
     #footer-element-container a {
         font-size: 18px;
+    }
+    #navUl a {
+        font-size: 14px;
     }
 }
 

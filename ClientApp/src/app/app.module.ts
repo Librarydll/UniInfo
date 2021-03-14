@@ -12,9 +12,7 @@ import { StructureModule } from './structure/structure.module';
 import { FormsModule } from '@angular/forms';
 
 import { CookieModule } from 'ngx-cookie';
-import { AdminModule } from './admin/admin.module';
 import { JwtModule } from '@auth0/angular-jwt';
-import { AuthGuard } from './models/auth.guard';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -22,7 +20,7 @@ export function tokenGetter() {
 
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, '', '.json');
 }
 @NgModule({
   declarations: [AppComponent],

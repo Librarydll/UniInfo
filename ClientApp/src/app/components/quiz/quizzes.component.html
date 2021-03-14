@@ -67,7 +67,7 @@
 </div>
 
 <div class="quiz-container">
-  <quiz-view *ngIf="canBuildQuiz" (isQuizEndedOutput)="getStatus($event)" (qResultOutput)="getQuizResult($event)"></quiz-view>
+  <quiz-view *ngIf="canBuildQuiz" (isQuizEndedOutput)="getStatus()" (qResultOutput)="getQuizResult($event)"></quiz-view>
   <div class="qv-result" [class.d-none]="!isQuizEnded">
     <button class="btn btn-info color-black d-block" (click)="retry()">{{'Retry' | translate}}</button>
     <button class="btn btn-info color-black d-block" (click)="getUniversities()">{{'UniversityList' | translate}}</button>

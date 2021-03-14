@@ -100,8 +100,15 @@
         color: black;
     }
 
-/*FOOTER*/
+#navUl a {
+    font-size: 18px;
+    color: #d2e2ff;
+}
 
+    #navUl a:hover {
+        color: #5a74a2;
+    }
+/*FOOTER*/
 .footer {
     bottom: 0;
     width: 100%;

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>3af53351-d586-4bb4-b3d1-c02f31ab2e3c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,10 +11,6 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
