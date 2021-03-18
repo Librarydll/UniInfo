@@ -9,6 +9,7 @@ import { SubjectDto } from '../../models/subject.model';
 import { LanguageProvider } from '../../services/languageProvider';
 import *  as  metaUz from '../../../assets/meta/metaUz.json';
 import *  as  metaRu from '../../../assets/meta/metaRu.json';
+import { Style } from '../../models/style';
 
 @Component({
   selector: "quiz",
@@ -27,10 +28,13 @@ export class QuizzesComponent implements OnInit {
     private languageProvider: LanguageProvider,
     private titleService:Title,
     private quizService: QuizService,
-    private metaService:Meta) {
+    private metaService: Meta,
+    private style:Style) {
     repo.getSubjectNamesForQuizzes();
     let title = languageProvider.getLanguage() == "uz" ? "Test topshirish" : "Сдача теста";
     titleService.setTitle(title);
+    style.subjectDisplay = 'none';
+    style.canOrder = false;
   }
     ngOnInit(): void {
       this.initializeMetaTags(this.titleService.getTitle());
